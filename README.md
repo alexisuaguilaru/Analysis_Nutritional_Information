@@ -4,5 +4,8 @@ Statistical analysis (EDA) of the nutritional values (macronutrients) of recipes
 # About the Dataset 
 The dataset is taken from [[1]](./README.md#references). The dataset contains information on the nutritional values of carbohydrates, proteins and fats of recipes from different international cuisines.
 
+# Technical Warnings
+Due to the use of interactive plots, it is necessary to clone or download the repository for the display of these plots.
+
 # References
 - [1] Diets, Recipes And Their Nutrients. Kaggle. https://www.kaggle.com/datasets/thedevastator/healthy-diet-recipes-a-comprehensive-dataset

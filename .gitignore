@@ -1,0 +1,13 @@
+__to-do.md
+
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fls
+*.log
+*.out
+*.xml
+*.gz
+*.fdb_latexmk
+*.toc

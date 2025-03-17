@@ -169,6 +169,59 @@
         anteriores, se vuelve una variable relevante para la comparación entre dietas.
     \end{itemize}
 
+    \subsection{Medidas de Tendencia Central y Dispersión}
+    Realizando el resumen de las medidas, se tiene:
+    \begin{center}
+        \begin{tabular}{|c|ccc|}
+            \hline
+            Medida & Carbs(g) & Protein(g) & Fat(g) \\
+            \hline
+            Media               & 0.433471 & 0.234762 & 0.331767 \\
+            $Q_1$               & 0.205251 & 0.110188 & 0.184583 \\
+            $Q_2$               & 0.432028 & 0.190931 & 0.314359 \\
+            $Q_3$               & 0.635058 & 0.338059 & 0.464532 \\
+            Desviación Estándar & 0.256032 & 0.163886 & 0.194920 \\
+            Mínimo              & 0.000330 & 0.000000 & 0.000000 \\
+            Máximo              & 1.000000 & 0.887557 & 0.997940 \\
+            Asimetría de Fisher & 0.189556 & 0.922401 & 0.461455 \\
+            \hline
+        \end{tabular}
+    \end{center}
+    Debido a que son medidas sobre todos los datos, sin estratificar, 
+    se tiene que no hay una referencia de lo que se espera obtener y 
+    parte de la información que contienen queda diluida o desvanecida. 
+    Esto debido a que las dietas como la vegana es baja en proteínas y 
+    la keto en carbohidratos \cite{marvastipopular}, por lo que cualquier 
+    suposición no se podría sostener sobre todos las dietas.\\
+
+    Aún así, se reportan bajos valores en proteínas y grasas en comparación 
+    con los carbohidratos si se hace uso de los cuartiles $Q_1$ y $Q_2$, 
+    dicho así: el cincuenta por ciento de las recetas tienen entre $11.01\%$ y 
+    $33.80\%$ de proteínas y entre $18.45\%$ y $46.45\%$ de grasas, en comparación 
+    con entre $20.52\%$ y $63.50\%$ de carbohidratos. Esto es un indicio de 
+    que las recetas, en general, tienden a ser altas en carbohidratos entre las 
+    diferentes dietas y cocinas; mientras que son bajas en proteínas.\\
+    Este último punto puede ser apoyado si se considera la media de los 
+    macronutrientes, que siguen este prototipo de aportes dominantes de 
+    carbohidratos.\\
+
+    Si se gráfica la distribución de los macronutrientes se tiene que, debido 
+    a la simetría, contienen datos atípicos en proteínas y grasas en una región 
+    positiva respecto a la mediana, y esto se relaciona con lo mencionado de que 
+    una receta no tiende a una alta cantidad de proteínas o de grasas. Y se puede 
+    apreciar como justamente existen un alta concentración de recetas en una intervalo pequeño 
+    de valores, en comparación con los carbohidratos que se encuentran distribuidos 
+    sobre una región más amplia; esto último permite que no existan datos atípicos. 
+    \begin{center}
+        \includegraphics[width=0.75\textwidth]{2_01_plot_01}
+    \end{center}
+
+    Debido a que existe la presencia de datos atípicos, lo más adecuado es tratarlos 
+    de manera estratificada, por tipo de dieta. Esto debido a que tratarlos de manera 
+    general podría evocar que ciertas dietas queden menos representadas en comparación 
+    con otras o que incluso se pierda información para consecuentes procesos. Y al 
+    tratar los valores atípicos dentro de cada dieta permite reducir el impacto de 
+    perder información valiosa y se siga conservando las recetas relevantes para una dieta.
 
 \newpage
 

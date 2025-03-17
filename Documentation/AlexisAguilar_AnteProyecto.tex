@@ -24,6 +24,8 @@
 \setstretch{1.5}
 \setlength{\parindent}{0pt}
 
+\usepackage{enumitem}
+
 \begin{document}
 \begin{titlepage}
     \begin{minipage}[c]{0.1\textwidth}
@@ -138,7 +140,35 @@
     cada macronutriente en cada una de las recetas.
 
     \subsection{Descripción de los Valores de las Variables}
-    
+    Para el presente trabajo se harán uso de las siguientes variables, se 
+    acompañan con una descripción de su significado:
+    \begin{itemize}[label=\textbullet]
+        \item \textbf{Diet\_type}: Variable que representa el tipo de 
+        dieta (DASH, keto, mediterránea, paleo, vegana) a la que 
+        pertenece una receta. Con esta variable se va permitir estratificar 
+        las recetas y estudiarlas de una manera más granular, es decir, 
+        por tipo de dieta para llegar a conjurar hipótesis sobre lo qué 
+        está pasando en una dieta o entre las diferentes dietas.
+        \item \textbf{Cuisine\_type}: Variable que representa a qué (estilo 
+        de) cocina o región (mexicana, americana, italiana) pertenece una 
+        receta. Al usarla va a permitir el comparar cómo son las recetas 
+        de una dieta en comparación con otras regiones, en específico el 
+        como se compara la dieta mediterránea en el mediterráneo en comparación 
+        con otras regiones geográficas.
+        \item \textbf{Protein(g)}: Después de la transformación, representa el 
+        porcentaje, respecto al total de macronutrientes, de proteínas que son 
+        aportados por una receta. El usar las proteínas se va a permitir la 
+        comparación entre diferentes dietas, siendo esto el eje central del trabajo
+        \item \textbf{Carbs(g)}: Después de la transformación, representa el 
+        porcentaje, respecto al total de macronutrientes, de carbohidratos que 
+        son aportados por una receta. Siendo otro de los macronutrientes de una 
+        comida, se vuelve relevante para la comparación entre recetas y dietas.
+        \item \textbf{Fat(g)}: Después de la transformación, representa el 
+        porcentaje, respecto al total de macronutrientes, de grasas que son 
+        aportados por una receta. Y el último macronutriente, como en los 
+        anteriores, se vuelve una variable relevante para la comparación entre dietas.
+    \end{itemize}
+
 
 \newpage
 

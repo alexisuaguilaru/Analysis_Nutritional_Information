@@ -29,7 +29,7 @@
 \begin{document}
 \begin{titlepage}
     \begin{minipage}[c]{0.1\textwidth}
-        \includegraphics[width=\textwidth]{logo_unam.jpg}
+        \includegraphics[width=\textwidth]{Resources/logo_unam.jpg}
     \end{minipage}
     \begin{minipage}{0.8\textwidth}
         \centering
@@ -37,7 +37,7 @@
         {\large\textbf{Escuela Nacional de Estudios Superiores\\\underline{Unidad Morelia}}}
     \end{minipage}
     \begin{minipage}[c]{0.1\textwidth}
-        \includegraphics[width=\textwidth]{logo_enes.jpg}
+        \includegraphics[width=\textwidth]{Resources/logo_enes.jpg}
     \end{minipage}
     \vspace{3cm}
 
@@ -206,14 +206,14 @@
     carbohidratos.\\
 
     Si se gráfica la distribución de los macronutrientes se tiene que, debido 
-    a la simetría, contienen datos atípicos en proteínas y grasas en una región 
+    a la asimetría, contienen datos atípicos en proteínas y grasas en una región 
     positiva respecto a la mediana, y esto se relaciona con lo mencionado de que 
     una receta no tiende a una alta cantidad de proteínas o de grasas. Y se puede 
-    apreciar como justamente existen un alta concentración de recetas en una intervalo pequeño 
+    apreciar como justamente existe un alta concentración de recetas en una intervalo pequeño 
     de valores, en comparación con los carbohidratos que se encuentran distribuidos 
     sobre una región más amplia; esto último permite que no existan datos atípicos. 
     \begin{center}
-        \includegraphics[width=0.75\textwidth]{2_01_plot_01}
+        \includegraphics[width=0.75\textwidth]{Resources/2_02_plot_01.png}
     \end{center}
 
     Debido a que existe la presencia de datos atípicos, lo más adecuado es tratarlos 
@@ -222,6 +222,114 @@
     con otras o que incluso se pierda información para consecuentes procesos. Y al 
     tratar los valores atípicos dentro de cada dieta permite reducir el impacto de 
     perder información valiosa y se siga conservando las recetas relevantes para una dieta.
+
+    \subsection{Estratificación de Valores Cuantitativos}
+    La variable Diet\_type es la principal que se emplea para 
+    estratificación de las recetas, debido a que permite seprarlas 
+    según una criterio bien definida, a qué dieta pertenece. Para cada 
+    una de las cinco dietas se presentan los datos tabulados de sus 
+    medidas de tendencia central y dispersión junto con su histograma 
+    de los valores en sus macronutrientes.\\
+
+    \subsubsection{Dieta DASH}
+        \begin{center}
+            \begin{tabular}{|c|ccc|}
+                \hline
+                Medida & Carbs(g) & Protein(g) & Fat(g) \\
+                \hline
+                Media               & 0.549425 & 0.196241 & 0.254334  \\
+                $Q_1$               & 0.331143 & 0.068931 & 0.103381  \\
+                $Q_2$               & 0.555219 & 0.156626 & 0.234742  \\
+                $Q_3$               & 0.757917 & 0.282629 &	0.371292  \\
+                Desviación Estándar & 0.278850 & 0.162871 & 0.194078  \\
+                Mínimo              & 0.001526 & 0.000000 & 0.000000  \\
+                Máximo              & 1.000000 & 0.833467 & 0.973404  \\
+                Asimetría de Fisher & 0.189556 & 0.922401 & 0.461455  \\
+                \hline
+            \end{tabular}
+            \includegraphics[width=0.75\textwidth]{Resources/2_03_plot_01.png}
+        \end{center}
+
+    \subsubsection{Dieta Keto}
+        \begin{center}
+            \begin{tabular}{|c|ccc|}
+                \hline
+                Medida & Carbs(g) & Protein(g) & Fat(g) \\
+                \hline
+                Media               & 0.200879 & 0.301777 & 0.497344  \\
+                $Q_1$               & 0.085517 & 0.158284 & 0.405354  \\
+                $Q_2$               & 0.157348 & 0.302900 & 0.505751  \\
+                $Q_3$               & 0.267535 & 0.409453 & 0.591887  \\
+                Desviación Estándar & 0.160609 & 0.167027 & 0.166572  \\
+                Mínimo              & 0.002060 & 0.000000 & 0.000000  \\
+                Máximo              & 1.000000 & 0.856868 & 0.997940  \\
+                Asimetría de Fisher & 0.189556 & 0.922401 & 0.461455  \\
+                \hline
+            \end{tabular}
+            \includegraphics[width=0.75\textwidth]{Resources/2_03_plot_02.png}
+        \end{center}
+
+    \subsubsection{Dieta Mediterránea}
+        \begin{center}
+            \begin{tabular}{|c|ccc|}
+                \hline
+                Medida & Carbs(g) & Protein(g) & Fat(g) \\
+                \hline
+                Media               & 0.424493 & 0.279357 & 0.296150  \\
+                $Q_1$               & 0.249955 & 0.159633 & 0.180357  \\
+                $Q_2$               & 0.439382 & 0.227883 & 0.268336  \\
+                $Q_3$               & 0.607531 & 0.377820 & 0.390404  \\
+                Desviación Estándar & 0.214325 & 0.162853 & 0.160783  \\
+                Mínimo              & 0.006733 & 0.005036 & 0.001731  \\
+                Máximo              & 0.992746 & 0.887557 & 0.968722  \\
+                Asimetría de Fisher & 0.189556 & 0.922401 & 0.461455  \\
+                \hline
+            \end{tabular}
+            \includegraphics[width=0.75\textwidth]{Resources/2_03_plot_03.png}
+        \end{center}
+
+    \subsubsection{Dieta Paleo}
+        \begin{center}
+            \begin{tabular}{|c|ccc|}
+                \hline
+                Medida & Carbs(g) & Protein(g) & Fat(g) \\
+                \hline
+                Media               & 0.371307 & 0.249693 & 0.379000  \\
+                $Q_1$               & 0.192399 & 0.102963 & 0.256579  \\
+                $Q_2$               & 0.351300 & 0.205532 & 0.382447  \\
+                $Q_3$               & 0.515054 & 0.375392 & 0.488116  \\
+                Desviación Estándar & 0.221506 & 0.175031 & 0.175471  \\
+                Mínimo              & 0.003612 & 0.000000 & 0.001404  \\
+                Máximo              & 0.987368 & 0.858503 & 0.968835  \\
+                Asimetría de Fisher & 0.189556 & 0.922401 & 0.461455  \\
+                \hline
+            \end{tabular}
+            \includegraphics[width=0.75\textwidth]{Resources/2_03_plot_04.png}
+        \end{center}
+
+    \subsubsection{Dieta Vegana}
+        \begin{center}
+            \begin{tabular}{|c|ccc|}
+                \hline
+                Medida & Carbs(g) & Protein(g) & Fat(g) \\
+                \hline
+                Media               & 0.593968 & 0.148489 & 0.257543  \\
+                $Q_1$               & 0.504070 & 0.085339 & 0.142575  \\
+                $Q_2$               & 0.626246 & 0.139688 & 0.231518  \\
+                $Q_3$               & 0.714679 & 0.190381 & 0.344529  \\
+                Desviación Estándar & 0.171203 & 0.086088 & 0.160277  \\
+                Mínimo              & 0.000330 & 0.001921 & 0.000112  \\
+                Máximo              & 0.986872 & 0.647416 & 0.994887  \\
+                Asimetría de Fisher & 0.189556 & 0.922401 & 0.461455  \\
+                \hline
+            \end{tabular}
+            \includegraphics[width=0.75\textwidth]{Resources/2_03_plot_05.png}
+        \end{center}
+
+    \subsubsection{Gráfico de Cajas y Bigotes de la distribución de Macronutrientes por Dieta}
+        \begin{center}
+            \includegraphics[width=0.75\textwidth]{Resources/2_03_plot_06.png}
+        \end{center}
 
 \newpage
 

@@ -232,6 +232,10 @@
     de los valores en sus macronutrientes.\\
 
     \subsubsection{Dieta DASH}
+        una receta de esta dieta tendrá que, en promedio, el $55\%$ de sus 
+        macronutrientes sons carbohidratos (provenientes de frutas, vegetales 
+        y granos enteros); el $25\%$ son grasas que, por su naturaleza, son 
+        saludables; y el $20\%$ son proteínas, las cuáles provienen de carnes margas.
         \begin{center}
             \begin{tabular}{|c|ccc|}
                 \hline
@@ -244,13 +248,25 @@
                 Desviación Estándar & 0.278850 & 0.162871 & 0.194078  \\
                 Mínimo              & 0.001526 & 0.000000 & 0.000000  \\
                 Máximo              & 1.000000 & 0.833467 & 0.973404  \\
-                Asimetría de Fisher & 0.189556 & 0.922401 & 0.461455  \\
+                Asimetría de Fisher & -0.057984 & 1.101171 & 0.732534  \\
                 \hline
             \end{tabular}
+        \end{center}
+        Debido a que existe un sesgo positivo notable en las contribuciones de 
+        proteínas y grasas, se tiene que las recetas van a tender a tener bajos 
+        aportes de estos macronutrientes y que si tienen un alto aporte se 
+        consideraría una receta atípica dentro de la dieta.
+        \begin{center}
             \includegraphics[width=0.75\textwidth]{Resources/2_03_plot_01.png}
         \end{center}
 
     \subsubsection{Dieta Keto}
+        Una receta de esta dieta tendrá que, en promedio, el $50\%$ de 
+        sus macronutrientes son grasas, esto se relaciona con el hecho de 
+        que se intenta inducir la ketosis (principio en que se basa esta         
+        dieta); el $30\%$ son proteínas, notando que se intenta reducir 
+        el consumo de carbohidratos; y el $20\%$ son carbohidratos, 
+        resaltando ser una dieta baja en carbohidratos.
         \begin{center}
             \begin{tabular}{|c|ccc|}
                 \hline
@@ -263,13 +279,30 @@
                 Desviación Estándar & 0.160609 & 0.167027 & 0.166572  \\
                 Mínimo              & 0.002060 & 0.000000 & 0.000000  \\
                 Máximo              & 1.000000 & 0.856868 & 0.997940  \\
-                Asimetría de Fisher & 0.189556 & 0.922401 & 0.461455  \\
+                Asimetría de Fisher & 1.634945 & 0.314795 & -0.147406 \\
                 \hline
             \end{tabular}
+        \end{center}
+        Como la proporciones de carbohidratos cuenta con un sesgo positivo, se 
+        tiene que refuerza el hecho de ser una dieta baja en carbohidratos, pero 
+        además que existen recetas con una alta contribución de este macronutriente. 
+        De los aportes de grasas, se observa que su sesgo es despreciable implicando 
+        que existen recetas tanto con aportes altos de este macronutriente (lo que se 
+        busca) mientras que hay recetas que una contribución baja o nula del mismo, esto 
+        es indicativo de que estas recetas no pertenecen a esta dieta solamente considerando 
+        la contribución de este macronutriente.
+        \begin{center}
             \includegraphics[width=0.75\textwidth]{Resources/2_03_plot_02.png}
         \end{center}
 
     \subsubsection{Dieta Mediterránea}
+        Una receta de esta dieta tendrá que, en promedio, el $42\%$ de sus 
+        macronutrientes son carbohidratos, esto debido a un alto consumo de 
+        productos como, frutas, vegetales y granos enteros; el $30\%$ son 
+        grasas, resaltando un alto consumo de nueces y aceite de oliva, como 
+        también un consumo moderado de pescado; y el $28\%$ son proteínas, 
+        vinculado con un consumo moderado de pescado y aves de corral, y un 
+        bajo consumo de carnes rojas. 
         \begin{center}
             \begin{tabular}{|c|ccc|}
                 \hline
@@ -282,13 +315,23 @@
                 Desviación Estándar & 0.214325 & 0.162853 & 0.160783  \\
                 Mínimo              & 0.006733 & 0.005036 & 0.001731  \\
                 Máximo              & 0.992746 & 0.887557 & 0.968722  \\
-                Asimetría de Fisher & 0.189556 & 0.922401 & 0.461455  \\
+                Asimetría de Fisher & -0.096055 & 0.955922 & 0.869493 \\
                 \hline
             \end{tabular}
+        \end{center}
+        La proporción de proteínas está segada positivamente y junto con una 
+        alta acumulación de recetas con bajo consumo de proteínas, se tiene que 
+        esta dieta figura como una con bajo consumo de alimentos ricos en proteínas.
+        \begin{center}
             \includegraphics[width=0.75\textwidth]{Resources/2_03_plot_03.png}
         \end{center}
 
     \subsubsection{Dieta Paleo}
+        Una receta de esta dieta tendrá que, en promedio, el $38\%$ de sus 
+        macronutrientes son grasas y el $37\%$ son carbohidratos, esto se 
+        relaciona con el consumo de productos como frutas, vegetales, nueces 
+        y semillas; y el $25\%$ son proteínas cuyas principales fuentes son 
+        carnes margas y pescado.
         \begin{center}
             \begin{tabular}{|c|ccc|}
                 \hline
@@ -301,13 +344,24 @@
                 Desviación Estándar & 0.221506 & 0.175031 & 0.175471  \\
                 Mínimo              & 0.003612 & 0.000000 & 0.001404  \\
                 Máximo              & 0.987368 & 0.858503 & 0.968835  \\
-                Asimetría de Fisher & 0.189556 & 0.922401 & 0.461455  \\
+                Asimetría de Fisher & 0.488656 & 0.711408 & 0.312673  \\
                 \hline
             \end{tabular}
+        \end{center}
+        Se observa como las recetas tienden a tener una contribución moderada de 
+        carbohidratos y grasas, esto se relaciona con los principales alimentos 
+        que son consumidos en esta dieta.
+        \begin{center}
             \includegraphics[width=0.75\textwidth]{Resources/2_03_plot_04.png}
         \end{center}
 
     \subsubsection{Dieta Vegana}
+        Una receta de esta dieta tendrá que, en promedio, el $60\%$ de 
+        sus macronutrientes son carbohidratos, que provienen de fuentes 
+        como vegetales, frutas, cereales y legumbres; el $25\%$ son grasas, 
+        relacionadas con el consumo de nueces y semillas; y el $15\%$ son 
+        proteínas, esto debido a un nulo consumo de alimentos de origen 
+        animal y que estas fuentes son reemplazadas por fuentes vegetales.
         \begin{center}
             \begin{tabular}{|c|ccc|}
                 \hline
@@ -323,10 +377,19 @@
                 Asimetría de Fisher & 0.189556 & 0.922401 & 0.461455  \\
                 \hline
             \end{tabular}
+        \end{center}
+        De las proporciones de proteínas, se resalta una alta acumulación de 
+        recetas con bajos aportes de proteínas, esto hace de esta dieta una 
+        con bajo consumo de proteínas. Lo último debido a que las principales 
+        fuentes proteínas son animales y haciendo que los aportes de carbohidratos 
+        sean altos en comparación con los otros dos macronutrientes.
+        \begin{center}
             \includegraphics[width=0.75\textwidth]{Resources/2_03_plot_05.png}
         \end{center}
 
     \subsubsection{Gráfico de Cajas y Bigotes de la distribución de Macronutrientes por Dieta}
+        Se anexan las gráficas de cajas y bigotes de las distribuciones de los 
+        macronutrientes por dieta para apoyar las observaciones realizadas anteriormente.
         \begin{center}
             \includegraphics[width=0.75\textwidth]{Resources/2_03_plot_06.png}
         \end{center}

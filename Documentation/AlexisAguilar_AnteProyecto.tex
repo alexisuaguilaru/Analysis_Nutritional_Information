@@ -400,7 +400,8 @@
     Como las tres variables cuantitativas tienen el mismo nivel 
     de relevancia, se opta por usar los Carbs(g) como atributo 
     para el Muestreo. Y para ambos muestreos se realizan de 
-    tamaño $50$.
+    tamaño $50$ y, usando la Regla de Sturges, se emplean 7 clases 
+    o bins.
     
     \subsection{Muestreo Aleatorio Simple}
         
@@ -421,21 +422,21 @@
         \end{center}
 
     \subsubsection{Tabla de Frecuencias}
-    \begin{center}
-        \begin{tabular}{|c|c|c|c|}
-            \hline
-            Marca de Clase & Frecuencia Absoluta & Frecuencia Relativa & Frecuencia Acumulada \\
-            \hline
-            0.071112 & 6.000000 & 0.120000 & 0.120000 \\
-            0.209217 & 8.000000 & 0.160000 & 0.280000 \\
-            0.347321 & 10.000000 & 0.200000 & 0.480000 \\
-            0.485426 & 8.000000 & 0.160000 & 0.640000 \\
-            0.623530 & 11.000000 & 0.220000 & 0.860000 \\
-            0.761635 & 4.000000 & 0.080000 & 0.940000 \\
-            0.899740 & 3.000000 & 0.060000 & 1.000000 \\
-            \hline
-        \end{tabular}
-    \end{center} 
+        \begin{center}
+            \begin{tabular}{|c|c|c|c|}
+                \hline
+                Marca de Clase & Frecuencia Absoluta & Frecuencia Relativa & Frecuencia Acumulada \\
+                \hline
+                0.071112 & 6.000000 & 0.120000 & 0.120000 \\
+                0.209217 & 8.000000 & 0.160000 & 0.280000 \\
+                0.347321 & 10.000000 & 0.200000 & 0.480000 \\
+                0.485426 & 8.000000 & 0.160000 & 0.640000 \\
+                0.623530 & 11.000000 & 0.220000 & 0.860000 \\
+                0.761635 & 4.000000 & 0.080000 & 0.940000 \\
+                0.899740 & 3.000000 & 0.060000 & 1.000000 \\
+                \hline
+            \end{tabular}
+        \end{center} 
 
     \subsubsection{Medidas de Tendencia Central y Dispersión Muestrales}
         \begin{center}
@@ -453,6 +454,59 @@
                 Asimetría de Fisher & 0.077583 \\
                 \hline
                 \end{tabular}
+        \end{center}
+    
+    \subsection{Muestreo Aleatorio Estratificado}
+
+    \subsubsection{Resultados del Muestreo}
+        \begin{center}
+            \begin{tabular}{ccccc}
+                0.44793647 & 0.18250769 & 0.63935358 & 0.21435184 & 0.91825902 \\
+                0.70068017 & 0.55288489 & 0.49903342 & 0.74194743 & 0.39776892 \\
+                0.68474824 & 0.21756679 & 0.64524101 & 0.11898573 & 0.11534155 \\
+                0.51769646 & 0.84650821 & 0.08359541 & 0.24333481 & 0.42687973 \\
+                0.04969789 & 0.6525685  & 0.09963134 & 0.13678711 & 0.01271082 \\
+                0.60119711 & 0.53384367 & 0.71907757 & 0.58809768 & 0.37297297 \\
+                0.61700427 & 0.75929204 & 0.34345027 & 0.15223487 & 0.57504277 \\
+                0.69714352 & 0.32857582 & 0.39527363 & 0.19990062 & 0.30321616 \\
+                0.3849578  & 0.65746746 & 0.69443097 & 0.65933286 & 0.42047204 \\
+                0.37633321 & 0.7136477  & 0.53091451 & 0.63226859 & 0.50493571 
+            \end{tabular}
+        \end{center}
+
+    \subsubsection{Tabla de Frecuencias}
+        \begin{center}
+            \begin{tabular}{|c|c|c|c|}
+                \hline
+                Marca de Clase & Frecuencia Absoluta & Frecuencia Relativa & Frecuencia Acumulada \\
+                \hline
+                0.077393 & 7.000000 & 0.140000 & 0.140000 \\
+                0.206757 & 6.000000 & 0.120000 & 0.260000 \\
+                0.336121 & 8.000000 & 0.160000 & 0.420000 \\
+                0.465485 & 6.000000 & 0.120000 & 0.540000 \\
+                0.594849 & 13.000000 & 0.260000 & 0.800000 \\
+                0.724213 & 8.000000 & 0.160000 & 0.960000 \\
+                0.853577 & 2.000000 & 0.040000 & 1.000000 \\
+                \hline
+            \end{tabular}
+        \end{center}
+
+    \subsubsection{Medidas de Tendencia Central y Dispersión Muestrales}
+        \begin{center}
+            \begin{tabular}{|c|c|}
+                \hline
+                Medida & Carbs(g) \\
+                \hline
+                Media & 0.458142  \\
+                $Q_1$ & 0.258305 \\
+                $Q_2$ & 0.501985 \\
+                $Q_3$ & 0.650737 \\
+                Desviación Estándar & 0.233125 \\
+                Mínimo & 0.012711 \\
+                Máximo & 0.918259 \\
+                Asimetría de Fisher & -0.226386 \\
+                \hline
+            \end{tabular}
         \end{center}
 
 \newpage

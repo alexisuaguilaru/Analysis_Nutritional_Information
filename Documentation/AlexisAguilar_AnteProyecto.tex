@@ -26,6 +26,8 @@
 
 \usepackage{enumitem}
 
+\usepackage{xcolor}
+
 \begin{document}
 \begin{titlepage}
     \begin{minipage}[c]{0.1\textwidth}
@@ -491,36 +493,40 @@
     \subsubsection{Resultados del Muestreo}
         \begin{center}
             \begin{tabular}{ccccc}
-                0.44793647 & 0.18250769 & 0.63935358 & 0.21435184 & 0.91825902 \\
-                0.70068017 & 0.55288489 & 0.49903342 & 0.74194743 & 0.39776892 \\
-                0.68474824 & 0.21756679 & 0.64524101 & 0.11898573 & 0.11534155 \\
-                0.51769646 & 0.84650821 & 0.08359541 & 0.24333481 & 0.42687973 \\
-                0.04969789 & 0.6525685  & 0.09963134 & 0.13678711 & 0.01271082 \\
-                0.60119711 & 0.53384367 & 0.71907757 & 0.58809768 & 0.37297297 \\
-                0.61700427 & 0.75929204 & 0.34345027 & 0.15223487 & 0.57504277 \\
-                0.69714352 & 0.32857582 & 0.39527363 & 0.19990062 & 0.30321616 \\
-                0.3849578  & 0.65746746 & 0.69443097 & 0.65933286 & 0.42047204 \\
-                0.37633321 & 0.7136477  & 0.53091451 & 0.63226859 & 0.50493571 
+                \textcolor{magenta}{0.44793647} & \textcolor{magenta}{0.18250769} & \textcolor{magenta}{0.63935358} & \textcolor{magenta}{0.21435184} & \textcolor{magenta}{0.91825902} \\
+                \textcolor{magenta}{0.70068017} & \textcolor{magenta}{0.55288489} & \textcolor{magenta}{0.49903342} & \textcolor{magenta}{0.74194743} & \textcolor{magenta}{0.39776892} \\
+                \textcolor{magenta}{0.68474824} & \textcolor{orange}{0.21756679} & \textcolor{orange}{0.64524101} & \textcolor{orange}{0.11898573} & \textcolor{orange}{0.11534155} \\
+                \textcolor{orange}{0.51769646} & \textcolor{orange}{0.84650821} & \textcolor{orange}{0.08359541} & \textcolor{orange}{0.24333481} & \textcolor{orange}{0.42687973} \\
+                \textcolor{orange}{0.04969789} & \textcolor{cyan}{0.6525685}  & \textcolor{cyan}{0.09963134} & \textcolor{cyan}{0.13678711} & \textcolor{cyan}{0.01271082} \\
+                \textcolor{cyan}{0.60119711} & \textcolor{cyan}{0.53384367} & \textcolor{cyan}{0.71907757} & \textcolor{cyan}{0.58809768} & \textcolor{cyan}{0.37297297} \\
+                \textcolor{cyan}{0.61700427} & \textcolor{cyan}{0.75929204} & \textcolor{purple}{0.34345027} & \textcolor{purple}{0.15223487} & \textcolor{purple}{0.57504277} \\
+                \textcolor{purple}{0.69714352} & \textcolor{purple}{0.32857582} & \textcolor{purple}{0.39527363} & \textcolor{purple}{0.19990062} & \textcolor{purple}{0.30321616} \\
+                \textcolor{teal}{0.3849578}  & \textcolor{teal}{0.65746746} & \textcolor{teal}{0.69443097} & \textcolor{teal}{0.65933286} & \textcolor{teal}{0.42047204} \\
+                \textcolor{teal}{0.37633321} & \textcolor{teal}{0.7136477}  & \textcolor{teal}{0.53091451} & \textcolor{teal}{0.63226859} & \textcolor{teal}{0.50493571} 
             \end{tabular}
         \end{center}
+        Leyenda de colores: \textcolor{magenta}{DASH}, \textcolor{orange}{Keto}, \textcolor{cyan}{Mediterránea}, 
+        \textcolor{purple}{Paleo} y \textcolor{teal}{Vegana}.
 
     \subsubsection{Z-Scores del Muestreo}
         Se tiene que la media muestral $\overline{x}$ es $0.458142$ y la 
         desviación estándar muestral $s$ es $0.233125$.
         \begin{center}
             \begin{tabular}{ccccc}
-                -0.04377718 & -1.18234679 &  0.77731576 & -1.04574978 &  1.97369417 \\
-                 1.04037915 &  0.40640414 &  0.17540563 &  1.21739704 & -0.2589733  \\
-                 0.97203835 & -1.03195909 &  0.80257021 & -1.45482732 & -1.47045922 \\
-                 0.25546167 &  1.66591559 & -1.60663578 & -0.92142592 & -0.13410111 \\
-                -1.75204084 &  0.83400182 & -1.5378489  & -1.37846742 & -1.91069868 \\
-                 0.61364176 &  0.32472592 &  1.11929568 &  0.55745111 & -0.36533674 \\
-                 0.68144734 &  1.29179758 & -0.49197579 & -1.3122035  &  0.50145144 \\
-                 1.0252085  & -0.55578048 & -0.26967698 & -1.10773898 & -0.66456198 \\
-                -0.31392726 &  0.85501613 &  1.0135729  &  0.86301786 & -0.16158718 \\
-                -0.35092284 &  1.096004   &  0.31216114 &  0.74692438 &  0.20072383 \\
+                \textcolor{magenta}{-0.04377718} & \textcolor{magenta}{-1.18234679} & \textcolor{magenta}{ 0.77731576} & \textcolor{magenta}{-1.04574978} & \textcolor{magenta}{ 1.97369417} \\
+                \textcolor{magenta}{ 1.04037915} & \textcolor{magenta}{ 0.40640414} & \textcolor{magenta}{ 0.17540563} & \textcolor{magenta}{ 1.21739704} & \textcolor{magenta}{-0.2589733}  \\
+                \textcolor{magenta}{ 0.97203835} & \textcolor{orange}{-1.03195909} & \textcolor{orange}{ 0.80257021} & \textcolor{orange}{-1.45482732} & \textcolor{orange}{-1.47045922} \\
+                \textcolor{orange}{ 0.25546167} & \textcolor{orange}{ 1.66591559} & \textcolor{orange}{-1.60663578} & \textcolor{orange}{-0.92142592} & \textcolor{orange}{-0.13410111} \\
+                \textcolor{orange}{-1.75204084} & \textcolor{cyan}{ 0.83400182} & \textcolor{cyan}{-1.5378489}  & \textcolor{cyan}{-1.37846742} & \textcolor{cyan}{-1.91069868} \\
+                \textcolor{cyan}{ 0.61364176} & \textcolor{cyan}{ 0.32472592} & \textcolor{cyan}{ 1.11929568} & \textcolor{cyan}{ 0.55745111} & \textcolor{cyan}{-0.36533674} \\
+                \textcolor{cyan}{ 0.68144734} & \textcolor{cyan}{ 1.29179758} & \textcolor{purple}{-0.49197579} & \textcolor{purple}{-1.3122035}  & \textcolor{purple}{ 0.50145144} \\
+                \textcolor{purple}{ 1.0252085}  & \textcolor{purple}{-0.55578048} & \textcolor{purple}{-0.26967698} & \textcolor{purple}{-1.10773898} & \textcolor{purple}{-0.66456198} \\
+                \textcolor{teal}{-0.31392726} & \textcolor{teal}{ 0.85501613} & \textcolor{teal}{ 1.0135729}  & \textcolor{teal}{ 0.86301786} & \textcolor{teal}{-0.16158718} \\
+                \textcolor{teal}{-0.35092284} & \textcolor{teal}{ 1.096004}   & \textcolor{teal}{ 0.31216114} & \textcolor{teal}{ 0.74692438} & \textcolor{teal}{ 0.20072383} \\
             \end{tabular}
         \end{center}
+        Leyenda de colores: \textcolor{magenta}{DASH}, \textcolor{orange}{Keto}, \textcolor{cyan}{Mediterránea}, 
+        \textcolor{purple}{Paleo} y \textcolor{teal}{Vegana}.
 
     \subsubsection{Tabla de Frecuencias}
         \begin{center}

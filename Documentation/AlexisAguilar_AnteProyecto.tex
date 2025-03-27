@@ -82,8 +82,8 @@
     El conjunto de datos con el que se está trabajando para este trabajo 
     se encuentra en \cite{dataset_macronutrients}, publicado por la comunidad 
     de Kaggle. Los datos consisten de un conjunto de recetas de diferentes 
-    dietas y cocinas, además incluye información de los macronutrientes de 
-    cada receta.\\
+    dietas y cocinas, además incluye información de los macronutrientes que 
+    aporta cada receta.\\
     \cite{dataset_macronutrients} Aunque en la descripción ni en los metadatos del conjunto de datos se 
     haga mención de las fuentes explícitas de los datos ni el objetivo de 
     esta extracción, sí cuenta con una sección de cómo usar el conjunto de 
@@ -128,7 +128,8 @@
         \end{tabular}
     \end{center}
     La variable Recipe\_Name no es relevante para este trabajo pero figura 
-    dentro del dataset.
+    dentro del dataset. Se hace mención que el conjunto de datos no presenta 
+    valores faltantes.
 
 \newpage
 
@@ -139,7 +140,10 @@
     impacto de sesgo, se aplico una normalización a los valores, es decir, 
     los macronutrientes de cada receta se dividió por el total de macronutrientes 
     que aportaba la receta, para así manejar los aportes proporcionales de 
-    cada macronutriente en cada una de las recetas.
+    cada macronutriente en cada una de las recetas. De aquí en adelante, cuando 
+    se mencionan los aportes nutricionales o por macronutriente de una receta, 
+    siempre se hace referencia a estos aportes proporcionales respecto al total de 
+    macronutrientes en una receta. 
 
     \subsection{Descripción de los Valores de las Variables}
     Para el presente trabajo se harán uso de las siguientes variables, se 
@@ -149,7 +153,7 @@
         dieta (DASH, keto, mediterránea, paleo, vegana) a la que 
         pertenece una receta. Con esta variable se va permitir estratificar 
         las recetas y estudiarlas de una manera más granular, es decir, 
-        por tipo de dieta para llegar a conjurar hipótesis sobre lo qué 
+        por tipo de dieta para llegar a conformar hipótesis sobre lo qué 
         está pasando en una dieta o entre las diferentes dietas.
         \item \textbf{Cuisine\_type}: Variable que representa a qué (estilo 
         de) cocina o región (mexicana, americana, italiana) pertenece una 
@@ -159,7 +163,7 @@
         con otras regiones geográficas.
         \item \textbf{Protein(g)}: Después de la transformación, representa el 
         porcentaje, respecto al total de macronutrientes, de proteínas que son 
-        aportados por una receta. El usar las proteínas se va a permitir la 
+        aportados por una receta. El usar las proteínas va a permitir la 
         comparación entre diferentes dietas, siendo esto el eje central del trabajo
         \item \textbf{Carbs(g)}: Después de la transformación, representa el 
         porcentaje, respecto al total de macronutrientes, de carbohidratos que 
@@ -196,24 +200,24 @@
     la keto en carbohidratos \cite{marvastipopular}, por lo que cualquier 
     suposición no se podría sostener sobre todos las dietas.\\
 
-    Aún así, se reportan bajos valores en proteínas y grasas en comparación 
-    con los carbohidratos si se hace uso de los cuartiles $Q_1$ y $Q_2$, 
-    dicho así: el cincuenta por ciento de las recetas tienen entre $11.01\%$ y 
-    $33.80\%$ de proteínas y entre $18.45\%$ y $46.45\%$ de grasas, en comparación 
-    con entre $20.52\%$ y $63.50\%$ de carbohidratos. Esto es un indicio de 
-    que las recetas, en general, tienden a ser altas en carbohidratos entre las 
-    diferentes dietas y cocinas; mientras que son bajas en proteínas.\\
+    Aún así, se reportan bajos valores en proteínas en comparación 
+    con los carbohidratos y grasas si se hace uso de la mediana ($Q_2$), 
+    dicho así: el cincuenta por ciento de las recetas tienen a lo mucho  
+    $19.09\%$ de proteínas, en comparación con el $43.20\%$ de carbohidratos 
+    y el $31.43\%$ de grasas. Esto es un indicio de que las recetas, en general, 
+    tienden a ser altas en carbohidratos y grasas entre las diferentes dietas y 
+    cocinas; mientras que son bajas en proteínas.\\
     Este último punto puede ser apoyado si se considera la media de los 
     macronutrientes, que siguen este prototipo de aportes dominantes de 
     carbohidratos.\\
 
     Si se gráfica la distribución de los macronutrientes se tiene que, debido 
-    a la asimetría, contienen datos atípicos en proteínas y grasas en una región 
+    a la asimetría y a la desviación estándar, contienen datos atípicos en proteínas y grasas en una región 
     positiva respecto a la mediana, y esto se relaciona con lo mencionado de que 
-    una receta no tiende a una alta cantidad de proteínas o de grasas. Y se puede 
-    apreciar como justamente existe un alta concentración de recetas en una intervalo pequeño 
-    de valores, en comparación con los carbohidratos que se encuentran distribuidos 
-    sobre una región más amplia; esto último permite que no existan datos atípicos. 
+    una receta no tiende a un aporte alto de proteínas. Y si se consider el rango 
+    intercuartil, se observa que en estos macronutrientes es menor, en comparación, 
+    que con el de los carbohidratos, esto muestra la diversidad en las recetas respecto 
+    a los posibles valores que puedan tomar para sus aportes nutricionales.
     \begin{center}
         \includegraphics[width=0.75\textwidth]{Resources/2_02_plot_01.png}
     \end{center}
@@ -226,15 +230,15 @@
     perder información valiosa y se siga conservando las recetas relevantes para una dieta.
 
     \subsection{Estratificación de Valores Cuantitativos}
-    La variable Diet\_type es la principal que se emplea para 
+    La variable Diet\_type es la principal que se emplea para la 
     estratificación de las recetas, debido a que permite seprarlas 
-    según una criterio bien definida, a qué dieta pertenece. Para cada 
+    según una criterio bien definida, a qué dieta pertenecen. Para cada 
     una de las cinco dietas se presentan los datos tabulados de sus 
     medidas de tendencia central y dispersión junto con su histograma 
     de los valores en sus macronutrientes.\\
 
     \subsubsection{Dieta DASH}
-        una receta de esta dieta tendrá que, en promedio, el $55\%$ de sus 
+        Una receta de esta dieta tendrá que, en promedio, el $55\%$ de sus 
         macronutrientes sons carbohidratos (provenientes de frutas, vegetales 
         y granos enteros); el $25\%$ son grasas que, por su naturaleza, son 
         saludables; y el $20\%$ son proteínas, las cuáles provienen de carnes margas.
@@ -286,13 +290,10 @@
             \end{tabular}
         \end{center}
         Como la proporciones de carbohidratos cuenta con un sesgo positivo, se 
-        tiene que refuerza el hecho de ser una dieta baja en carbohidratos, pero 
-        además que existen recetas con una alta contribución de este macronutriente. 
+        tiene que refuerza el hecho de ser una dieta baja en carbohidratos. 
         De los aportes de grasas, se observa que su sesgo es despreciable implicando 
         que existen recetas tanto con aportes altos de este macronutriente (lo que se 
-        busca) mientras que hay recetas que una contribución baja o nula del mismo, esto 
-        es indicativo de que estas recetas no pertenecen a esta dieta solamente considerando 
-        la contribución de este macronutriente.
+        busca) mientras que hay recetas con una contribución baja o nula del mismo.
         \begin{center}
             \includegraphics[width=0.75\textwidth]{Resources/2_03_plot_02.png}
         \end{center}
@@ -323,7 +324,7 @@
         \end{center}
         La proporción de proteínas está segada positivamente y junto con una 
         alta acumulación de recetas con bajo consumo de proteínas, se tiene que 
-        esta dieta figura como una con bajo consumo de alimentos ricos en proteínas.
+        esta dieta figura como una con bajo consumo de alimentos ricos en proteínas. 
         \begin{center}
             \includegraphics[width=0.75\textwidth]{Resources/2_03_plot_03.png}
         \end{center}
@@ -352,7 +353,8 @@
         \end{center}
         Se observa como las recetas tienden a tener una contribución moderada de 
         carbohidratos y grasas, esto se relaciona con los principales alimentos 
-        que son consumidos en esta dieta.
+        que son consumidos en esta dieta. Mientras que sus aportes de proteínas 
+        son bajas en comparación con los otros dos macronutrientes.
         \begin{center}
             \includegraphics[width=0.75\textwidth]{Resources/2_03_plot_04.png}
         \end{center}
@@ -462,7 +464,7 @@
         \begin{center}
             \begin{tabular}{|c|c|}
                 \hline
-                Medida & Carbs(g) \\
+                Medida muestral & Carbs(g) \\
                 \hline
                 Media & 0.445313 \\
                 $Q_1$ & 0.247271 \\
@@ -478,12 +480,12 @@
     
     \subsubsection{Comparativa con las Medidas Poblacionales}
         En algunas métricas como lo son la media, el primer y segundo cuartil, 
-        la desviación estándar, el máximo y la asimetría muestrales son 
+        la desviación estándar, el máximo y la asimetría muestrales 
         difieren de sus respectivos valores poblacionales. De los valores, era 
         esperado que todos difieran aunque fuera un poco, salvo la media; para 
-        probar esto último sería necesario de aplicar una prueba de estimación.\\
-        Si se compara con la distribución poblacional, existe la distribución de 
-        muestra se conserva hasta cierto punto.
+        probar esto último sería necesario de aplicar una prueba de hipótesis.\\
+        Si se compara con la distribución poblacional, se tiene que la 
+        distribución se conserva hasta cierto punto.
         \begin{center}
             \includegraphics[width=0.75\textwidth]{Resources/3_01_plot_01.png}
         \end{center}
@@ -549,7 +551,7 @@
         \begin{center}
             \begin{tabular}{|c|c|}
                 \hline
-                Medida & Carbs(g) \\
+                Medida Muestral & Carbs(g) \\
                 \hline
                 Media & 0.458142  \\
                 $Q_1$ & 0.258305 \\
@@ -564,12 +566,11 @@
         \end{center}
 
     \subsubsection{Comparativa con las Medidas Poblacionales}
-        media, q1, q2, q3, std, min, max, asimetría\\
         Si se compara con las medidas poblacionales, se puede observar que todos 
         los valores muestrales difieren de los mismos, en mayor o menor medida. 
         Esto refleja que el muestreo no es representativo para estimar las medidas 
         poblacionales. Siendo la asimetría el valor que más difiere debido a que es 
-        un valor negativa; por lo que se observa una distribución diferente.
+        un valor negativa; por lo que se observa distribuciones diferentes.
         \begin{center}
             \includegraphics[width=0.75\textwidth]{Resources/3_02_plot_01.png}
         \end{center}

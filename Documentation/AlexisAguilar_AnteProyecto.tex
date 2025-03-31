@@ -66,7 +66,7 @@
     \vspace{2cm}}
 
     \flushright{
-    {\textbf{A:\ }\underline{21 de Mayo del 2025}}}
+    {\textbf{A:\ }\underline{4 de Abril del 2025}}}
     \vfill
 \end{titlepage}
 
@@ -104,7 +104,7 @@
     importancia de los macronutrientes y una descripción general de las 
     dietas en este trabajo, resultando interesante que en cada dieta se 
     consumen diferentes alimentos y productos con ciertas características 
-    para ya sea respetar alguna creencia, fundamento o cota de macronutrientes. 
+    para ya sea respetar alguna creencia, fundamento o cuota de macronutrientes. 
     De esto último, proporciona un indicio de que existe una diferencia entre 
     las dietas a nivel de sus aportes nutricionales, por lo tanto, lo que se 
     quiere realizar es probar esta diferencia de manera significativa haciendo 
@@ -127,7 +127,7 @@
             \hline
         \end{tabular}
     \end{center}
-    La variable Recipe\_Name no es relevante para este trabajo pero figura 
+    La variable \emph{Recipe\_Name} no es relevante para este trabajo pero figura 
     dentro del dataset. Se hace mención que el conjunto de datos no presenta 
     valores faltantes.
 
@@ -137,7 +137,7 @@
     Debido a que cada receta puede aportar una amplia variedad de valores 
     en sus macronutrientes, esto podría dificultar la comparación entre 
     los aportes nutricionales de las dietas. Por ello, para reducir este 
-    impacto de sesgo, se aplico una normalización a los valores, es decir, 
+    sesgo, se aplico una normalización a los valores, es decir, 
     los macronutrientes de cada receta se dividió por el total de macronutrientes 
     que aportaba la receta, para así manejar los aportes proporcionales de 
     cada macronutriente en cada una de las recetas. De aquí en adelante, cuando 
@@ -156,11 +156,11 @@
         por tipo de dieta para llegar a conformar hipótesis sobre lo qué 
         está pasando en una dieta o entre las diferentes dietas.
         \item \textbf{Cuisine\_type}: Variable que representa a qué (estilo 
-        de) cocina o región (mexicana, americana, italiana) pertenece una 
+        de) cocina o región (mexicana, americana, italiana, entre otras) pertenece una 
         receta. Al usarla va a permitir el comparar cómo son las recetas 
-        de una dieta en comparación con otras regiones, en específico el 
-        como se compara la dieta mediterránea en el mediterráneo en comparación 
-        con otras regiones geográficas.
+        de una dieta en diferentes regiones, en específico el 
+        como se compara la dieta mediterránea en el mediterráneo  
+        contra otras regiones geográficas.
         \item \textbf{Protein(g)}: Después de la transformación, representa el 
         porcentaje, respecto al total de macronutrientes, de proteínas que son 
         aportados por una receta. El usar las proteínas va a permitir la 
@@ -208,16 +208,16 @@
     tienden a ser altas en carbohidratos y grasas entre las diferentes dietas y 
     cocinas; mientras que son bajas en proteínas.\\
     Este último punto puede ser apoyado si se considera la media de los 
-    macronutrientes, que siguen este prototipo de aportes dominantes de 
-    carbohidratos.\\
+    macronutrientes, que siguen esta tendencia de aportes.\\
 
     Si se gráfica la distribución de los macronutrientes se tiene que, debido 
     a la asimetría y a la desviación estándar, contienen datos atípicos en proteínas y grasas en una región 
     positiva respecto a la mediana, y esto se relaciona con lo mencionado de que 
     una receta no tiende a un aporte alto de proteínas. Y si se consider el rango 
     intercuartil, se observa que en estos macronutrientes es menor, en comparación, 
-    que con el de los carbohidratos, esto muestra la diversidad en las recetas respecto 
-    a los posibles valores que puedan tomar para sus aportes nutricionales.
+    que con el de los carbohidratos, esto muestra como los valores de proteínas y 
+    grasas se encuentran concentradas en ciertas regiones en contraste con los posibles 
+    valores de los carbohidratos que son más diversos.
     \begin{center}
         \includegraphics[width=0.75\textwidth]{Resources/2_02_plot_01.png}
     \end{center}
@@ -230,7 +230,7 @@
     perder información valiosa y se siga conservando las recetas relevantes para una dieta.
 
     \subsection{Estratificación de Valores Cuantitativos}
-    La variable Diet\_type es la principal que se emplea para la 
+    La variable \emph{Diet\_type} es la principal que se emplea para la 
     estratificación de las recetas, debido a que permite seprarlas 
     según una criterio bien definida, a qué dieta pertenecen. Para cada 
     una de las cinco dietas se presentan los datos tabulados de sus 
@@ -323,7 +323,7 @@
             \end{tabular}
         \end{center}
         La proporción de proteínas está segada positivamente y junto con una 
-        alta acumulación de recetas con bajo consumo de proteínas, se tiene que 
+        alta acumulación de recetas con bajo porcentaje de proteínas, se tiene que 
         esta dieta figura como una con bajo consumo de alimentos ricos en proteínas. 
         \begin{center}
             \includegraphics[width=0.75\textwidth]{Resources/2_03_plot_03.png}
@@ -405,7 +405,7 @@
     de relevancia, se opta por usar los Carbs(g) como atributo 
     para el Muestreo. Y para ambos muestreos se realizan de 
     tamaño $50$ y, usando la Regla de Sturges, se emplean 7 clases 
-    o bins.
+    o bins para la tabla de frecuencias.
     
     \subsection{Muestreo Aleatorio Simple}
         
@@ -449,13 +449,13 @@
                 \hline
                 Marca de Clase & Puntaje Z & Frecuencia Absoluta & Frecuencia Relativa & Frecuencia Acumulada \\
                 \hline
-                0.071112 & -1.519335 & 6.000000 & 0.120000 & 0.120000 \\
-                0.209217 & -0.958601 & 8.000000 & 0.160000 & 0.280000 \\
-                0.347321 & -0.397868 & 10.000000 & 0.200000 & 0.480000 \\
-                0.485426 &  0.162865 & 8.000000 & 0.160000 & 0.640000 \\
-                0.623530 &  0.723599 & 11.000000 & 0.220000 & 0.860000 \\
-                0.761635 &  1.284332 & 4.000000 & 0.080000 & 0.940000 \\
-                0.899740 &  1.845065 & 3.000000 & 0.060000 & 1.000000 \\
+                0.071112 & -1.519335 & 6  & 0.120000 & 0.120000 \\
+                0.209217 & -0.958601 & 8  & 0.160000 & 0.280000 \\
+                0.347321 & -0.397868 & 10 & 0.200000 & 0.480000 \\
+                0.485426 &  0.162865 & 8  & 0.160000 & 0.640000 \\
+                0.623530 &  0.723599 & 11 & 0.220000 & 0.860000 \\
+                0.761635 &  1.284332 & 4  & 0.080000 & 0.940000 \\
+                0.899740 &  1.845065 & 3  & 0.060000 & 1.000000 \\
                 \hline
             \end{tabular}
         \end{center} 
@@ -536,13 +536,13 @@
                 \hline
                 Marca de Clase & Puntaje Z & Frecuencia Absoluta & Frecuencia Relativa & Frecuencia Acumulada \\
                 \hline
-                0.077393 & -1.633242 & 7.000000 & 0.140000 & 0.140000 \\
-                0.206757 & -1.078329 & 6.000000 & 0.120000 & 0.260000 \\
-                0.336121 & -0.523416 & 8.000000 & 0.160000 & 0.420000 \\
-                0.465485 & 0.031498 & 6.000000 & 0.120000 & 0.540000 \\
-                0.594849 & 0.586411 & 13.000000 & 0.260000 & 0.800000 \\
-                0.724213 & 1.141324 & 8.000000 & 0.160000 & 0.960000 \\
-                0.853577 & 1.696238 & 2.000000 & 0.040000 & 1.000000 \\
+                0.077393 & -1.633242 & 7  & 0.140000 & 0.140000 \\
+                0.206757 & -1.078329 & 6  & 0.120000 & 0.260000 \\
+                0.336121 & -0.523416 & 8  & 0.160000 & 0.420000 \\
+                0.465485 & 0.031498  & 6  & 0.120000 & 0.540000 \\
+                0.594849 & 0.586411  & 13 & 0.260000 & 0.800000 \\
+                0.724213 & 1.141324  & 8  & 0.160000 & 0.960000 \\
+                0.853577 & 1.696238  & 2  & 0.040000 & 1.000000 \\
                 \hline
             \end{tabular}
         \end{center}
@@ -619,9 +619,12 @@
         desviación estándar).
 
     \subsection{Hipótesis}
-        De las medias muestrales (aleatoria y estratificada) de la 
-        proporción de carbohidratos, ¿Existe una diferencia significativa 
-        entre ellas o se pueden considerar que son la misma media?
+        Si se usara la media como indicativo para determinar 
+        si un muestreo es representativo, entonces: ¿Los muestreos 
+        realizados son representativos? De forma equivalente, ¿Las 
+        medias muestralas de la proporción de carbohidratos difieren 
+        significativamente de la media poblacional?
+        
 
 \newpage
 

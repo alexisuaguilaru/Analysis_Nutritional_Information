@@ -5,24 +5,35 @@
 \usepackage{graphicx}
 \usepackage{xcolor}
 
-\usepackage{setspace}
+\title[EDA de Valores Nutricionales por Dieta]{Análisis Estadístico de Valores Nutricionales por Tipo de Dieta}
 
-%\title[EDA de Valores Nutricionales]{Análisis Estadístico de Valores Nutricionales por Tipo de Dieta}
-%\author{Alexis Aguilar}
-%\date{7 de Abril del 2025}
-
-\setbeamercolor{footline}{fg=white, bg=black!50}
+\setbeamercolor{footline}{fg=black, bg=black!25}
 \setbeamertemplate{footline}{
-    \begin{beamercolorbox}[wd=\paperwidth, ht=4mm, dp=2mm, center]{footline}
-        \insertshorttitle 
-        \insertsection
+    \begin{beamercolorbox}[wd=\paperwidth, ht=2mm, dp=2mm, center]{footline}
+        \begin{columns}[T]
+            \begin{column}{0.5\textwidth}
+                \centering
+                \insertshorttitle
+            \end{column}
+            \begin{column}{0.5\textwidth}
+                \centering
+                \insertsection
+            \end{column}
+        \end{columns}
     \end{beamercolorbox}
+}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    urlcolor=blue,
+    linkcolor=black,
+    citecolor=black
 }
 
 \begin{document}
 
     \begin{frame}[plain]
-        
         \begin{columns}[T]
             \begin{column}{0.08\textwidth}
                 \centering
@@ -58,6 +69,24 @@
                 {\footnotesize A: \underline{7 de Abril del 2025}}
             \end{column}
         \end{columns}
+    \end{frame}
+
+    \begin{frame}[plain]{Índice}
+        \tableofcontents
+    \end{frame}
+
+    \section{Presentación de los Datos}
+
+    \begin{frame}{Fuente de Datos}
+        \begin{itemize}
+            \item<1->El conjunto de datos consta de recetas 
+            de diferentes dietas y cocinas, incluye también 
+            la información de los macronutrientes (carbohidratos, 
+            proteínas, lípidos) que aportan cada receta. Se 
+            encuentra publicado en \href{https://www.kaggle.com/datasets/thedevastator/healthy-diet-recipes-a-comprehensive-dataset}{Diets, Recipes And Their Nutrients}
+            \item<2->
+            \item<3->
+        \end{itemize}
     \end{frame}
 
 \end{document}

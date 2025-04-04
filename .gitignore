@@ -11,3 +11,4 @@ __to-do.md
 *.gz
 *.fdb_latexmk
 *.toc
+*.nav

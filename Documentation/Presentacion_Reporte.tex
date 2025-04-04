@@ -5,6 +5,11 @@
 \usepackage{graphicx}
 \usepackage{xcolor}
 
+\usepackage{csquotes}
+\usepackage{hyperref}
+\usepackage[style=ieee]{biblatex}
+\addbibresource{referencias.bib}
+
 \title[EDA de Valores Nutricionales por Dieta]{Análisis Estadístico de Valores Nutricionales por Tipo de Dieta}
 
 \setbeamercolor{footline}{fg=black, bg=black!25}
@@ -22,13 +27,14 @@
         \end{columns}
     \end{beamercolorbox}
 }
+\setbeamertemplate{navigation symbols}{}
 
 \usepackage{hyperref}
 \hypersetup{
     colorlinks=true,
     urlcolor=blue,
     linkcolor=black,
-    citecolor=black
+    citecolor=blue
 }
 
 \begin{document}
@@ -83,10 +89,60 @@
             de diferentes dietas y cocinas, incluye también 
             la información de los macronutrientes (carbohidratos, 
             proteínas, lípidos) que aportan cada receta. Se 
-            encuentra publicado en \href{https://www.kaggle.com/datasets/thedevastator/healthy-diet-recipes-a-comprehensive-dataset}{Diets, Recipes And Their Nutrients}
-            \item<2->
-            \item<3->
+            encuentra publicado en \cite{dataset_macronutrients}
+            \item<2->El crear planes alimenticios saludables, ya 
+            sea usando las recetas proporcionadas o creando unas 
+            nuevas basadas en una dieta y cocina, y el estudiar 
+            la relación entre dieta y salud
+            \item<3->Las recetas fueron proporcionadas por 
+            diferentes creadores de las mismas y demás 
+            contribuidores al conjunto de datos
         \end{itemize}
     \end{frame}
 
+    \begin{frame}{Interés del Estudio}
+        \begin{itemize}
+            \item<1->\cite{marvastipopular}Como en cada dieta se consumen diferentes 
+            alimentos y productos con ciertas características 
+            para ya sea respetar alguna creencia, fundamento o 
+            cuota de macronutrientes
+            \item<2->Por lo que el interés del trabajo 
+            es el probar si existe una diferencia o distinción 
+            entre las dietas en base a sus aportes de macronutrientes
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}{Variables del Conjunto de Datos}
+        El conjunto de datos con el se trabajará consta de 
+        las siguientes variables:
+        \begin{itemize}
+            \item<2->\textbf{Diet\_type}: [Nominal] Representa 
+            el tipo de dieta (DASH, keto, mediterránea, paleo, vegana) 
+            a la que pertenece una receta. Estratificar las recetas 
+            y estudiarlas de una manera más granular
+            \item<3->\emph{Recipe\_name}: [Nominal] Nombre de 
+            la receta. No es una variable relevante para el trabajo
+            \item<4->\textbf{Cuisine\_type}: [Nominal] Representa 
+            a qué (estilo de) cocina o región (mexicana, americana, 
+            italiana, entre otras) pertenece una receta
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}{Variables del Conjunto de Datos}
+        Otras variables que serán eje para el trabajo son:
+        \begin{itemize}
+            \item<1->\textbf{Protein(g)}: [Continua] Representa la 
+            cantidad de proteínas en gramas contenidas en una receta
+            \item<2->\textbf{Carbs(g)}: [Continua] Representa la 
+            cantidad de carbohidratos en gramas contenidas en una receta
+            \item<3->\textbf{Fat(g)}: [Continua] Representa la 
+            cantidad de grasas en gramas contenidas en una receta
+        \end{itemize}
+    \end{frame}
+
+    \section{Referencias Bibliográficas}
+
+    \begin{frame}{Referencias}
+        \printbibliography
+    \end{frame}
 \end{document}

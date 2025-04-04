@@ -1,0 +1,92 @@
+\documentclass{beamer}
+\usepackage[english,spanish]{babel}
+\usetheme{Boadilla}
+
+\usepackage{graphicx}
+\usepackage{xcolor}
+
+\title[EDA de Valores Nutricionales por Dieta]{Análisis Estadístico de Valores Nutricionales por Tipo de Dieta}
+
+\setbeamercolor{footline}{fg=black, bg=black!25}
+\setbeamertemplate{footline}{
+    \begin{beamercolorbox}[wd=\paperwidth, ht=2mm, dp=2mm, center]{footline}
+        \begin{columns}[T]
+            \begin{column}{0.5\textwidth}
+                \centering
+                \insertshorttitle
+            \end{column}
+            \begin{column}{0.5\textwidth}
+                \centering
+                \insertsection
+            \end{column}
+        \end{columns}
+    \end{beamercolorbox}
+}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    urlcolor=blue,
+    linkcolor=black,
+    citecolor=black
+}
+
+\begin{document}
+
+    \begin{frame}[plain]
+        \begin{columns}[T]
+            \begin{column}{0.08\textwidth}
+                \centering
+                \includegraphics[width=\textwidth]{Resources/logo_unam.jpg}
+            \end{column}
+            \begin{column}{0.60\textwidth}
+                \centering
+                {\small Universidad Nacional Autónoma de México\par
+                Escuela Nacional de Estudios Superiores\par
+                Morelia}
+            \end{column}
+            \begin{column}{0.08\textwidth}
+                \centering
+                \includegraphics[width=\textwidth]{Resources/logo_enes.jpg}
+            \end{column}
+        \end{columns}
+        \vspace{1.5cm}
+        \begin{center}
+            {\bfseries Reporte}\par
+            {\Large Análisis Estadístico de Valores Nutricionales}\par
+            {\Large por Tipo de Dieta}\par
+            \vspace{0.5cm}
+            {\bfseries Alexis Aguilar}
+        \end{center}
+        \vspace{1.5cm}
+        \begin{columns}[T]
+            \begin{column}{0.5\textwidth}
+                \raggedright
+                {\footnotesize Estadística Descriptiva e Inferencial}
+            \end{column}
+            \begin{column}{0.5\textwidth}
+                \raggedleft
+                {\footnotesize A: \underline{7 de Abril del 2025}}
+            \end{column}
+        \end{columns}
+    \end{frame}
+
+    \begin{frame}[plain]{Índice}
+        \tableofcontents
+    \end{frame}
+
+    \section{Presentación de los Datos}
+
+    \begin{frame}{Fuente de Datos}
+        \begin{itemize}
+            \item<1->El conjunto de datos consta de recetas 
+            de diferentes dietas y cocinas, incluye también 
+            la información de los macronutrientes (carbohidratos, 
+            proteínas, lípidos) que aportan cada receta. Se 
+            encuentra publicado en \href{https://www.kaggle.com/datasets/thedevastator/healthy-diet-recipes-a-comprehensive-dataset}{Diets, Recipes And Their Nutrients}
+            \item<2->
+            \item<3->
+        \end{itemize}
+    \end{frame}
+
+\end{document}

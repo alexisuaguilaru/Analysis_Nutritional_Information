@@ -14,6 +14,7 @@
 
 \title[EDA de Valores Nutricionales por Dieta]{Análisis Estadístico de Valores Nutricionales por Tipo de Dieta}
 
+\setbeamercolor{frametitle}{fg=black}
 \setbeamercolor{footline}{fg=black, bg=black!25}
 \setbeamertemplate{footline}{
     \begin{beamercolorbox}[wd=\paperwidth, ht=2mm, dp=2mm, center]{footline}
@@ -120,7 +121,7 @@
         \begin{itemize}
             \item<2->\textbf{Diet\_type}: [Nominal] Representa 
             el tipo de dieta (DASH, keto, mediterránea, paleo, vegana) 
-            a la que pertenece una receta. Estratificar las recetas 
+            a la que pertenece una receta. Permite estratificar las recetas 
             y estudiarlas de una manera más granular
             \item<3->\emph{Recipe\_name}: [Nominal] Nombre de 
             la receta. No es una variable relevante para el trabajo
@@ -134,11 +135,11 @@
         Otras variables que serán eje para el trabajo son:
         \begin{itemize}
             \item<1->\textbf{Protein(g)}: [Continua] Representa la 
-            cantidad de proteínas en gramas contenidas en una receta
+            cantidad de proteínas en gramos contenidas en una receta
             \item<2->\textbf{Carbs(g)}: [Continua] Representa la 
-            cantidad de carbohidratos en gramas contenidas en una receta
+            cantidad de carbohidratos en gramos contenidas en una receta
             \item<3->\textbf{Fat(g)}: [Continua] Representa la 
-            cantidad de grasas en gramas contenidas en una receta
+            cantidad de grasas en gramos contenidas en una receta
         \end{itemize}
     \end{frame}
 
@@ -187,7 +188,7 @@
         \begin{center}
             \begin{tabular}{|c|ccc|}
                 \hline
-                Medida & Carbs(g) & Protein(g) & Fat(g) \\
+                Medida Poblacional & Carbs(g) & Protein(g) & Fat(g) \\
                 \hline
                 Media               & 0.433471 & 0.234762 & 0.331767 \\
                 $Q_1$               & 0.205251 & 0.110188 & 0.184583 \\
@@ -340,13 +341,13 @@
                 \hline
                 Marca de Clase & Puntaje Z & \makecell{Frecuencia\\Absoluta} & \makecell{Frecuencia\\Relativa} & \makecell{Frecuencia\\Acumulada} \\
                 \hline
-                0.077393 & -1.633242 & 7  & 0.140000 & 0.140000 \\
-                0.206757 & -1.078329 & 6  & 0.120000 & 0.260000 \\
-                0.336121 & -0.523416 & 8  & 0.160000 & 0.420000 \\
-                0.465485 & 0.031498  & 6  & 0.120000 & 0.540000 \\
-                0.594849 & 0.586411  & 13 & 0.260000 & 0.800000 \\
-                0.724213 & 1.141324  & 8  & 0.160000 & 0.960000 \\
-                0.853577 & 1.696238  & 2  & 0.040000 & 1.000000 \\
+                0.077393 & -1.633242 & 7  & 0.14 & 0.14 \\
+                0.206757 & -1.078329 & 6  & 0.12 & 0.26 \\
+                0.336121 & -0.523416 & 8  & 0.16 & 0.42 \\
+                0.465485 & 0.031498  & 6  & 0.12 & 0.54 \\
+                0.594849 & 0.586411  & 13 & 0.26 & 0.80 \\
+                0.724213 & 1.141324  & 8  & 0.16 & 0.96 \\
+                0.853577 & 1.696238  & 2  & 0.04 & 1.00 \\
                 \hline
             \end{tabular}
         \end{center}

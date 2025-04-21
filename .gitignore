@@ -1,4 +1,6 @@
-__to-do.md
+*.md
+*__pycache__
+__*
 
 *.aux
 *.bbl

@@ -1,5 +1,7 @@
 import pandas as pd
 import numpy as np
+from scipy import stats 
+
 import matplotlib.pyplot as plt
 import seaborn as sns
 
@@ -62,6 +64,29 @@ def PlotMacronutrients2D(Diets_Dataset:pd.DataFrame,Diet:str):
     axes.set_ylim(0-delta,np.sqrt(3)/2+delta)
 
     fig.suptitle(f'Diet: {Diet}',size=25)
+
+def PlotQQByDiet(Diets_Dataset:pd.DataFrame,Diet:str):
+    """
+        Function for plotting q-q plots by macronutrient
+    """
+    dataset_diet = Diets_Dataset.query("Diet_type == @Diet")[Macronutrients]
+
+    fig , axes , ConfigPlot = __CreateMosaicPlot()
+    for macronutrient , display , color in ConfigPlot:
+        filtered_dataset = dataset_diet[macronutrient]
+        filtered_dataset = filtered_dataset[(filtered_dataset < 1) & (filtered_dataset > 0)]
+
+        fitted_dist_args = stats.beta.fit(filtered_dataset,floc=0,fscale=1)
+        (theoretical_quantiles , sample_quantiles) , _ = stats.probplot(filtered_dataset,dist=stats.beta,sparams=fitted_dist_args)
+        
+        axes[display].scatter(theoretical_quantiles,sample_quantiles,s=5,c=color)
+        axes[display].plot(theoretical_quantiles,theoretical_quantiles,color='black',alpha=0.5,linestyle='--',lw=3)
+        
+        axes[display].set_title(rf'{macronutrient[:-3]} fitted to $\alpha$={fitted_dist_args[0]:.4f} and $\beta$={fitted_dist_args[1]:.4f}')
+        axes[display].set_xlabel('Theoretical Quantiles')
+        axes[display].set_ylabel('Sample Quantiles')
+    
+    fig.suptitle(f'Q-Q Plots by Macronutrient in {Diet}',size=23)
 
 def __CreateMosaicPlot():
     """

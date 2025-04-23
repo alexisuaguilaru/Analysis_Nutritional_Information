@@ -38,3 +38,24 @@ def DashBalanceMacronutrients(DailyMacronutrients:pd.DataFrame,Significance:floa
         pvalues_z_test.append(z_test_result)
 
     return pvalues_z_test
+
+
+def KetoHomocedasticity(DataMacronutrients:list[pd.Series],Significance:float=0.05) -> float:
+    """
+        Function to test if the 
+        recipes have the same composition 
+        in the Keto diet.
+
+        -- DataMacronutrients : list[pd.Series] :: Macronutrient values
+
+        -- Significance : float :: Significance of hypothesis testing
+
+    """
+    homocedasticity_result = stats.levene(*DataMacronutrients).pvalue
+
+    if Significance < homocedasticity_result:
+        print('There is a same composition')
+    else:
+        print('There is not same composition')
+
+    return homocedasticity_result

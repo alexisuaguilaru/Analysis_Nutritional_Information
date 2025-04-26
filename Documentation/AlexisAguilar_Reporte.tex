@@ -297,18 +297,7 @@
 
 \section{Estadística Descriptiva}
 
-    Debido a que cada receta puede aportar una amplia variedad de valores 
-    en sus macronutrientes, esto podría dificultar la comparación entre 
-    los aportes nutricionales de las dietas. Por ello, para reducir este 
-    sesgo, se aplico una normalización a los valores, es decir, 
-    los macronutrientes de cada receta se dividió por el total de macronutrientes 
-    que aportaba la receta, para así manejar los aportes proporcionales de 
-    cada macronutriente en cada una de las recetas. De aquí en adelante, cuando 
-    se mencionan los aportes nutricionales o por macronutriente de una receta, 
-    siempre se hace referencia a estos aportes proporcionales respecto al total de 
-    macronutrientes en una receta. 
-
-    \subsection{Transformación de Datos}
+    \subsection{Transformación de Datos}\label{subsec:data_trans}
 
         Debido a que el rango de los valores que pueden tomar los macronutrientes 
         es un rango amplio y que, además, podría dificultar la comparativa a lo largo 
@@ -366,7 +355,7 @@
     \subsection{Descripción de los Valores de las Variables}
 
         Para el presente trabajo se harán uso de las siguientes variables, se 
-        acompañan con una descripción de su significado:
+        acompañan con una descripción de su significado o representación:
 
         \begin{itemize}[label=\textbullet]
 
@@ -380,24 +369,30 @@
             \item \textbf{Cuisine\_type}: Variable que representa a qué (estilo 
             de) cocina o región (mexicana, americana, italiana, entre otras) pertenece una 
             receta. Al usarla va a permitir el comparar cómo son las recetas 
-            de una dieta en diferentes regiones, en específico el 
-            como se compara la dieta mediterránea en el mediterráneo  
-            contra otras regiones geográficas.
+            de una dieta en diferentes regiones, y realiar comparativas a lo 
+            largo de las dietas.
 
-            \item \textbf{Protein(g)}: Después de la transformación, representa el 
+            \item \textbf{Protein}: Después de la transformación, representa el 
             porcentaje, respecto al total de macronutrientes, de proteínas que son 
             aportados por una receta. El usar las proteínas va a permitir la 
             comparación entre diferentes dietas, siendo esto el eje central del trabajo
 
-            \item \textbf{Carbs(g)}: Después de la transformación, representa el 
+            \item \textbf{Carbs}: Después de la transformación, representa el 
             porcentaje, respecto al total de macronutrientes, de carbohidratos que 
             son aportados por una receta. Siendo otro de los macronutrientes de una 
             comida, se vuelve relevante para la comparación entre recetas y dietas.
 
-            \item \textbf{Fat(g)}: Después de la transformación, representa el 
+            \item \textbf{Fat}: Después de la transformación, representa el 
             porcentaje, respecto al total de macronutrientes, de grasas que son 
             aportados por una receta. Y el último macronutriente, como en los 
             anteriores, se vuelve una variable relevante para la comparación entre dietas.
+
+            \item \textbf{Total\_Macronutrients}: Representa el total de 
+            macronutrientes que son aportados por una receta. Esta variable 
+            cuantitativa continua es auxiliar para la prueba de hipótesis, y 
+            no estará presente en la parte del Análisis Estadístico debido 
+            a la justificación presentada en subsección anterior~\ref{subsec:data_trans}.
+
         \end{itemize}
 
     \subsection{Medidas de Tendencia Central y Dispersión}
@@ -406,7 +401,7 @@
         \begin{center}
             \begin{tabular}{| c | c c c |}
                 \toprule
-                Medida & Carbs(g) & Protein(g) & Fat(g) \\
+                Medida & Carbs & Protein & Fat \\
                 \midrule
                 Media               & 0.433471 & 0.234762 & 0.331767 \\
                 $Q_1$               & 0.205251 & 0.110188 & 0.184583 \\

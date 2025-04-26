@@ -256,6 +256,43 @@
         dentro del dataset. Se hace mención que el conjunto de datos no presenta 
         valores faltantes.
 
+    \subsection{Ejemplo de Registros en el Conjunto de Datos}
+
+        Para ejemplificar como luce el conjunto de datos, se presente 
+        una instancia de cada tipo de dieta:
+
+        \begin{center}
+
+            \begin{tabular}{| c | c | c |}
+                \toprule
+                \textbf{Diet\_type} & \textbf{Recipe\_name} & \textbf{Cuisine\_type} \\
+                \midrule
+                \small{dash}          & \small{Old Fashioned                     }& \small{world} \\
+                \small{keto}          & \small{Keto Egg Drop Soup                }& \small{chinese} \\
+                \small{mediterranean} & \small{Mediterranean Mix                 }& \small{mediterranean} \\
+                \small{paleo}         & \small{Easy Paleo Herb Gravy recipes     }& \small{french} \\
+                \small{vegan}         & \small{Braised Green Beans with Tomatoes }& \small{mediterranean} \\
+                \bottomrule
+            \end{tabular}
+
+        \end{center}
+
+        \begin{center}
+
+            \begin{tabular}{| c | c | c |}
+                \toprule
+                \textbf{Protein(g)} & \textbf{Carbs(g)} & \textbf{Fat(g)} \\
+                \midrule
+                 \small{0.12} &  \small{9.66} &  \small{0.02} \\
+                \small{21.31} &  \small{9.11} & \small{60.88} \\
+                 \small{8.11} &  \small{9.59} & \small{14.64} \\
+                \small{23.56} & \small{39.05} & \small{42.25} \\
+                \small{17.49} & \small{77.86} & \small{70.20} \\
+                \bottomrule
+            \end{tabular}
+
+        \end{center}
+
 \newpage
 
 \section{Estadística Descriptiva}
@@ -270,6 +307,61 @@
     se mencionan los aportes nutricionales o por macronutriente de una receta, 
     siempre se hace referencia a estos aportes proporcionales respecto al total de 
     macronutrientes en una receta. 
+
+    \subsection{Transformación de Datos}
+
+        Debido a que el rango de los valores que pueden tomar los macronutrientes 
+        es un rango amplio y que, además, podría dificultar la comparativa a lo largo 
+        de las diferentes dietas en sus aportes nutricionales, se decidión que los 
+        valores en los macronutrientes sean transformados para trabajar con aportes 
+        relativos al total de macronutrientes de cada receta o, equivalentemente, los 
+        aportes absolutos de los macronutrientes se normalizaron con la norma $L_1$.\\
+
+        De la anterior transformación, se creó una nuevo atributo que representa el 
+        total de macronutrientes que son aportados por cada receta y el rango de los 
+        valores que pueden tomar los macronutrientes es $[0,1]$ donde se verifica que 
+        la suma de los tres valores (a lo largo de los macronutrientes) sea siempre $1$. 
+        Este último punto va a permite generar una representación visual de la distribución 
+        de las recetas en el plano y servirá para determinar las teóricas distribuciones de 
+        los macronutrientes, en específico los parámetros de la distribución beta que mejor 
+        se ajusta a la distribución de cada macronutriente y dieta; esto permite caracterizar 
+        las disitrbuciones desde una perspectiva teórico que será relevante para responder 
+        la pregunta central de trabajo.
+
+        Para el conjunto de datos resultante de la transformación también se les renombraron 
+        algunos de sus atributos pero que siguen representando o significando el mismo concepto.
+
+        \begin{center}
+
+            \begin{tabular}{| c | c | c |}
+                \toprule
+                \textbf{Diet\_type} & \textbf{Recipe\_name} & \textbf{Cuisine\_type} \\
+                \midrule
+                \small{dash}          & \small{Old Fashioned                     }& \small{world} \\
+                \small{keto}          & \small{Keto Egg Drop Soup                }& \small{chinese} \\
+                \small{mediterranean} & \small{Mediterranean Mix                 }& \small{mediterranean} \\
+                \small{paleo}         & \small{Easy Paleo Herb Gravy recipes     }& \small{french} \\
+                \small{vegan}         & \small{Braised Green Beans with Tomatoes }& \small{mediterranean} \\
+                \bottomrule
+            \end{tabular}
+
+        \end{center}
+
+        \begin{center}
+
+            \begin{tabular}{| c | c | c | c |}
+                \toprule
+                \textbf{Protein} & \textbf{Carbs} & \textbf{Fat} & \textbf{Total\_Macronutrients} \\
+                \midrule
+                \small{0.9857} & \small{0.0122} & \small{0.0020} & \small{  9.80} \\
+                \small{0.0997} & \small{0.2334} & \small{0.6668} & \small{ 91.30} \\
+                \small{0.2965} & \small{0.2507} & \small{0.4526} & \small{ 32.34} \\
+                \small{0.3724} & \small{0.2246} & \small{0.4029} & \small{104.86} \\
+                \small{0.4703} & \small{0.1056} & \small{0.4240} & \small{165.55} \\
+                \bottomrule
+            \end{tabular}
+
+        \end{center}
 
     \subsection{Descripción de los Valores de las Variables}
 

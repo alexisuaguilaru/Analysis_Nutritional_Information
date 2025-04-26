@@ -2,15 +2,15 @@
 *__pycache__
 __*
 
-*.aux
-*.bbl
-*.bcf
-*.blg
-*.fls
-*.log
-*.out
-*.xml
-*.gz
-*.fdb_latexmk
-*.toc
-*.nav
+*.aux*
+*.bbl*
+*.bcf*
+*.blg*
+*.fls*
+*.log*
+*.out*
+*.xml*
+*.gz*
+*.fdb_latexmk*
+*.toc*
+*.nav*

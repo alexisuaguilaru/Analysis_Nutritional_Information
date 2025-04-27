@@ -453,7 +453,7 @@
         tratar los valores atípicos dentro de cada dieta permite reducir el impacto de 
         perder información valiosa y se siga conservando las recetas relevantes para una dieta.\\
 
-        Generando la tabla de contingencia entre tipo de dieta y de cocina, se puede apreciar 
+        Generando la tabla de contingencia entre tipo de dieta (\emph{Diet\_type}) y de cocina (\emph{Cuisine\_type}), se puede apreciar 
         que dentro del conjunto de datos ciertas cocinas no tienen la suficiente representatividad, 
         provocando que en ciertas dietas tengo nulos registros o una cantidad relativamente pequeña 
         respecto a las demás cocinas dentro de la misma dieta. Destacando como las cocinas kosher y 
@@ -523,14 +523,16 @@
         crear un intervalo que contiene los cuartiles de todas las distribuciones en 
         cada macronutriente salvo en las de la cocina mundial.
 
-    \subsection{Estratificación de Valores Cuantitativos}
+    \subsection{Estratificación por Tipo de Dieta}
 
         La variable \emph{Diet\_type} es la principal que se emplea para la 
-        estratificación de las recetas, debido a que permite seprarlas 
+        estratificación de las recetas, debido a que permite separarlas 
         según una criterio bien definida, a qué dieta pertenecen. Para cada 
         una de las cinco dietas se presentan los datos tabulados de sus 
         medidas de tendencia central y dispersión junto con su histograma 
-        de los valores en sus macronutrientes.\\
+        de los valores en sus macronutrientes. Por último, se presentan las 
+        gráficos de cajas y bigotes de los macronutrientes relevantes por 
+        tipo de cocina. \\
 
         \subsubsection{Dieta DASH}
 
@@ -585,7 +587,19 @@
             contradiciendo que sea una dieta saludable para la salud cardiovascular.
 
             \begin{center}
-                \includegraphics[width=0.75\textwidth]{Resources/2_03_plot_01.png}
+                \includegraphics[width=0.90\textwidth]{Resources/2_03_plot_01.png}
+            \end{center}
+
+            Como se ha mencionado, el macronutriente relevante para esta dieta son los 
+            carbohidratos. Al hacer el contraste entre los diferentes tipos de cocina se 
+            puede apreciar un incremente notorio en el primer cuartil de las diferentes 
+            cocinas, esto implica qué tan diversificada está esta dieta. En el sentido 
+            de que se puede llegar a consumir todo tipo de proporciones sin salirse del 
+            marco de la dieta, de otra manera, se podría alcanzar un balance en la ingesta 
+            de macronutrientes al considerar recetas de diferentes cocinas.
+
+            \begin{center}
+                \includegraphics[width=0.90\textwidth]{Resources/2_03_plot_01_1.png}
             \end{center}
 
         \subsubsection{Dieta Keto}
@@ -640,7 +654,7 @@
             busca) mientras que hay recetas con una contribución baja o nula del mismo.
             
             \begin{center}
-                \includegraphics[width=0.75\textwidth]{Resources/2_03_plot_02.png}
+                \includegraphics[width=0.90\textwidth]{Resources/2_03_plot_02.png}
             \end{center}
 
         \subsubsection{Dieta Mediterránea}
@@ -693,7 +707,7 @@
             esta dieta figura como una con bajo consumo de alimentos ricos en proteínas. 
             
             \begin{center}
-                \includegraphics[width=0.75\textwidth]{Resources/2_03_plot_03.png}
+                \includegraphics[width=0.90\textwidth]{Resources/2_03_plot_03.png}
             \end{center}
 
         \subsubsection{Dieta Paleo}
@@ -745,7 +759,7 @@
             son bajas en comparación con los otros dos macronutrientes.
             
             \begin{center}
-                \includegraphics[width=0.75\textwidth]{Resources/2_03_plot_04.png}
+                \includegraphics[width=0.90\textwidth]{Resources/2_03_plot_04.png}
             \end{center}
 
         \subsubsection{Dieta Vegana}
@@ -800,7 +814,7 @@
             sean altos en comparación con los otros dos macronutrientes.
 
             \begin{center}
-                \includegraphics[width=0.75\textwidth]{Resources/2_03_plot_05.png}
+                \includegraphics[width=0.90\textwidth]{Resources/2_03_plot_05.png}
             \end{center}
 
         \subsubsection{Gráfico de Cajas y Bigotes de la distribución de Macronutrientes por Dieta}

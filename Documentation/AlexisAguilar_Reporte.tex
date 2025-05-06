@@ -14,6 +14,7 @@
 
 \usepackage{graphicx}
 \usepackage{wrapfig}
+\usepackage{makecell}
 
 \usepackage{booktabs}
 \usepackage{enumitem}
@@ -877,6 +878,93 @@
 
 \newpage
 
-\printbibliography[heading=bibintoc,title={Referencias Bibliográficas}]
+\section{Prueba de Hipótesis Por Dieta}
+
+    Para cada una de las pruebas se hace uso de una significancia del $\alpha = 0.05$, 
+    para las diferentes pruebas se reportan los p valores (p-value) y el valor del 
+    estadístico que se obtuvieron. El procedimiento desarrollado en esta sección se 
+    encuentra en la sección de mismo nombre y enumeración en la libreta de Jupyter 
+    que se puede encontrar en \href{https://github.com/alexisuaguilaru/Analysis_Nutritional_Information/blob/main/Documentation/AlexisAguilar_Reporte.ipynb}{Analysis Nutritional Information} 
+    donde se expone el código y resultados más en ``crudo''.
+
+    \subsection{Dieta DASH}
+        \textbf{Preámbulo}\\
+        { 
+            Se tiene el objetivo de probar si esta dieta se encuentra 
+            en balance nutricional, es decir, si se llega a consumir la 
+            misma proporción de macronutrientes diariamente.\\
+
+            Se realiza el supuesto de que en un día normal se consumen 
+            cinco comidas, el equivalente a cinco recetas, por lo que 
+            muestreando 50 días siguiendo estaría esta receta bastaría 
+            para probar de manera significativa si la dieta DASH está en 
+            balance nutricional.\\
+
+            Para general el muestreo de 50 días se vuelve equivalente a 
+            que se muestrean de forma aleatoria 250 recetas que forman 
+            grupos de 5 recetas para después determinar las proporciones 
+            de macronutrientes que son consumidos al consumir los macronutrientes 
+            de estas recetas.\\
+        }
+
+        \textbf{Prueba de Hipótesis}\\ 
+        {
+            Con las muestras de las proporciones de macronutrientes se realiza 
+            un conjunto de hipótesis por cada macronutriente, teniendo lo 
+            siguiente:
+            \begin{align*}
+                H_0 :& \overline{x}_M = 1/3  \\
+                H_1 :& \overline{x}_M \ne 1/3 
+            \end{align*}
+        
+            Donde $M$ se refiere a uno de los tres macronutrientes con los que 
+            se cuenta. El signo de $\ne$ indica que la prueba será de dos colas 
+            debido a que se quiere capturar cualquier diferencia significativa 
+            por muy mínimo que sea. Y Como el tamaño de la muestra es lo suficientemente 
+            grande, se puede suponer que la distribución de la media muestral es 
+            normal, por lo tanto la prueba que se va usar es la Prueba t para obtener 
+            resultados más robustos.\\
+        }
+
+        \textbf{Discusión de Resultados}\\
+        {
+            Se tienen los siguientes resultados de las pruebas:
+
+            \begin{center}    
+                \begin{tabular}{| c | c | c |}
+                    \toprule
+                    \textbf{Macronutriente} & \textbf{Valor P} & \makecell{\textbf{Estadístico}\\\textbf{Calculado t}} \\
+                    \midrule
+                    \emph{Carbohidratos} & 2.4193e-12 &   9.2605 \\
+                    \emph{Proteínas}     & 5.0144e-14 & -10.4219 \\
+                    \emph{Grasas}        & 0.003801   &  -3.0389 \\
+                    \bottomrule
+                \end{tabular}
+            \end{center}
+
+            Debido al umbral de significancia $\alpha$, se tiene que ninguno 
+            de los tres macronutrientes se encuentra en balance nutricional. 
+            Lo anterior implica que la dieta DASH, declarada como una dieta 
+            saludable para la condición cardiovascular no verifica estar en 
+            balance, esto representa que los alimentos, por lo tanto las recetas, 
+            favorecen el consumo de ciertos grupos alimentarios sobre otros.\\
+
+            Esto se ve reflejado al ver como el valor del estadístico en 
+            carbohidratos reporta ser el más alto, indicando que puede deberse 
+            a un alto consumo de alimentos de origen vegetal que, además, pueden 
+            ser ricos en otros micronutrientes esenciales para controlar la 
+            hipertensión y la salud cardiovascular. Mientras que el consumo de 
+            proteínas y de grasas se ve penalizado, por tener signos negativos, 
+            esto es indicativo de que en la dieta DASH los alimentos provenientes de 
+            estos macronutrientes tienen un mayor control y regularización sobre 
+            las cantidades que son consumidas.
+        }
+
+\newpage
+
+{
+    \printbibliography[heading=bibintoc,title={Referencias Bibliográficas}]
+}
+
 
 \end{document}

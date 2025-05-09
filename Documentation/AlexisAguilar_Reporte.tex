@@ -900,7 +900,7 @@
             para probar de manera significativa si la dieta DASH está en 
             balance nutricional.\\
 
-            Para general el muestreo de 50 días se vuelve equivalente a 
+            Para generar el muestreo de 50 días se vuelve equivalente a 
             que se muestrean de forma aleatoria 250 recetas que forman 
             grupos de 5 recetas para después determinar las proporciones 
             de macronutrientes que son consumidos al consumir los macronutrientes 
@@ -957,7 +957,135 @@
             proteínas y de grasas se ve penalizado, por tener signos negativos, 
             esto es indicativo de que en la dieta DASH los alimentos provenientes de 
             estos macronutrientes tienen un mayor control y regularización sobre 
-            las cantidades que son consumidas.
+            las cantidades que son consumidas.\\
+        }
+
+    \subsection{Dieta Keto}
+        \textbf{Preámbulo}\\
+        {
+            Se tiene el objetivo de probar si en todas las cocinas de esta dieta 
+            se verifica que el consumo de carbohidratos es menor al de grasas, 
+            refiriéndose al principio de la dieta keto.\\
+
+            Debido a que alguna de las cocinas no cuentan con suficientes instancias 
+            de recetas se tiene que esta prueba se divide en dos casos y, por lo tanto, 
+            dos tipos de pruebas.\\
+        }
+
+        \textbf{Prueba de Hipótesis}\\
+        {
+            Como se mencionó, sin importar el tipo de caso, el conjunto de hipótesis 
+            son de la forma:
+            
+            \begin{align*}
+                H_0 : \overline{c}_C = \overline{f}_C \\
+                H_1 : \overline{c}_C < \overline{f}_C
+            \end{align*}
+
+            Los casos se dividen según lo siguiente: Si la cantidad de recetas es menor 
+            o igual a $30$, entonces se hace uso de la Prueba de Rangos de Wilcoxon; en 
+            caso contrario se realiza la Prueba t junto con la Prueba de Levenne para 
+            probar la homocedasticidad entre los macronutrientes. Por el conjunto de hipótesis, 
+            se realiza una prueba de una cola hacia la derecha.\\
+        }
+
+        \textbf{Discusión de Resultados}\\
+        {
+            De las pruebas por cocina, se tiene los siguientes resultados:
+            \begin{center}
+                \begin{tabular}{| c | c | c |}
+                    \toprule
+                    \textbf{Cocina} & \textbf{Valor P} & \textbf{Prueba} \\
+                    \midrule
+                    American & 2.7902e-73 & T \\
+                    Asian & 0.1252 & Wilcoxon \\
+                    British & 8.4768e-7 & T \\
+                    Caribbean & 0.1689 & Wilcoxon \\
+                    Central Europe & 0.0117 & Wilcoxon \\
+                    Chinese & 0.0754 & T \\
+                    Eastern Europe & 0.0004 & Wilcoxon \\
+                    French & 5.6294e-19 & T \\
+                    Italian & 7.7169e-33 & T \\
+                    \bottomrule
+                \end{tabular}
+                \begin{tabular}{| c | c | c |}
+                    \toprule
+                    \textbf{Cocina} & \textbf{Valor P} & \textbf{Prueba} \\
+                    \midrule
+                    Indian & 0.0009 & Wilcoxon \\
+                    Japanese & 0.0206 & Wilcoxon \\
+                    Mediterranean & 8.1249e-10 & T \\
+                    Mexican & 5.8202e-10 & T \\
+                    Middle Eastern & 0.0011 & Wilcoxon \\
+                    Nordic & 3.4630e-7 & T \\
+                    South American & 0.0005 & Wilcoxon \\
+                    South East Asian & 0.1183 & T \\
+                    World & 0.9918 & Wilcoxon \\
+                    \bottomrule
+                \end{tabular}
+            \end{center}
+
+            Debido al umbral de significancia $\alpha$, se tiene que las recetas de las cocinas 
+            asiática, caribeña, china, sureste asiática y globales cumplen con el principio de la 
+            dieta keto. Pero debido a que los resultados de algunas de estas pruebas son producto 
+            de la  Prueba de Rangos de Wilcoxon, se tiene que no se pueden tomar con confianzar el 
+            valor p reportado, por lo que las cocinas relevantes se vuelven las que tienen una Prueba 
+            t; dejando unicamente a china la única cocina que reporta tener una ingesta media de carbohidratos 
+            menor a la de grasas.\\
+
+            Por lo tanto, al analizar la dieta keto por cocina, se muestra que estas cocinas no 
+            cumplen con ser parte del esquema asociada a esta dieta, mostrando que estas recetas 
+            aunque se les nombre keto no pertenecen a esta dieta de forma estadística. Esto se podría 
+            relacionar a una cierta deformación sobre el concepto de una receta keto y también sobre 
+            cómo debería que ser una, es decir, sobre los aportes nutricionales que debería que tener.\\
+        }
+    
+    \subsection{Dieta Mediterránea}
+        \textbf{Preámbulo}\\
+        {
+
+        }
+
+        \textbf{Prueba de Hipótesis}\\
+        {
+
+        }
+
+        \textbf{Discusión de Resultados}\\
+        {
+
+        }
+
+    \subsection{Dieta Paleo}
+        \textbf{Preámbulo}\\
+        {
+
+        }
+
+        \textbf{Prueba de Hipótesis}\\
+        {
+
+        }
+
+        \textbf{Discusión de Resultados}\\
+        {
+
+        }
+
+    \subsection{Dieta Vegana}
+        \textbf{Preámbulo}\\
+        {
+
+        }
+
+        \textbf{Prueba de Hipótesis}\\
+        {
+
+        }
+
+        \textbf{Discusión de Resultados}\\
+        {
+
         }
 
 \newpage

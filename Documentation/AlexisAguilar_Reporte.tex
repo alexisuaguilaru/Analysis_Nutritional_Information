@@ -1105,17 +1105,36 @@
     \subsection{Dieta Paleo}
         \textbf{Preámbulo}\\
         {
+            Se tiene el objetivo de probar como las regiones geográficas imponen o contribuyen 
+            a los aportes de proteínas en las diferentes recetas pertenecientes a una cocina. Para 
+            ello se hará uso de las medianas de las proteínas por cocina.\\
 
+            Debido a que existen cocinas con menos de 5 recetas no se le puede aplicar la 
+            prueba que se usa por motivos de robustez, por lo tanto, se eliminan esta dietas. Esto 
+            es un aspecto más técnico sobre los requisitos para el uso de la Prueba de Kruskal-Wallis.\\
         }
 
         \textbf{Prueba de Hipótesis}\\
         {
+            De lo expueto, el conjunto de hipótesis es de la forma:
+            \begin{align*}
+                H_0 :& \text{Todas las medianas son iguales} \\
+                H_1 :& \text{Por al menos una de las medianas es diferente}
+            \end{align*}
 
+            Donde las medianas se refieren a las de proteínas por cocina. Para probar 
+            estas hipótesis se hace uso de la Prueba de Kruskal-Wallis junto con la 
+            Prueba de Dunn para probar si en qué cocinas, específicamente, difieren.\\
         }
 
         \textbf{Discusión de Resultados}\\
         {
-
+            Los resultados de la prueba son que su valor p es de $0.6512$ y su estadístico es 
+            $0.0388$ y, por el umbra de significancia, se muestra que no existe una diferencia entre 
+            las medians, esto implica que las regiones geográficas no tienen un cierto impacto sobre 
+            los alimentos que se usan para las recetas, es decir, la diposición de los productos de 
+            origen animal, aparentemente, no evocan un fenómeno sobre la diversidad en las recetas 
+            en las proteínas.
         }
 
     \subsection{Dieta Vegana}

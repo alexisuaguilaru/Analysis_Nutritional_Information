@@ -1140,17 +1140,71 @@
     \subsection{Dieta Vegana}
         \textbf{Preámbulo}\\
         {
-
+            Se tiene como objetivo el probar si los aportes de carbohidratos son mayores 
+            que a los de proteínas en cada una de las cocinas. Debido a qu algunas de las 
+            cococinas no cuentan con suficientes recetas, se tiene que esta prueba se divide 
+            en dos casos posbiles.
         }
 
         \textbf{Prueba de Hipótesis}\\
         {
+            Por lo mencionado y sin importar el caso de la prueba, se tiene que el 
+            conjunto de hipótesis son de la forma:
 
+            \begin{align*}
+                H_0 : \overline{p}_C = \overline{c}_C \\
+                H_1 : \overline{p}_C < \overline{c}_C
+            \end{align*}
+
+            De donde $\overline{p}_C$ y $\overline{c}_C$ representan ya sea la media o 
+            mediana de las proteinas y carbohidratos, respectivamente, de una cocina $C$.\\
+
+            Los casos se encuentran dividos según sea la cantidad de instancias de recetas 
+            de la siguiente manera: Si la cantidad de recetas es menor 
+            o igual a $30$, entonces se hace uso de la Prueba de Rangos de Wilcoxon; en 
+            caso contrario se realiza la Prueba t junto con la Prueba de Levenne para 
+            probar la homocedasticidad entre los macronutrientes. Por el conjunto de hipótesis, 
+            se realiza una prueba de una cola hacia la derecha.\\
         }
 
         \textbf{Discusión de Resultados}\\
         {
+            De las pruebas por cocina, se tiene los siguientes resultados:    
+            \begin{center}
+                \begin{tabular}{| c | c | c |}
+                    \toprule
+                    \textbf{Cocina} & \textbf{Valor P} & \textbf{Prueba} \\
+                    \midrule
+                    American & 0.0 & T \\
+                    Asian & 8.3696e-17 & T \\
+                    British & 1.7909e-10 & Rangos de Wilcoxon \\
+                    Chinese & 9.1916e-7 & Rangos de Wilcoxon \\
+                    French & 2.5468e-47 & T \\
+                    Indian & 2.0491e-31 & T \\
+                    Italian & 6.8866e-50 & T \\
+                    \bottomrule
+                \end{tabular}
+                \begin{tabular}{| c | c | c |}
+                    \toprule
+                    \textbf{Cocina} & \textbf{Valor P} & \textbf{Prueba} \\
+                    \midrule
+                    Japanese & 4.3867e-9 & Rangos de Wilcoxon \\
+                    Mediterranean & 3.6934e-50 & T \\
+                    Mexican & 4.1788e-25 & T \\
+                    Middle Eastern & 1.5334e-6 & Rangos de Wilcoxon \\
+                    Nordic & 0.0425 & Rangos de Wilcoxon \\
+                    South American & 1.7060e-21 & T \\
+                    South East Asian & 5.81260e-23 & T \\
+                    World & 7.8526e-5 & Rangos de Wilcoxon \\
+                    \bottomrule
+                \end{tabular}
+            \end{center}
 
+            Se tiene que en todas las cocinas sus p valores son menores al umbral de 
+            significancia $\alpha$, esto significa que en todas las dietas se verifica 
+            la noción de la dieta vegana, es decir, que los aportes proteínas son menores 
+            que a los de carbohidratos. Por lo tanto, se puede decir que la dieta vagana, 
+            sin importar la cocina, es una baja en ingesta de proteínas.
         }
 
 \newpage

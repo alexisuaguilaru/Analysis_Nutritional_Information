@@ -982,6 +982,10 @@
                 H_1 : \overline{c}_C < \overline{f}_C
             \end{align*}
 
+            Donde $\overline{c}_C$ y $\overline{f}_C$ representan, según sea el caso, 
+            la media o la mediana de los carbohidratos y grasas, respectivamente, de 
+            una cocina $C$\\
+
             Los casos se dividen según lo siguiente: Si la cantidad de recetas es menor 
             o igual a $30$, entonces se hace uso de la Prueba de Rangos de Wilcoxon; en 
             caso contrario se realiza la Prueba t junto con la Prueba de Levenne para 
@@ -1026,16 +1030,16 @@
             \end{center}
 
             Debido al umbral de significancia $\alpha$, se tiene que las recetas de las cocinas 
-            asiática, caribeña, china, sureste asiática y globales cumplen con el principio de la 
+            asiática, caribeña, china, sureste asiática y globales no cumplen con el principio de la 
             dieta keto. Pero debido a que los resultados de algunas de estas pruebas son producto 
             de la  Prueba de Rangos de Wilcoxon, se tiene que no se pueden tomar con confianzar el 
             valor p reportado, por lo que las cocinas relevantes se vuelven las que tienen una Prueba 
             t; dejando unicamente a china la única cocina que reporta tener una ingesta media de carbohidratos 
-            menor a la de grasas.\\
+            mayor a la de grasas.\\
 
-            Por lo tanto, al analizar la dieta keto por cocina, se muestra que estas cocinas no 
-            cumplen con ser parte del esquema asociada a esta dieta, mostrando que estas recetas 
-            aunque se les nombre keto no pertenecen a esta dieta de forma estadística. Esto se podría 
+            Por lo tanto, al analizar la dieta keto por cocina, se muestra que estas cocinas  
+            cumplen con ser parte del esquema asociada a esta dieta, pero mostrando que existen recetas 
+            que aunque se les nombre keto no pertenecen a esta dieta de forma estadística. Esto se podría 
             relacionar a una cierta deformación sobre el concepto de una receta keto y también sobre 
             cómo debería que ser una, es decir, sobre los aportes nutricionales que debería que tener.\\
         }
@@ -1043,17 +1047,59 @@
     \subsection{Dieta Mediterránea}
         \textbf{Preámbulo}\\
         {
+            Se tiene el objetivo de probar si una diferencia en el comporatmiento, aportes 
+            nutricionales, entre las recetas de la propiao región del Mediterráneo en contraste 
+            con las recetas de las demás cocinas.\\
 
+            Antes de hacer la prueba, se recuperan las recetas según el criterio geográfico 
+            descrito para hacer un contraste, probar una diferencia significativa, en las medias 
+            de los tres macronutrientes.\\
         }
 
         \textbf{Prueba de Hipótesis}\\
         {
+            Por como se describió, se tiene el siguiente conjunto de hipótesis:
 
+            \begin{align*}
+                H_0 : F^M_m = F^O_m \\
+                H_1 : F^M_m \ne F^O_m  
+            \end{align*}
+
+            Donde $F^M_m$ y $F^O_m$ representan la distribución del macronutriente $m$ sobre las 
+            recetas pertenecientes al mediterráneo, $M$, y de las que no pertenecen, $O$, respectivamente.\\ 
+
+            Se realiza una prueba de dos colas debido a que se quiere capturar cualquier diferencia 
+            que exista entre las distribuciones,  y para probar esto se hace uso de la Prueba Kolmogorov-Smirnov 
+            debido a que es sensible a cualquier diferencia entre las distribuciones.
         }
 
         \textbf{Discusión de Resultados}\\
         {
+            De las pruebas por macronutriente, se obtienen los siguientes resultados:
 
+            \begin{center}
+                \begin{tabular}{| c | c | c |}
+                    \toprule
+                    \textbf{Macronutriente} & \textbf{Valor P} & \textbf{Estadístico} \\
+                    \midrule
+                    Carbohidratos & 0.2701 & 0.0530 \\
+                    Proteínas     & 0.0059 & 0.0907 \\
+                    Grasas        & 0.6512 & 0.0388 \\
+                    \bottomrule
+                \end{tabular}
+            \end{center}
+
+            Por el umbral de significancia $\alpha$, se tiene que en los carbohidratos y en las 
+            grasas no tienen un diferencia significativa pero en cambio en las proteínas sí. Esto 
+            conlleva a que no solo en este macronutriente difieren sino que también en los dos, debido 
+            a como se encuentran relacionados, esto significa que el valor del estadístico indica en qué 
+            grado diffieren, en específico, se muestra que se parecen más en el contenido de grasas que ne 
+            los otros dos macronutrientes. \\
+
+            Como se ha mencionado, esta diferencia se podría explicar por la diversificación de las recetas, 
+            en específico, de la propia dieta a lo largo del mundo implicando el como la cultura y los productos 
+            de otros países se integran a los elementos, recetas y comidas, provinientes de una receta o dieta lejana 
+            a su región geográfica.\\
         }
 
     \subsection{Dieta Paleo}

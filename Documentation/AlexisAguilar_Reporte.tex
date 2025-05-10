@@ -878,7 +878,7 @@
 
 \newpage
 
-\section{Prueba de Hipótesis Por Dieta}
+\section{Pruebas de Hipótesis Por Dieta}
 
     Para cada una de las pruebas se hace uso de una significancia del $\alpha = 0.05$, 
     para las diferentes pruebas se reportan los p valores (p-value) y el valor del 
@@ -1206,6 +1206,88 @@
             que a los de carbohidratos. Por lo tanto, se puede decir que la dieta vagana, 
             sin importar la cocina, es una baja en ingesta de proteínas.
         }
+
+\newpage
+
+\section{Prueba de Hipótesis Para Diferencias entre Dietas}
+    \subsection{Preámbulo}
+    {
+        El objetivo principal del trabajo es el relacionaod a probar si 
+        existe una diferencia en los aportes nutricionales entre las diferentes 
+        dietas. Para ello, se hace uso de las distribuciones de los macronutrientes 
+        que presentan las diferentes dietas. Existe también el intererés de saber 
+        en qué medida una dieta difiere de otra.
+    }
+
+    \subsection{Prueba de Hipótesis}
+    {
+        Para probar que existe una diferencia entre las dietas se vuelve equivalente 
+        a que en cada par de dietas probar si existe un diferencia en los aportes 
+        de macronutrientes, en específico, sobre la distribución de los mismos. 
+        Se tiene que el conjunto de hipótesis se vuelve:
+        
+        \begin{align*}
+            H_0 : F_m(x) = G_m(x) \\
+            H_1 : F_m(x) \ne G_m(x)
+        \end{align*}
+
+        Donde $F_m(x)$ y $G_m(x)$ son las distribuciones del macronutriente $m$ en 
+        dos dietas diferentes. Como se quiere capturar cualquier diferencia en las 
+        distribuciones, y en cualquier sentido, se hace uso de la Prueba de 
+        Kolmogorov-Smirnov con dos colas. Para cuantificar la diferencia entre dietas 
+        se promedian los resultados del estadístico calculado en cada una de las pruebas 
+        sobre los macronutrientes.
+    }
+
+    \subsection{Discusión de Resultados}
+    {
+        Primero se muestran las diferencias significativas entre las 
+        dietas sobre los macronutrientes, de donde se puede apreciar 
+        que todas las dietas son diferentes. Esto implica que las dietas 
+        siguen patrones en los alimmentos y preparaciones, esto repercute 
+        en los aportes de macronutrientes que oferce cada dieta y que, 
+        por lo tanto, hace un clara distinción entre las diferentes dietas:
+
+        \begin{center}
+            \begin{tabular}{| c | c c c c c |}
+                \toprule
+                \textbf{Dieta} & DASH & Keto & Mediterránea & Paleo & Vegana \\
+                \midrule
+                DASH         & 0 & 3 & 3 & 3 & 3 \\
+                Keto         & 3 & 0 & 3 & 3 & 3 \\
+                Mediterránea & 3 & 3 & 0 & 3 & 3 \\
+                Paleo        & 3 & 3 & 3 & 0 & 3 \\
+                Vegana       & 3 & 3 & 3 & 3 & 3 \\
+                \bottomrule
+            \end{tabular}
+        \end{center}
+        
+        Debido a que todas las dietas son diferentes entre sí, se vuelve interesante 
+        el cuatificar el qué tanto se diferencian entre sí. Esto se realiza haciendo 
+        uso del promedio de los estadísticos sobre los macronutrientes en cada par 
+        de dieta, siendo lo siguiente:
+
+        \begin{center}
+            \begin{tabular}{| c | c c c c c |}
+                \toprule
+                \textbf{Dieta} & DASH & Keto & Mediterránea & Paleo & Vegana \\
+                \midrule
+                DASH         & 0.000000 & 0.486126 & 0.237867 & 0.253224 & 0.183605 \\
+                Keto         & 0.486126 & 0.000000 & 0.389784 & 0.297200 & 0.621934 \\
+                Mediterránea & 0.237867 & 0.389784 & 0.000000 & 0.197873 & 0.281957 \\
+                Paleo        & 0.253224 & 0.297200 & 0.197873 & 0.000000 & 0.393562 \\
+                Vegana       & 0.183605 & 0.621934 & 0.281957 & 0.393562 & 0.000000 \\
+                \bottomrule
+            \end{tabular}            
+        \end{center}
+
+        Los valores de la tabla se intepretan de la siguiente manera: conforme más se aproxime 
+        a $0$ más se parecen. En base a lo anterior, se puede apreciar dos parejas de dietas 
+        que se podrían parecen que son: DASH y Vegana, Mediterránea y Paleo. Y podría tener sentido 
+        al ver los aportes de macronutrientes de la dieta DASH y Vegana provienen principalmente de 
+        alimentos de origen vegetal; mientras que en la Mediterránea y Paleo tienen la relación sobre 
+        que los alimentos que están presenten son ricos en carbohidratos y, en menor medida, proteínas.
+    }
 
 \newpage
 

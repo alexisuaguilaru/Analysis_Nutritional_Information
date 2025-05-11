@@ -353,7 +353,8 @@
 
         \end{center}
 
-    \subsection{Descripción de los Valores de las Variables}
+    \subsection{Descripción de los Valores de las Vari
+    ables}
 
         Para el presente trabajo se harán uso de las siguientes variables, se 
         acompañan con una descripción de su significado o representación:
@@ -882,11 +883,34 @@
         pertenecen a la familia de las distribuciones beta; esto debido al rango de valores 
         que pueden tomar, el soporte de la distribución, es $[0,1]$. La familia de distribuciones 
         beta son de la forma\cite{beta_distribution}:
+
         $$F(x;\alpha,\beta) = \frac {x^{\alpha -1}(1-x)^{\beta -1}}{\mathrm {B} (\alpha ,\beta )}$$ 
 
         Lo que se realiza es el ajuste de una distribución de esta familia y se realiza 
         un Q-Q plot entre la distribución ajustada (teórica) y de la distribución empírica 
-        o muestral de los datos.\\
+        o muestral de los datos. Donde se muestran los parámetros de la distribución, es 
+        decir, los valores $\alpha$ y $\beta$ que caracteriza cada una las mismas.\\
+
+        \begin{center}
+            \includegraphics[width=0.8\textwidth]{Resources/5_05_plot_1.png}
+            \includegraphics[width=0.8\textwidth]{Resources/5_05_plot_2.png}
+            \includegraphics[width=0.8\textwidth]{Resources/5_05_plot_3.png}
+            \includegraphics[width=0.8\textwidth]{Resources/5_05_plot_4.png}
+            \includegraphics[width=0.8\textwidth]{Resources/5_05_plot_5.png}
+        \end{center}
+
+        En los diferentes Q-Q Plots se puede apreciar el como los percentiles se alejan 
+        de la recta identidad, esto se debe a la presencia de outliers que modifican 
+        el comportamiento de la propia distribución, evocando una tendencia diferente a 
+        la de una recta. Por ello, se vuelve necesario un tratamiento sobre los valores 
+        atípicos, debido a que en las regiones en donde se consideran valores normales, 
+        según los box plots, sí siguen la tendencia de la recta, o de los valores teóricos.\\
+
+        Debido la cantidad de instancias con las que se cuentan por dieta, se tiene que 
+        los resultados de las distribuciones ajustadas para cada macronutriente y dieta 
+        son confiables, por lo tanto, se puede concluir que éstas son diferentes entre sí, 
+        o por al menos lo suficiente para mostrar que cada dieta sigue diferentes patrones 
+        en la ingesta de macronutrientes.
 
 \newpage
 

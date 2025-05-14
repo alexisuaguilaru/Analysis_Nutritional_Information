@@ -27,7 +27,7 @@
 \addbibresource{referencias.bib}
 
 \usepackage{setspace}
-\setstretch{1.5}
+\setstretch{1.25}
 \setlength{\parindent}{0pt}
 
 \begin{document}
@@ -68,7 +68,7 @@
         \vspace{2cm}}
 
         \flushright{
-        {\textbf{A:\ }\underline{21 de Mayo del 2025}}}
+        {\textbf{A:\ }\underline{26 de Mayo del 2025}}}
         \vfill
     \end{titlepage}
 
@@ -201,8 +201,8 @@
 
     \subsection{Fuente de Datos}
 
-        El conjunto de datos con el que se está trabajando para este trabajo 
-        se encuentra en \cite{dataset_macronutrients}, publicado por la comunidad 
+        El conjunto de datos con el que se está trabajando para este proyecto 
+        se encuentran en \cite{dataset_macronutrients}, publicado por la comunidad 
         de Kaggle. Los datos consisten de un conjunto de recetas de diferentes 
         dietas y cocinas, además incluye información de los macronutrientes que 
         aporta cada receta.\\
@@ -234,7 +234,8 @@
         De esto último, proporciona un indicio de que existe una diferencia entre 
         las dietas a nivel de sus aportes nutricionales, por lo tanto, lo que se 
         quiere realizar es probar esta diferencia de manera significativa haciendo 
-        uso de la estadística.
+        uso de la estadística y, en caso de que la haya, mostrar que tanta es ésta 
+        diferencia y sus implicaciones.
 
     \subsection{Variables del Conjunto de Datos}
 
@@ -242,16 +243,16 @@
         nombre, el tipo de variable y sus valores (en total y únicos):
 
         \begin{center}
-            \begin{tabular}{| c | c | c | c | c |}
+            \begin{tabular}{r|llrr}
                 \toprule
-                Variable & Nombre & Tipo & Cantidad de Datos & Valores Únicos\\
+                    Variable & Nombre & Tipo & Cantidad de Datos & Valores Únicos\\
                 \midrule
-                1 & Diet\_type & Cualitativa Nominal & 7806 & 5 \\
-                2 & Recipe\_name & Cualitativa Nominal & 7806 & 7062\\
-                3 & Cuisine\_type & Cualitativa Nominal & 7806 & 19\\
-                4 & Protein(g) & Cuantitativa Continua & 7806 & 6060\\
-                5 & Carbs(g) & Cuantitativa Continua & 7806 & 6618\\
-                6 & Fat(g) & Cuantitativa Continua & 7806 & 6322\\
+                    1 & Diet\_type & Cualitativa Nominal & 7806 & 5 \\
+                    2 & Recipe\_name & Cualitativa Nominal & 7806 & 7062\\
+                    3 & Cuisine\_type & Cualitativa Nominal & 7806 & 19\\
+                    4 & Protein(g) & Cuantitativa Continua & 7806 & 6060\\
+                    5 & Carbs(g) & Cuantitativa Continua & 7806 & 6618\\
+                    6 & Fat(g) & Cuantitativa Continua & 7806 & 6322\\
                 \bottomrule
             \end{tabular}
         \end{center}
@@ -267,15 +268,15 @@
 
         \begin{center}
 
-            \begin{tabular}{| c | c | c |}
+            \begin{tabular}{lll}
                 \toprule
-                \textbf{Diet\_type} & \textbf{Recipe\_name} & \textbf{Cuisine\_type} \\
+                    \textbf{Diet\_type} & \textbf{Recipe\_name} & \textbf{Cuisine\_type} \\
                 \midrule
-                dash          & Old Fashioned                     & world \\
-                keto          & Keto Egg Drop Soup                & chinese \\
-                mediterranean & Mediterranean Mix                 & mediterranean \\
-                paleo         & Easy Paleo Herb Gravy recipes     & french \\
-                vegan         & Braised Green Beans with Tomatoes & mediterranean \\
+                    dash          & Old Fashioned                     & world \\
+                    keto          & Keto Egg Drop Soup                & chinese \\
+                    mediterranean & Mediterranean Mix                 & mediterranean \\
+                    paleo         & Easy Paleo Herb Gravy recipes     & french \\
+                    vegan         & Braised Green Beans with Tomatoes & mediterranean \\
                 \bottomrule
             \end{tabular}
 
@@ -283,15 +284,15 @@
 
         \begin{center}
 
-            \begin{tabular}{| c | c | c |}
+            \begin{tabular}{rrr}
                 \toprule
-                \textbf{Protein(g)} & \textbf{Carbs(g)} & \textbf{Fat(g)} \\
+                    \textbf{Protein(g)} & \textbf{Carbs(g)} & \textbf{Fat(g)} \\
                 \midrule
-                 0.12 &  9.66 &  0.02 \\
-                21.31 &  9.11 & 60.88 \\
-                 8.11 &  9.59 & 14.64 \\
-                23.56 & 39.05 & 42.25 \\
-                17.49 & 77.86 & 70.20 \\
+                     0.12 &  9.66 &  0.02 \\
+                    21.31 &  9.11 & 60.88 \\
+                     8.11 &  9.59 & 14.64 \\
+                    23.56 & 39.05 & 42.25 \\
+                    17.49 & 77.86 & 70.20 \\
                 \bottomrule
             \end{tabular}
 

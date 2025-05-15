@@ -1345,9 +1345,64 @@
 
 \newpage
 
+\section{Análisis Bivariado}
+    \subsection{Estadística Descriptiva}
+    {
+        En las diferentes dietas, se puede observar como los carbohidratos es un
+        macronutriente muy relevante que permiten representar a una dieta debidamente 
+        desde la ingesta de macronutrientes. Lo anterior permite describir a las dietas 
+        en función sobre cómo interactúan los carbohidratos al momento de cómo están 
+        presentes en una receta con los otros dos macronutrientes. Esto se puede observar en los gráficos de dispersión de 
+        los carbohidratos contra los otros dos macronutrientes, que contienen una clara tendencia 
+        en la disposición de los macronutrientes según los aportes de los carbohidratos 
+        en una receta dada; y, por el otro lado, las proteínas y grasas no figuran que 
+        tengan un tendencia lineal sobre cómo interactúan, haciendo que parezca mas una 
+        distribución uniforme sobre todos los posibles valores.
+
+        \begin{center}
+            \includegraphics[width=0.65\textwidth]{Resources/8_01_plot_1.png}
+        \end{center}
+
+        Al considerar los coeficientes de correlación de Pearson para cada par de 
+        macronutrientes, se puede observar como los carbohidratos tienen la explicabilidad 
+        de los datos más alta (con proteínas $42.04\%$ y grasas $59.03\%$), es decir, un 
+        alto porcentaje de las recetas siguen las tendencias que hay entre carbohidratos 
+        y proteínas y, carbohidratos y grasas, o que se pueden explicar por medio de una 
+        recta de regresión. Por lo tanto, conociendo los carbohidratos de una receta se 
+        puede estimar, con cierto grado de confianza, los macronutrientes restantes y 
+        esta predicción mejora al considerar a qué dieta pertenece. 
+
+        \begin{center}
+            \includegraphics[width=0.9\textwidth]{Resources/8_01_plot_2.png}
+        \end{center}
+        
+        Que los coeficientes de correlación tomen valores negativos se relacionada con 
+        el hecho de que al incrementarse un valor uno o ambos de los macronutrientes 
+        tiene que decrecer, pero el valor absoluto permite explicar qué tanto baja o, 
+        mejor dicho, cuánto es tu tendencia para bajar. Esto hace que conforme crece 
+        en valor abosluto el coeficiente permita determinar la certeza y fuerza con 
+        que baja un macronutriente al momento que otro crece.
+
+        \begin{center}
+            \begin{tabular}{ll|crr}
+                \toprule
+                    & \textbf{Medida} & Centroide & \makecell{Covarianza\\Muestral} & \makecell{Coeficiente de\\Pearson} \\
+                \midrule
+                    Carbohidratos & Proteínas & $(0.4334,0.2347)$ & -0.02720 & -0.6484 \\
+                    Carbohidratos & Grasas    & $(0.4334,0.3317)$ & -0.03834 & -0.7683 \\
+                    Proteínas     & Grasas    & $(0.2347,0.3317)$ &  0.00034 &  0.0109 \\
+                \bottomrule
+            \end{tabular}
+        \end{center}
+    }
+
+
+\newpage
+
 {
     \printbibliography[heading=bibintoc,title={Referencias Bibliográficas}]
 }
+
 
 
 \end{document}

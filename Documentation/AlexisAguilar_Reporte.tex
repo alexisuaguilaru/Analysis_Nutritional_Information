@@ -115,7 +115,7 @@
 
 \newpage
 
-\section{Marco Teórico}
+\section{Marco Teórico}\label{sec:theory}
     
     La dieta es uno de los principales factores de riesgo de las enfermedades 
     crónicas, y las enfermedades sensibles a la dieta contribuyen en gran medida 
@@ -391,7 +391,7 @@
             el total de macronutrientes que son aportados por una receta. Esta variable 
             es auxiliar para la prueba de hipótesis, y no estará presente en la parte 
             del Análisis Estadístico debido a la justificación presentada en 
-            subsección anterior~\ref{subsec:data_trans} para la aplicación de la 
+            \ref{subsec:data_trans} \nameref{subsec:data_trans} para la aplicación de la 
             propia transformación.
 
         \end{itemize}
@@ -1255,7 +1255,7 @@
 \section{Prueba de Hipótesis Para Diferencias entre Dietas}
     \subsection{Preámbulo}
     {
-        El objetivo principal del trabajo es el relacionaod a probar si 
+        El objetivo principal del trabajo es el relacionado a probar si 
         existe una diferencia en los aportes nutricionales entre las diferentes 
         dietas. Para ello, se hace uso de las distribuciones de los macronutrientes 
         que presentan las diferentes dietas. Existe también el intererés de saber 
@@ -1264,7 +1264,7 @@
 
     \subsection{Prueba de Hipótesis}
     {
-        Para probar que existe una diferencia entre las dietas se vuelve equivalente 
+        Para probar si existe una diferencia entre las dietas se vuelve equivalente 
         a que en cada par de dietas probar si existe un diferencia en los aportes 
         de macronutrientes, en específico, sobre la distribución de los mismos. 
         Se tiene que el conjunto de hipótesis se vuelve:
@@ -1287,31 +1287,31 @@
         Primero se muestran las diferencias significativas entre las 
         dietas sobre los macronutrientes, de donde se puede apreciar 
         que todas las dietas son diferentes. Esto implica que las dietas 
-        siguen patrones en los alimmentos y preparaciones, esto repercute 
+        siguen ciertos patrones en los alimmentos y preparaciones, esto repercute 
         en los aportes de macronutrientes que oferce cada dieta y que, 
         por lo tanto, hace un clara distinción entre las diferentes dietas:
 
         \begin{center}
-            \begin{tabular}{| c | c c c c c |}
+            \begin{tabular}{l|rrrrr}
                 \toprule
-                \textbf{Dieta} & DASH & Keto & Mediterránea & Paleo & Vegana \\
+                    \textbf{Dieta} & DASH & Keto & Mediterránea & Paleo & Vegana \\
                 \midrule
-                DASH         & 0 & 3 & 3 & 3 & 3 \\
-                Keto         & 3 & 0 & 3 & 3 & 3 \\
-                Mediterránea & 3 & 3 & 0 & 3 & 3 \\
-                Paleo        & 3 & 3 & 3 & 0 & 3 \\
-                Vegana       & 3 & 3 & 3 & 3 & 3 \\
+                    DASH         & 0 & 3 & 3 & 3 & 3 \\
+                    Keto         & 3 & 0 & 3 & 3 & 3 \\
+                    Mediterránea & 3 & 3 & 0 & 3 & 3 \\
+                    Paleo        & 3 & 3 & 3 & 0 & 3 \\
+                    Vegana       & 3 & 3 & 3 & 3 & 3 \\
                 \bottomrule
             \end{tabular}
         \end{center}
         
         Debido a que todas las dietas son diferentes entre sí, se vuelve interesante 
-        el cuatificar el qué tanto se diferencian entre sí. Esto se realiza haciendo 
+        el cuantificar en qué tanto se diferencian entre sí. Esto se realiza haciendo 
         uso del promedio de los estadísticos sobre los macronutrientes en cada par 
         de dieta, siendo lo siguiente:
 
         \begin{center}
-            \begin{tabular}{| c | c c c c c |}
+            \begin{tabular}{l|rrrrr}
                 \toprule
                 \textbf{Dieta} & DASH & Keto & Mediterránea & Paleo & Vegana \\
                 \midrule
@@ -1326,10 +1326,21 @@
 
         Los valores de la tabla se intepretan de la siguiente manera: conforme más se aproxime 
         a $0$ más se parecen. En base a lo anterior, se puede apreciar dos parejas de dietas 
-        que se podrían parecen que son: DASH y Vegana, Mediterránea y Paleo. Y podría tener sentido 
+        que se podrían formar son: DASH y Vegana, Mediterránea y Paleo. Y podría tener sentido 
         al ver los aportes de macronutrientes de la dieta DASH y Vegana provienen principalmente de 
         alimentos de origen vegetal; mientras que en la Mediterránea y Paleo tienen la relación sobre 
-        que los alimentos que están presenten son ricos en carbohidratos y, en menor medida, proteínas.
+        que los alimentos que están presenten son ricos en carbohidratos y, en menor medida, en proteínas.\\ 
+
+        Retomando una visión general de los resultados, aunque las dietas comparten ingredientes y 
+        productos para las recetas no implican que tengan los mismos aportes, debido a que existe una 
+        dominancia de ciertos tipos de productos usados en las diferentes dietas e, incluso, para 
+        ciertos casos son exclusivos en esas dietas, así como también las propias técnicas empleadas 
+        para las preparaciones a lo largo de la propia dieta y cocina [Esto abre la puerta a una nueva 
+        oportunidad de investigación, donde se considere también la técnica principal aplicada a la 
+        preparación de la receta]. Esto permite explicar como cada dieta genera 
+        sus propias recetas y alimentos apartir de ciertos patrones y tendencias que coinciden 
+        con las explicas en \ref{sec:theory} \nameref{sec:theory}, mosntrando así que las dietas son, 
+        estadísticamente, diferentes. 
     }
 
 \newpage

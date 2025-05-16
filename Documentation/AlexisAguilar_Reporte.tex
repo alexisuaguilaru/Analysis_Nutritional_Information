@@ -1364,7 +1364,7 @@
         \end{center}
 
         Al considerar los coeficientes de correlación de Pearson para cada par de 
-        macronutrientes, se puede observar como los carbohidratos tienen la explicabilidad 
+        macronutrientes, se puede observar como los carbohidratos tienen una explicabilidad 
         de los datos más alta (con proteínas $42.04\%$ y grasas $59.03\%$), es decir, un 
         alto porcentaje de las recetas siguen las tendencias que hay entre carbohidratos 
         y proteínas y, carbohidratos y grasas, o que se pueden explicar por medio de una 
@@ -1376,11 +1376,11 @@
             \includegraphics[width=0.9\textwidth]{Resources/8_01_plot_2.png}
         \end{center}
         
-        Que los coeficientes de correlación tomen valores negativos se relacionada con 
+        Que los coeficientes de correlación tomen valores negativos se relaciona con 
         el hecho de que al incrementarse un valor uno o ambos de los macronutrientes 
         tiene que decrecer, pero el valor absoluto permite explicar qué tanto baja o, 
         mejor dicho, cuánto es tu tendencia para bajar. Esto hace que conforme crece 
-        en valor abosluto el coeficiente permita determinar la certeza y fuerza con 
+        en valor abosluto el coeficiente, permita determinar la certeza y fuerza con 
         que baja un macronutriente al momento que otro crece.
 
         \begin{center}
@@ -1396,6 +1396,69 @@
         \end{center}
     }
 
+    \subsection{Dependencia Lineal}
+    {
+        Se hace uso del siguiente conjunto de hipótesis para probar la dependencia lineal 
+        por medio del coeficiente de correlación de Pearson para los casos que reportaron un 
+        coeficiente negativo:
+
+        \begin{align*}
+            H_0 :& \rho = 0 \\
+            H_1 :& \rho < 0
+        \end{align*}
+
+        Para el caso que se reporta un coeficiente positivo se hace uso de la siguiente 
+        hipótesis alternativa:
+
+        \begin{align*}
+            H_1 :& \rho > 0
+        \end{align*}
+    
+        De los resultados de las pruebas son los esperados, debido al propio valor 
+        abosluto que toman los coeficientes de correlación junto con la cantidad de 
+        instancias (recetas), haciendo que con un valor lo suficientemente grande (como 
+        lo podría ser $|\rho| > 0.5$) se garantiza la hipótesis alternativa y, en el caso 
+        contrario, se puede poner en duda sobre si existe una dependencia lineal fuerte. Con 
+        ello, se tiene que los carbohidratos tienen una dependencia lineal fuerte y estadísticamente 
+        significativa con los demás macronutrientes, haciendo que la regresión lineal se 
+        pueda establecer y generar predicciones confiables de los macronutrientes en base a 
+        los valores que tome los carbohidratos.
+
+        \begin{center}
+            \begin{tabular}{ll|rr}
+                \toprule
+                    & & \textbf{Valor P} & \textbf{Estadístico}  \\
+                \midrule
+                    Carbohidratos & Proteínas &  0.0    & -0.6484 \\
+                    Carbohidratos & Grasas    &  0.0    & -0.7683 \\
+                    Proteínas     & Grasas    &  0.1666 &  0.0109 \\
+                \bottomrule
+            \end{tabular}
+        \end{center}
+
+        Se construye el modelo de regresión lineal para los casos en donde hubo un rechazo de la 
+        hipótesis nula, es decir, el p valor es menor a la significancia $\alpha = 0.05$. 
+        Por lo mencionado, se eligen a los carbohidratos como la variable independiente, dejando 
+        a las proteínas y grasas como las dependientes. Al hacer el ajuste, se tiene que las rectas 
+        obtenidas reflejan la tendencia de los macronutrientes dependientes de los carbohidratos, 
+        destacando que no siempre pueden valer $1$, dicho así, por al menos se cuenta con una cantidad 
+        mínima de carbohidratos en cada receta, esto permite destacar que los carbohidratos son esenciales 
+        e imprescindibles para cualquier receta o, dicho así, todas las recetas cuentan con una fuente 
+        de carbohidratos pero, por lo que se vió, pueden no tener fuentes de los otros dos macronutrientes 
+        o que son en menor medida la presencia de esos macronutrientes.
+
+        \begin{center}
+            \begin{tabular}{ll|rr}
+                \toprule
+                    & & \textbf{Pendiente} & \makecell{\textbf{Ordenada al}\\\textbf{Origen}} \\
+                \midrule
+                    Carbohidratos & Proteínas & -0.4150 & 0.4150 \\
+                    Carbohidratos & Grasas    & -0.5849 & 0.5849 \\
+                \bottomrule
+            \end{tabular}
+        \end{center}
+
+    }
 
 \newpage
 

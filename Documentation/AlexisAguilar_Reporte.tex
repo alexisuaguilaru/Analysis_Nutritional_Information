@@ -959,7 +959,6 @@
             Con las muestras de las proporciones de macronutrientes se realiza 
             un conjunto de hipótesis por cada macronutriente, teniendo lo 
             siguiente:
-
             \begin{align*}
                 H_0 :& \overline{x}_M = 1/3  \\
                 H_1 :& \overline{x}_M \ne 1/3 
@@ -1021,7 +1020,6 @@
         {
             Como se mencionó, sin importar el tipo de caso, el conjunto de hipótesis 
             son de la forma:
-            
             \begin{align*}
                 H_0 : \overline{c}_C = \overline{f}_C \\
                 H_1 : \overline{c}_C < \overline{f}_C
@@ -1102,7 +1100,6 @@
         \textbf{Prueba de Hipótesis}\\
         {
             Por como se describió, se tiene el siguiente conjunto de hipótesis:
-
             \begin{align*}
                 H_0 : F^M_m = F^O_m \\
                 H_1 : F^M_m \ne F^O_m  
@@ -1157,7 +1154,6 @@
         \textbf{Prueba de Hipótesis}\\
         {
             De lo expueto, el conjunto de hipótesis es de la forma:
-
             \begin{align*}
                 H_0 :& \text{Todas las medianas son iguales} \\
                 H_1 :& \text{Por al menos una de las medianas es diferente}
@@ -1191,7 +1187,6 @@
         {
             Por lo mencionado y sin importar el caso de la prueba, se tiene que el 
             conjunto de hipótesis son de la forma:
-
             \begin{align*}
                 H_0 : \overline{p}_C = \overline{c}_C \\
                 H_1 : \overline{p}_C < \overline{c}_C
@@ -1252,23 +1247,24 @@
 
 \newpage
 
-\section{Prueba de Hipótesis Para Diferencias entre Dietas}\label{sec:hipo_main}
-    \subsection{Preámbulo}
+\section{Prueba de Hipótesis sobre Dietas}
+    \subsection{Prueba de Hipótesis Para Diferencias entre Dietas}\label{sec:hipo_main}
+
+    \textbf{Preámbulo}\\
     {
         El objetivo principal del trabajo es el relacionado a probar si 
         existe una diferencia en los aportes nutricionales entre las diferentes 
         dietas. Para ello, se hace uso de las distribuciones de los macronutrientes 
         que presentan las diferentes dietas. Existe también el intererés de saber 
-        en qué medida una dieta difiere de otra.
+        en qué medida una dieta difiere de otra.\\
     }
 
-    \subsection{Prueba de Hipótesis}
+    \textbf{Prueba de Hipótesis}\\
     {
         Para probar si existe una diferencia entre las dietas se vuelve equivalente 
         a que en cada par de dietas probar si existe un diferencia en los aportes 
         de macronutrientes, en específico, sobre la distribución de los mismos. 
         Se tiene que el conjunto de hipótesis se vuelve:
-        
         \begin{align*}
             H_0 : F_m(x) = G_m(x) \\
             H_1 : F_m(x) \ne G_m(x)
@@ -1279,10 +1275,10 @@
         distribuciones, y en cualquier sentido, se hace uso de la Prueba de 
         Kolmogorov-Smirnov con dos colas. Para cuantificar la diferencia entre dietas 
         se promedian los resultados del estadístico calculado en cada una de las pruebas 
-        sobre los macronutrientes.
+        sobre los macronutrientes.\\
     }
 
-    \subsection{Discusión de Resultados}
+    \textbf{Discusión de Resultados}\\
     {
         Primero se muestran las diferencias significativas entre las 
         dietas sobre los macronutrientes, de donde se puede apreciar 
@@ -1343,6 +1339,65 @@
         estadísticamente, diferentes. 
     }
 
+    \subsection{Prueba para la Interacción entre Dieta y Cocina sobre Carbohidratos}
+
+    \textbf{Preámbulo}\\
+    {
+        Como se vio en \ref{subsec:recetas_dieta} \nameref{subsec:recetas_dieta}, las cocinas 
+        también	tienen una influenza sobre los diferentes macronutrientes y no solo en las 
+        propias dietas, por lo que se vuelve de interés el probar si está influencia 
+        están en los carbohidratos de las recetas o, incluso, medirla.\\
+
+        Debido a que en algunos casos las recetas son insuficientes (menos de cinco) en algunos 
+        grupos o pares de dieta y cocina se vuelve necesario de ignorarlas para esta prueba, siendo 
+        este un aspecto sobre la robustez de los resultados. Para ello, por cada cocina se verifica 
+        si cuentan con al menos cinco recetas para cada dieta, si no cumplen con esto se eliminan 
+        todas las recetas de esa cocina.\\
+    }
+
+    \textbf{Prueba de Hipótesis}\\
+    {
+        Como se quiere medir la influencia de las dietas y cocinas sobre los carbohidratos, 
+        se vuelve que el conjunot de hipótesis es:
+        \begin{align*}
+            H_0 &: \text{Las dietas y cocinas no tiene una interacción en los carbohidratos} \\
+            H_1 &: \text{Por al menos una dieta o cocina tiene una interacción en los carbohidratos}
+        \end{align*}
+    
+        Se hace uso de una prueba de ANOVAS de dos vías, en específico su variante no paramétrica debido 
+        a las distribuciones de los carbohidratos, se le llama Prueba de Scheirer-Ray-Hare.\\
+    }
+
+    \textbf{Discusión de Resultados}\\
+    {
+        Los valores p y estadísticos que se alcanzan para cada fuente de variación e interacción 
+        son los siguientes:
+        
+        \begin{center}
+            \begin{tabular}{l|rr}
+            \toprule
+            \textbf{Fuente de Variación} & Valor P & Estadístico F \\
+            \midrule
+            Diet\_type                 & 0.0000    & 720.567525 \\
+            Cuisine\_type              & 0.0000    & 10.850868 \\
+            Diet\_type * Cuisine\_type & 9.8742-05 & 2.129021 \\
+            \bottomrule
+            \end{tabular}
+        \end{center}
+
+        Debido a que los valores p para las fuentes de variación sin interacción son $0$, se tiene 
+        qeu los carbohidratos sí tienen una influencia significativa según la cocian o dieta a la 
+        que pertenece la receta. Pero además, al considerar su interacción, se tiene que de manera 
+        conjunta también tienen esa influencia, por lo dicho, no se vuelve necesario hacer una prubea 
+        post-hoc debido a que para todos los grupos (considerados) resultará que los grupos difieren 
+        entre sí de manera significativa.\\
+        
+        Por lo tanto, aunque las recetas pertenezca a la misma dieta 
+        no implica que se comporten de la misma manera debido a que difieren en la cocina a la que 
+        pertenecen; no en todas las cocinas van a diferir notoriamente pero sí lo suficiente de 
+        manera estadística.
+    }
+
 \newpage
 
 \section{Análisis Bivariado}
@@ -1401,7 +1456,6 @@
         Se hace uso del siguiente conjunto de hipótesis para probar la dependencia lineal 
         por medio del coeficiente de correlación de Pearson para los casos que reportaron un 
         coeficiente negativo:
-
         \begin{align*}
             H_0 :& \rho = 0 \\
             H_1 :& \rho < 0
@@ -1409,7 +1463,6 @@
 
         Para el caso que se reporta un coeficiente positivo se hace uso de la siguiente 
         hipótesis alternativa:
-
         \begin{align*}
             H_1 :& \rho > 0
         \end{align*}

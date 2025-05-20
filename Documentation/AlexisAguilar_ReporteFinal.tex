@@ -1,0 +1,233 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage{geometry}
+\geometry{
+    left=2cm, 
+    right=2cm,
+    top=3cm,  
+    bottom=2cm
+}
+
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{makecell}
+
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{xcolor}
+
+
+\usepackage{csquotes}
+\usepackage{hyperref}
+\usepackage[style=ieee]{biblatex}
+\addbibresource{referencias.bib}
+
+\usepackage{setspace}
+\setstretch{1.25}
+\setlength{\parindent}{0pt}
+
+\begin{document}
+    \begin{titlepage}
+        \begin{minipage}[c]{0.1\textwidth}
+            \includegraphics[width=\textwidth]{Resources/Cover/logo_unam.jpg}
+        \end{minipage}
+        \begin{minipage}{0.8\textwidth}
+            \centering
+            {\Large\textbf{Universidad Nacional Autónoma de México}\\}
+            {\large\textbf{Escuela Nacional de Estudios Superiores\\\underline{Unidad Morelia}}}
+        \end{minipage}
+        \begin{minipage}[c]{0.1\textwidth}
+            \includegraphics[width=\textwidth]{Resources/Cover/logo_enes.jpg}
+        \end{minipage}
+        \vspace{3cm}
+
+        \centering
+        {\large{Reporte Final\\}}
+        {\Large\textbf{Análisis de Valores Nutricionales por Tipo de Dieta}}
+        \vspace{2cm}
+
+        {{PRESENTA:\\}}
+        {\large\textbf{Alexis Uriel Aguilar Uribe}}
+        \vspace{1cm} 
+
+        {{PROFESORES:\\}}
+        {\large\textbf{Dra.\ María Del Río Francos}}\\
+        {\large\textbf{Dr.\ César Andrés Torres Miranda}}
+        \vspace{2cm}
+
+        {{GRADO\\}}
+        {\large\textbf{Licenciatura en Tecnologías para la Información en Ciencias}}
+        \vspace{2cm}
+
+        \flushleft{
+        {\textbf{Asignatura:\ }Estadística Descriptiva e Inferencial}
+        \vspace{2cm}}
+
+        \flushright{
+        {\textbf{A:\ }\underline{26 de Mayo del 2025}}}
+        \vfill
+    \end{titlepage}
+
+    \newpage
+
+    \tableofcontents
+
+    \newpage
+
+    \section{Introducción}
+    {
+        Este trabajo tiene como fin de exponer el proceso llevado a cabo para 
+        realizar el análisis estadístico de los valores nutricionales (macronutrientes) 
+        que aportan las dietas: \emph{DASH} (Dietary Approaches to Stop Hypertension), 
+        \emph{keto}, \emph{mediterránea}, \emph{paleo} (paleolítica) y \emph{vegana}.\\
+
+        Siendo el principal enfoque el responder si hay una diferencia nutricional 
+        significativa entre las diferentes dietas. En decir, hacer uso de 
+        técnicas de estadística descriptiva e inferencial para probar si existe 
+        una diferencia en los aportes nutricionales entre las distintas dietas que 
+        están siendo estudiadas. La anterior prueba se basa en recetas de diferentes 
+        cocinas a nivel mundial, y sobre éstas últimas serán auxiliares para realizar 
+        un estudio más granulado sobre el comportamiento de las dietas en escenarios 
+        más específicos.
+    }
+
+    \section{Objetivos Generales}
+    {
+        Para la realización de lo anterior expuesto, se puntualizan los objetivos del 
+        proyecto:
+        \begin{itemize}
+            \item Realizar de un análisis estadístico de los macronutrientes en las 
+            diferentes dietas con el fin de caracterizar sus aportes nutricionales y 
+            sus distinciones en las diferentes cocinas.
+            
+            \item Conjeturar y probar hipótesis relacionadas a preguntas de interés 
+            sobre los aportes nutricionales en cada dieta en base al análisis estadístico. 
+            
+            \item Probar si existe una diferencia significativa en los aportes 
+            nutricionales entre las diferentes dietas con el fin de probar si cada 
+            dieta de estudio es única.
+        \end{itemize}
+    }
+
+    \newpage
+
+    \section{Marco Teórico}\label{sec:theory}
+    {
+        La dieta es uno de los principales factores de riesgo de las enfermedades 
+        crónicas, y las enfermedades sensibles a la dieta contribuyen en gran medida 
+        a los costes sanitarios mundiales. Se han propuesto literalmente miles de 
+        \emph{dietas}, que pueden describirse en términos generales como basadas en 
+        creencias, en alimentos específicos o en nutrientes; centradas en la 
+        pérdida de peso o en el aumento de peso (muscular); dietas de desintoxicación 
+        (detox) y dietas diseñadas por razones médicas específicas.\cite{marvastipopular} \\
+        
+        Las \emph{dietas de moda} son dietas populares durante un tiempo sin basarse 
+        necesariamente en una recomendación dietética estándar. A menudo promueven 
+        una pérdida de peso irracionalmente rápida o afirmaciones de salud sin 
+        sentido, y se anuncian como dietas que requieren poco esfuerzo por parte de 
+        quien las sigue. La promesa de ganancias fáciles, combinada con la presión 
+        social para lograr un determinado tipo de cuerpo, puede dejar al público 
+        susceptible a afirmaciones infundadas o exageradas.\cite{marvastipopular} \\
+        
+        Las dietas estudiadas desde una perspectiva estadística en el presente 
+        trabajo, son englobadas en las \emph{dietas de moda}, que a veces son referidas 
+        como \emph{dietas sin evidencia científica}. Siendo  la dieta DASH la única 
+        que cuenta con algún tipo de fundamento.
+        
+        \subsection{DASH (Dietary Approaches to Stop Hypertension)}
+        {
+            \cite{marvastipopular} La dieta DASH (Enfoques Dietéticos para Detener la 
+            Hipertensión) es un patrón dietético diseñado específicamente para ayudar 
+            a reducir la presión arterial y promover la salud general del corazón. Hace 
+            hincapié en el consumo de una variedad de alimentos ricos en nutrientes, 
+            como frutas, verduras, cereales integrales, proteínas magras y productos 
+            lácteos bajos en grasa, y en la limitación de la ingesta de sodio, grasas 
+            saturadas y azúcares añadidos. 
+        }
+            
+        \subsection{Dieta Keto}
+        {
+            \cite{marvastipopular} Una dieta baja en hidratos de carbono (baja en 
+            carbohidratos) es un patrón alimentario que restringe la ingesta de 
+            carbohidratos, sustituyéndolos normalmente por mayores cantidades de 
+            proteínas y grasas. La dieta cetogénica es una forma de dieta baja en 
+            carbohidratos con un alto contenido en grasas en relación con la ingesta 
+            de proteínas y carbohidratos.\\
+            
+            El objetivo de la dieta cetogénica es inducir la cetosis, un estado 
+            metabólico que se produce cuando el cuerpo quema grasa para obtener 
+            energía en lugar de glucosa, lo que induce la pérdida de peso.
+        }
+                
+        \subsection{Dieta Mediterránea}
+        {
+            \cite{marvastipopular} La dieta mediterránea es un patrón alimentario 
+            inspirado en los hábitos alimenticios tradicionales de los países 
+            situados a orillas del mar Mediterráneo. Se caracteriza por un alto consumo 
+            de frutas, verduras, cereales integrales, legumbres, frutos secos y 
+            aceite de oliva; un consumo moderado de pescado y aves; y un bajo 
+            consumo de carnes rojas, alimentos procesados y dulces.
+        }
+                    
+        \subsection{Dieta Paleo (Paleolítica)}
+        {
+            \cite{marvastipopular} La dieta paleo, también conocida como dieta 
+            paleolítica o dieta del hombre de las cavernas, es un enfoque 
+            dietético que pretende imitar los hábitos alimentarios de nuestros 
+            antiguos antepasados del Paleolítico. \\
+            
+            Hace hincapié en el consumo de alimentos integrales y no procesados 
+            que habrían estado al alcance de los primeros humanos, como carnes magras, 
+            pescado, frutas, verduras, frutos secos y semillas, y excluye los cereales, 
+            las legumbres, los productos lácteos, los alimentos procesados y los 
+            azúcares añadidos.
+        }
+        
+        \subsection{Dieta Vegana}
+        {
+            \cite{marvastipopular} La dieta vegana es un patrón dietético basado en 
+            plantas que excluye el consumo de todos los productos de origen animal. Se 
+            centra en el consumo de una variedad de alimentos de origen vegetal, como 
+            frutas, verduras, cereales legumbres, frutos secos y semillas.\\
+
+            Es importante señalar que, aunque las dietas veganas pueden ser 
+            nutricionalmente adecuadas, debe prestarse atención a garantizar una 
+            ingesta suficiente de nutrientes esenciales como proteínas, hierro, 
+            calcio, vitamina B12 y ácidos grasos omega-3.
+        }
+
+    }
+    
+    \newpage
+
+    \section{Estadística Descriptiva}\label{sec:eda}
+    {
+
+    }
+
+    \newpage
+
+    \section{Análisis Bivariado}\label{sec:biva}
+    {
+
+    }
+
+    \newpage
+
+    \section{Muestreo e Intervalos de Confianza}
+    {
+
+    }
+
+    \newpage
+
+    \section{Pruebas de Hipótesis}
+    {
+        
+    }
+
+\end{document}

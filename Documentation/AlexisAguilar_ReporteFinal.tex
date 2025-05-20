@@ -23,8 +23,17 @@
 
 \usepackage{csquotes}
 \usepackage{hyperref}
+\usepackage[noabbrev,capitalize]{cleveref}
 \usepackage[style=ieee]{biblatex}
 \addbibresource{referencias.bib}
+
+\newcommand{\fullref}[1]{%
+  \hyperref[#1]{\cref*{#1}~\nameref*{#1}}%
+}
+\crefname{section}{Sección}{Secciones}       
+\crefname{subsection}{Subsección}{Subsecciones}
+\crefname{figure}{Figura}{Figuras}           
+\crefname{table}{Tabla}{Tablas}
 
 \usepackage{setspace}
 \setstretch{1.25}
@@ -259,9 +268,9 @@
                     1 & Diet\_type & Cualitativa Nominal & 7806 & 5 \\
                     2 & Recipe\_name & Cualitativa Nominal & 7806 & 7062\\
                     3 & Cuisine\_type & Cualitativa Nominal & 7806 & 19\\
-                    4 & Protein(g) & Cuantitativa Continua & 7806 & 6060\\
-                    5 & Carbs(g) & Cuantitativa Continua & 7806 & 6618\\
-                    6 & Fat(g) & Cuantitativa Continua & 7806 & 6322\\
+                    4 & Protein & Cuantitativa Continua & 7806 & 6060\\
+                    5 & Carbs & Cuantitativa Continua & 7806 & 6618\\
+                    6 & Fat & Cuantitativa Continua & 7806 & 6322\\
                     \bottomrule
                 \end{tabular}
             \end{center}
@@ -271,7 +280,7 @@
             valores faltantes.
         }
 
-        \subsection{Ejemplo de Registros en el Conjunto de Datos}
+        \subsection{Ejemplo de Registros en el Conjunto de Datos}\label{subsec:ejemplos}
         {
             Para ejemplificar como luce el conjunto de datos, se presente 
             una instancia de cada tipo de dieta:
@@ -310,7 +319,71 @@
 
     \section{Estadística Descriptiva}\label{sec:eda}
     {
+        \subsection{Preprocesamiento (Transformación) de los Datos}
+        {
+            De las instancias presentadas en \fullref{subsec:ejemplos}, se tiene 
+            que los valores de los macronutrientes pueden tomar un amplio rango 
+            de valores, esto puede generar un conflicto al momento de generar una 
+            comparativa entre dietas, debido a principalmente los rangos de valores. 
+            Para resolver esta situación los valores de los macronutrientes son 
+            normalizados con la norma $l1$, es decir, se calcula el total de macronutrientes 
+            (que se guarda como otra variable en \emph{Total\_macronutrients}) de cada 
+            receta y cada macronutriente se divide por este total.\\
 
+            \begin{center}
+                \begin{tabular}{l|rrrrr|r}
+                \toprule
+                    & dash & keto & mediterranean & paleo & vegan & Suma Dietas \\
+                \midrule
+                    kosher           & 5    & 0    & 0    & 2    & 0    & 7    \\
+                    caribbean        & 3    & 7    & 1    & 6    & 1    & 18   \\
+                    central europe   & 9    & 11   & 1    & 9    & 4    & 34   \\
+                    japanese         & 9    & 10   & 2    & 5    & 24   & 50   \\
+                    eastern europe   & 10   & 11   & 3    & 27   & 4    & 55   \\
+                    middle eastern   & 21   & 17   & 26   & 12   & 15   & 91   \\
+                    indian           & 20   & 12   & 3    & 9    & 48   & 92   \\
+                    chinese          & 38   & 38   & 1    & 26   & 17   & 120  \\
+                    asian            & 24   & 11   & 12   & 12   & 67   & 126  \\
+                    south american   & 54   & 21   & 10   & 21   & 31   & 137  \\
+                    south east asian & 31   & 34   & 8    & 29   & 46   & 148  \\
+                    nordic           & 32   & 35   & 31   & 45   & 9    & 152  \\
+                    mexican          & 61   & 60   & 17   & 48   & 38   & 224  \\
+                    british          & 64   & 90   & 4    & 54   & 27   & 239  \\
+                    world            & 234  & 6    & 6    & 3    & 10   & 259  \\
+                    french           & 150  & 163  & 61   & 154  & 76   & 604  \\
+                    italian          & 165  & 234  & 148  & 171  & 81   & 799  \\
+                    mediterranean    & 176  & 89   & 1274 & 106  & 99   & 1744 \\
+                    american         & 639  & 663  & 145  & 535  & 925  & 2097 \\
+                \midrule
+                    Suma Cocinas     & 1745 & 1512 & 1753 & 1274 & 1522 & 7806 \\
+                \bottomrule
+                \end{tabular}
+            \end{center}
+
+            Al considerar la cantidad de recetas que hay por dieta y cocina, se 
+            descubre que, para ciertas grupos o configuraciones no contienen recetas, 
+            por lo que para mitigar esta falta de instancias lo que se realizar es juntar 
+            los \emph{Cuisine\_type} en base a la cercanía geográfica, esto debido a 
+            que son colindantes comparten historia, cultura y, lo más relevante, ideas 
+            gastronómicas. Por ello, las \emph{Cuisine\_type} se reagrupan de la siguiente 
+            manera: 
+
+            \begin{center}
+                \begin{tabular}{l|l}
+                \toprule
+                    Grupo de \emph{Cuisine\_type} & \emph{Cuisine\_type} \\
+                \midrule
+                    american & american \\
+                    mediterranean & mediterranean \\
+                    world & world \\
+                    latin american and caribbean & mexican, south american, caribbean \\
+                    european & \makecell{italian, french, nordic, eastern europe,\\central europe, kosher, british} \\
+                    asian & \makecell{chinese, indian, south east asian,\\middle eastern, asian, japanese} \\
+                \bottomrule
+                \end{tabular}
+            \end{center}
+
+        }
     }
 
     \newpage

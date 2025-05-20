@@ -30,10 +30,14 @@
 \newcommand{\fullref}[1]{%
   \hyperref[#1]{\cref*{#1}~\nameref*{#1}}%
 }
+\newcommand{\anexoref}[1]{%
+    \hyperref[#1]{Anexo~\ref*{#1} \nameref*{#1}}%
+}
 \crefname{section}{Sección}{Secciones}       
 \crefname{subsection}{Subsección}{Subsecciones}
 \crefname{figure}{Figura}{Figuras}           
 \crefname{table}{Tabla}{Tablas}
+\crefname{anexo}{Anexo}{Anexos}
 
 \usepackage{setspace}
 \setstretch{1.25}
@@ -83,6 +87,7 @@
 
     \newpage
 
+    \addcontentsline{toc}{section}{Anexos}
     \tableofcontents
 
     \newpage
@@ -123,94 +128,7 @@
     }
 
     \newpage
-
-    \section{Marco Teórico}\label{sec:theory}
-    {
-        La dieta es uno de los principales factores de riesgo de las enfermedades 
-        crónicas, y las enfermedades sensibles a la dieta contribuyen en gran medida 
-        a los costes sanitarios mundiales. Se han propuesto literalmente miles de 
-        \emph{dietas}, que pueden describirse en términos generales como basadas en 
-        creencias, en alimentos específicos o en nutrientes; centradas en la 
-        pérdida de peso o en el aumento de peso (muscular); dietas de desintoxicación 
-        (detox) y dietas diseñadas por razones médicas específicas.\cite{marvastipopular} \\
-        
-        Las \emph{dietas de moda} son dietas populares durante un tiempo sin basarse 
-        necesariamente en una recomendación dietética estándar. A menudo promueven 
-        una pérdida de peso irracionalmente rápida o afirmaciones de salud sin 
-        sentido, y se anuncian como dietas que requieren poco esfuerzo por parte de 
-        quien las sigue. La promesa de ganancias fáciles, combinada con la presión 
-        social para lograr un determinado tipo de cuerpo, puede dejar al público 
-        susceptible a afirmaciones infundadas o exageradas.\cite{marvastipopular} \\
-        
-        Las dietas estudiadas desde una perspectiva estadística en el presente 
-        trabajo, son englobadas en las \emph{dietas de moda}, que a veces son referidas 
-        como \emph{dietas sin evidencia científica}. Siendo  la dieta DASH la única 
-        que cuenta con algún tipo de fundamento.
-        
-        \subsection{DASH (Dietary Approaches to Stop Hypertension)}
-        {
-            \cite{marvastipopular} La dieta DASH (Enfoques Dietéticos para Detener la 
-            Hipertensión) es un patrón dietético diseñado específicamente para ayudar 
-            a reducir la presión arterial y promover la salud general del corazón. Hace 
-            hincapié en el consumo de una variedad de alimentos ricos en nutrientes, 
-            como frutas, verduras, cereales integrales, proteínas magras y productos 
-            lácteos bajos en grasa, y en la limitación de la ingesta de sodio, grasas 
-            saturadas y azúcares añadidos. 
-        }
-            
-        \subsection{Dieta Keto}
-        {
-            \cite{marvastipopular} Una dieta baja en hidratos de carbono (baja en 
-            carbohidratos) es un patrón alimentario que restringe la ingesta de 
-            carbohidratos, sustituyéndolos normalmente por mayores cantidades de 
-            proteínas y grasas. La dieta cetogénica es una forma de dieta baja en 
-            carbohidratos con un alto contenido en grasas en relación con la ingesta 
-            de proteínas y carbohidratos.\\
-            
-            El objetivo de la dieta cetogénica es inducir la cetosis, un estado 
-            metabólico que se produce cuando el cuerpo quema grasa para obtener 
-            energía en lugar de glucosa, lo que induce la pérdida de peso.
-        }
-                
-        \subsection{Dieta Mediterránea}
-        {
-            \cite{marvastipopular} La dieta mediterránea es un patrón alimentario 
-            inspirado en los hábitos alimenticios tradicionales de los países 
-            situados a orillas del mar Mediterráneo. Se caracteriza por un alto consumo 
-            de frutas, verduras, cereales integrales, legumbres, frutos secos y 
-            aceite de oliva; un consumo moderado de pescado y aves; y un bajo 
-            consumo de carnes rojas, alimentos procesados y dulces.
-        }
-                    
-        \subsection{Dieta Paleo (Paleolítica)}
-        {
-            \cite{marvastipopular} La dieta paleo, también conocida como dieta 
-            paleolítica o dieta del hombre de las cavernas, es un enfoque 
-            dietético que pretende imitar los hábitos alimentarios de nuestros 
-            antiguos antepasados del Paleolítico. \\
-            
-            Hace hincapié en el consumo de alimentos integrales y no procesados 
-            que habrían estado al alcance de los primeros humanos, como carnes magras, 
-            pescado, frutas, verduras, frutos secos y semillas, y excluye los cereales, 
-            las legumbres, los productos lácteos, los alimentos procesados y los 
-            azúcares añadidos.
-        }
-        
-        \subsection{Dieta Vegana}
-        {
-            \cite{marvastipopular} La dieta vegana es un patrón dietético basado en 
-            plantas que excluye el consumo de todos los productos de origen animal. Se 
-            centra en el consumo de una variedad de alimentos de origen vegetal, como 
-            frutas, verduras, cereales legumbres, frutos secos y semillas.\\
-
-            Es importante señalar que, aunque las dietas veganas pueden ser 
-            nutricionalmente adecuadas, debe prestarse atención a garantizar una 
-            ingesta suficiente de nutrientes esenciales como proteínas, hierro, 
-            calcio, vitamina B12 y ácidos grasos omega-3.
-        }
-
-    }
-    
+ 
     \newpage
 
     \section{Presentación de los Datos}
@@ -319,7 +237,7 @@
 
     \section{Estadística Descriptiva}\label{sec:eda}
     {
-        \subsection{Preprocesamiento (Transformación) de los Datos}
+        \subsection{Preprocesamiento (Transformación) de los Datos}\label{subsec:trans_datos}
         {
             De las instancias presentadas en \fullref{subsec:ejemplos}, se tiene 
             que los valores de los macronutrientes pueden tomar un amplio rango 
@@ -376,12 +294,159 @@
                     american & american \\
                     mediterranean & mediterranean \\
                     world & world \\
-                    latin american and caribbean & mexican, south american, caribbean \\
+                    latin american & mexican, south american, caribbean \\
                     european & \makecell{italian, french, nordic, eastern europe,\\central europe, kosher, british} \\
                     asian & \makecell{chinese, indian, south east asian,\\middle eastern, asian, japanese} \\
                 \bottomrule
                 \end{tabular}
             \end{center}
+        }
+
+        \subsection{Descripción de los Valores de las Variables}
+        {
+            Para el presente trabajo se harán uso de las siguientes variables, se 
+            acompañan con una descripción de su significado o representación:
+
+            \begin{itemize}[label=\textbullet]
+            {
+                \item \textbf{Diet\_type}: Variable nominal que representa el tipo de 
+                dieta (DASH, keto, mediterránea, paleo, vegana) a la que 
+                pertenece una receta. Con esta variable se va permitir estratificar 
+                las recetas y estudiarlas de una manera más granular, y para realizar 
+                hipótesis sobre lo qué está pasando en una dieta o entre las diferentes dietas.
+                
+                \item \textbf{Cuisine\_type}: Variable nominal que representa a qué (estilo 
+                de) cocina o región (mexicana, americana, italiana, entre otras) pertenece una 
+                receta. Al usarla va a permitir el comparar cómo son las recetas 
+                de una dieta en diferentes regiones, y realizar comparativas a lo 
+                largo de las dietas.
+                
+                \item \textbf{Protein}: Variable continua que representa el 
+                porcentaje, respecto al total de macronutrientes, de proteínas que son 
+                aportados por una receta.
+                \item \textbf{Carbs}: Variable continua que representa el 
+                porcentaje, respecto al total de macronutrientes, de carbohidratos que 
+                son aportados por una receta.
+                
+                \item \textbf{Fat}: Variable continua que representa el 
+                porcentaje, respecto al total de macronutrientes, de grasas que son 
+                aportados por una receta.
+                
+                \item \textbf{Total\_Macronutrients}: Variable continua que representa 
+                el total de macronutrientes que son aportados por una receta. Esta variable 
+                es auxiliar para la prueba de hipótesis, y no estará presente en la parte 
+                del Análisis Estadístico,    
+            }
+            \end{itemize}
+        }
+
+        \subsection{Visión General de los Datos}
+        {
+            Primero se presenta un análisis sobre los macronutrientes de 
+            las recetas sin estratificarlas según el tipo de dieta:
+
+            \begin{center}
+                \begin{tabular}{l|rrr}
+                \toprule
+                    Medida & Carbs & Protein & Fat \\  
+                \midrule
+                    Media               & 0.433471 & 0.234762 & 0.331767 \\
+                    $Q_1$               & 0.205251 & 0.110188 & 0.184583 \\
+                    $Q_2$               & 0.432028 & 0.190931 & 0.314359 \\
+                    $Q_3$               & 0.635058 & 0.338059 & 0.464532 \\
+                    Desviación Estándar & 0.256032 & 0.163886 & 0.194920 \\
+                    Mínimo              & 0.000330 & 0.000000 & 0.000000 \\
+                    Máximo              & 1.000000 & 0.887557 & 0.997940 \\
+                    Asimetría de Fisher & 0.189556 & 0.922401 & 0.461455 \\
+                \bottomrule
+                \end{tabular}
+            \end{center}
+
+            Se reportan bajos valores en proteínas en comparación 
+            con los carbohidratos y grasas si se hace uso de la mediana ($Q_2$), 
+            dicho así: el cincuenta por ciento de las recetas tienen a lo mucho  
+            $19.09\%$ de proteínas, en comparación con el $43.20\%$ de carbohidratos 
+            y el $31.43\%$ de grasas. Esto es un indicio de que las recetas, en general, 
+            tienden a ser altas en carbohidratos y grasas entre las diferentes dietas y 
+            cocinas; mientras que son bajas en proteínas. Este último punto se apoya 
+            al considerar la asimetría que reportan las proteínas a ser un valor extremadamente 
+            alto y positivo.\\
+
+            Si se gráfica la distribución de los macronutrientes se tiene que, debido 
+            a la asimetría y a la desviación estándar, contienen datos atípicos en proteínas 
+            y grasas en una región positiva respecto a la mediana, y esto se relaciona con 
+            lo mencionado de que una receta no tiende a un aporte alto de proteínas ni de grasas. 
+            Y si se consider el rango intercuartil, se observa que en estos macronutrientes es 
+            menor, en comparación, que con el de los carbohidratos. Por ello, se tiene que 
+            una receta es rica en carbohidratos y este patrón se repite en todas las dietas 
+            por las asimetrías y desviación estándar.
+
+            \begin{center}
+                \begin{tabular}{l|rrrrr}
+                \toprule
+                    & dash & keto & mediterranean & paleo & vegan \\
+                \midrule
+                    american & 639 & 663 & 145 & 535 & 925 \\
+                    asian & 143 & 122 & 52 & 93 & 217 \\
+                    european & 435 & 544 & 248 & 462 & 201 \\
+                    latin american & 118 & 88 & 28 & 75 & 70 \\
+                    mediterranean & 176 & 89 & 1274 & 106 & 99 \\
+                    world & 234 & 6 & 6 & 3 & 10 \\
+                \bottomrule
+                \end{tabular}
+
+                \includegraphics[width=0.9\textwidth]{Resources/EDA/VisionGeneral_1.png}
+            \end{center}
+
+            Al considerar la influencia de \emph{Cuisine\_type}, se tiene que las diferentes 
+            cocinas conservan ligeros matices sobre la distribución de los macronutrientes, es 
+            decir, pero por el solapamiento de las cajas y bigotes se podría esperar que no tengan 
+            una diferencia significativa, indicando que las cocinas no tienen un influencia notoria 
+            sobre los macronutrientes. En el tipo de cocina \emph{world} parece ser que tiene 
+            un comportamiento atípico en comparación con las demás cocinas, por ello se va a 
+            descartar del análisis.
+
+            \begin{center}
+                \includegraphics[width=0.9\textwidth]{Resources/EDA/VisionGeneral_2.png}
+            \end{center}
+        }
+        
+        \subsubsection{Dieta DASH}
+        {
+            Una receta de esta dieta tendrá que, en promedio, el $55\%$ de sus 
+            macronutrientes son carbohidratos (provenientes de frutas, vegetales 
+            y granos enteros); el $25\%$ son grasas que, por su naturaleza, son 
+            saludables; y el $20\%$ son proteínas, las cuáles provienen de carnes margas.
+            Aunque esta dieta se menciona ser saludable para la salud cardiovascular, 
+            no implica que exista un balance o equilibrio en los macronutrientes 
+            consumidos por receta. Debido a la desviación estándar y rango intercuartil de las 
+            de proteínas y grasas, se tiene que estos macronutrientes se encuentran 
+            concentrados en un rango más pequeño de valores en comparación con los 
+            carbohidratos. De lo mencionado, podría significar que la contribución 
+            de los macronutrientes no son tan variadas como lo que se esperaría 
+            contradiciendo que sea una dieta saludable, notando que es una dieta 
+            rica en carbohidratos. Esto no excluye que el consumir varias recetas 
+            (comidas) se logré un balance.
+
+            \begin{center}
+                \begin{tabular}{l|lll}
+                    \toprule
+                        Medida & Carbs & Protein & Fat \\
+                    \midrule
+                        Media               & 0.549425 & 0.196241 & 0.254334  \\
+                        $Q_1$               & 0.331143 & 0.068931 & 0.103381  \\
+                        $Q_2$               & 0.555219 & 0.156626 & 0.234742  \\
+                        $Q_3$               & 0.757917 & 0.282629 &	0.371292  \\
+                        Desviación Estándar & 0.278850 & 0.162871 & 0.194078  \\
+                        Mínimo              & 0.001526 & 0.000000 & 0.000000  \\
+                        Máximo              & 1.000000 & 0.833467 & 0.973404  \\
+                        Asimetría de Fisher & -0.057984 & 1.101171 & 0.732534  \\
+                    \bottomrule
+                \end{tabular}\\
+                \vspace{0.5cm}
+                \includegraphics[width=0.9\textwidth]{Resources/EDA/Dash_1.png}
+            \end{center}
+
 
         }
     }
@@ -405,6 +470,102 @@
     \section{Pruebas de Hipótesis}
     {
 
+    }
+
+    \appendix
+    {
+        \section{Marco Teórico}\label{anexo:A}
+    {
+        La dieta es uno de los principales factores de riesgo de las enfermedades 
+        crónicas, y las enfermedades sensibles a la dieta contribuyen en gran medida 
+        a los costes sanitarios mundiales. Se han propuesto literalmente miles de 
+        \emph{dietas}, que pueden describirse en términos generales como basadas en 
+        creencias, en alimentos específicos o en nutrientes; centradas en la 
+        pérdida de peso o en el aumento de peso (muscular); dietas de desintoxicación 
+        (detox) y dietas diseñadas por razones médicas específicas.\cite{marvastipopular} \\
+        
+        Las \emph{dietas de moda} son dietas populares durante un tiempo sin basarse 
+        necesariamente en una recomendación dietética estándar. A menudo promueven 
+        una pérdida de peso irracionalmente rápida o afirmaciones de salud sin 
+        sentido, y se anuncian como dietas que requieren poco esfuerzo por parte de 
+        quien las sigue. La promesa de ganancias fáciles, combinada con la presión 
+        social para lograr un determinado tipo de cuerpo, puede dejar al público 
+        susceptible a afirmaciones infundadas o exageradas.\cite{marvastipopular} \\
+        
+        Las dietas estudiadas desde una perspectiva estadística en el presente 
+        trabajo, son englobadas en las \emph{dietas de moda}, que a veces son referidas 
+        como \emph{dietas sin evidencia científica}. Siendo  la dieta DASH la única 
+        que cuenta con algún tipo de fundamento.
+        
+        \subsection{DASH (Dietary Approaches to Stop Hypertension)}
+        {
+            \cite{marvastipopular} La dieta DASH (Enfoques Dietéticos para Detener la 
+            Hipertensión) es un patrón dietético diseñado específicamente para ayudar 
+            a reducir la presión arterial y promover la salud general del corazón. Hace 
+            hincapié en el consumo de una variedad de alimentos ricos en nutrientes, 
+            como frutas, verduras, cereales integrales, proteínas magras y productos 
+            lácteos bajos en grasa, y en la limitación de la ingesta de sodio, grasas 
+            saturadas y azúcares añadidos. 
+        }
+            
+        \subsection{Dieta Keto}
+        {
+            \cite{marvastipopular} Una dieta baja en hidratos de carbono (baja en 
+            carbohidratos) es un patrón alimentario que restringe la ingesta de 
+            carbohidratos, sustituyéndolos normalmente por mayores cantidades de 
+            proteínas y grasas. La dieta cetogénica es una forma de dieta baja en 
+            carbohidratos con un alto contenido en grasas en relación con la ingesta 
+            de proteínas y carbohidratos.\\
+            
+            El objetivo de la dieta cetogénica es inducir la cetosis, un estado 
+            metabólico que se produce cuando el cuerpo quema grasa para obtener 
+            energía en lugar de glucosa, lo que induce la pérdida de peso.
+        }
+                
+        \subsection{Dieta Mediterránea}
+        {
+            \cite{marvastipopular} La dieta mediterránea es un patrón alimentario 
+            inspirado en los hábitos alimenticios tradicionales de los países 
+            situados a orillas del mar Mediterráneo. Se caracteriza por un alto consumo 
+            de frutas, verduras, cereales integrales, legumbres, frutos secos y 
+            aceite de oliva; un consumo moderado de pescado y aves; y un bajo 
+            consumo de carnes rojas, alimentos procesados y dulces.
+        }
+                    
+        \subsection{Dieta Paleo (Paleolítica)}
+        {
+            \cite{marvastipopular} La dieta paleo, también conocida como dieta 
+            paleolítica o dieta del hombre de las cavernas, es un enfoque 
+            dietético que pretende imitar los hábitos alimentarios de nuestros 
+            antiguos antepasados del Paleolítico. \\
+            
+            Hace hincapié en el consumo de alimentos integrales y no procesados 
+            que habrían estado al alcance de los primeros humanos, como carnes magras, 
+            pescado, frutas, verduras, frutos secos y semillas, y excluye los cereales, 
+            las legumbres, los productos lácteos, los alimentos procesados y los 
+            azúcares añadidos.
+        }
+        
+        \subsection{Dieta Vegana}
+        {
+            \cite{marvastipopular} La dieta vegana es un patrón dietético basado en 
+            plantas que excluye el consumo de todos los productos de origen animal. Se 
+            centra en el consumo de una variedad de alimentos de origen vegetal, como 
+            frutas, verduras, cereales legumbres, frutos secos y semillas.\\
+
+            Es importante señalar que, aunque las dietas veganas pueden ser 
+            nutricionalmente adecuadas, debe prestarse atención a garantizar una 
+            ingesta suficiente de nutrientes esenciales como proteínas, hierro, 
+            calcio, vitamina B12 y ácidos grasos omega-3.
+        }
+
+    }
+    }
+
+    \newpage
+
+    {
+        \printbibliography[heading=bibintoc,title={Referencias Bibliográficas}]
     }
 
 \end{document}

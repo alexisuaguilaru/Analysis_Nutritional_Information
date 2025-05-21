@@ -87,7 +87,6 @@
 
     \newpage
 
-    \addcontentsline{toc}{section}{Anexos}
     \tableofcontents
 
     \newpage
@@ -411,12 +410,12 @@
             \end{center}
         }
         
-        \subsubsection{Dieta DASH}
+        \subsection{Dieta DASH}
         {
-            Una receta de esta dieta tendrá que, en promedio, el $55\%$ de sus 
+            Una receta de esta dieta tendrá que, en promedio, el $49\%$ de sus 
             macronutrientes son carbohidratos (provenientes de frutas, vegetales 
-            y granos enteros); el $25\%$ son grasas que, por su naturaleza, son 
-            saludables; y el $20\%$ son proteínas, las cuáles provienen de carnes margas.
+            y granos enteros); el $29\%$ son grasas que, por su naturaleza, son 
+            saludables; y el $22\%$ son proteínas, las cuáles provienen de carnes margas.
             Aunque esta dieta se menciona ser saludable para la salud cardiovascular, 
             no implica que exista un balance o equilibrio en los macronutrientes 
             consumidos por receta. Debido a la desviación estándar y rango intercuartil de las 
@@ -429,25 +428,216 @@
             (comidas) se logré un balance.
 
             \begin{center}
-                \begin{tabular}{l|lll}
-                    \toprule
-                        Medida & Carbs & Protein & Fat \\
-                    \midrule
-                        Media               & 0.549425 & 0.196241 & 0.254334  \\
-                        $Q_1$               & 0.331143 & 0.068931 & 0.103381  \\
-                        $Q_2$               & 0.555219 & 0.156626 & 0.234742  \\
-                        $Q_3$               & 0.757917 & 0.282629 &	0.371292  \\
-                        Desviación Estándar & 0.278850 & 0.162871 & 0.194078  \\
-                        Mínimo              & 0.001526 & 0.000000 & 0.000000  \\
-                        Máximo              & 1.000000 & 0.833467 & 0.973404  \\
-                        Asimetría de Fisher & -0.057984 & 1.101171 & 0.732534  \\
-                    \bottomrule
+                \begin{tabular}{l|rrr}
+                \toprule
+                    Medida & Carbs & Protein & Fat \\
+                \midrule
+                    Media               & 0.491629 & 0.220058 & 0.288313 \\
+                    $Q_1$               & 0.299070 & 0.094259 & 0.159870 \\
+                    $Q_2$               & 0.502760 & 0.180192 & 0.267363 \\
+                    $Q_3$               & 0.683241 & 0.311076 & 0.393803 \\
+                    Desviación Estándar & 0.249919 & 0.161171 & 0.182336 \\
+                    Mínimo              & 0.001526 & 0.000000 & 0.000000 \\
+                    Máximo              & 1.000000 & 0.833467 & 0.973404 \\
+                    Asimetría de Fisher & -0.009756 & 1.029402 & 0.766955 \\
+                \bottomrule
                 \end{tabular}\\
                 \vspace{0.5cm}
                 \includegraphics[width=0.9\textwidth]{Resources/EDA/Dash_1.png}
             \end{center}
 
+            Al usar los tipos de cocina, se puede apreciar el como en cada una de 
+            ellas tiene un comportamiento ligeramente diferente, es decir, al considerar 
+            las cocinas en la dieta DASH se puede apreciar como los macronutrientes no 
+            tienen una diferencia notoria sino que son cambios ligeros sobre su comportamiento. 
+            Por ello, se puede decir que la dieta DASH es consistente sobre las cocinas y 
+            que se comporta de la misma manera, aunque si se hace uso de un estadístico para 
+            medir esta diferencia, tendrá un valor bajo más no será nulo.
 
+            \begin{center}
+                \includegraphics[width=0.9\textwidth]{Resources/EDA/Dash_2.png}
+            \end{center}
+        }
+
+        \subsection{Dieta Keto}
+        {
+            Una receta de esta dieta tendrá que, en promedio, el $50\%$ de 
+            sus macronutrientes son grasas, esto se relaciona con el hecho de 
+            que se intenta inducir la ketosis (principio en que se basa esta         
+            dieta); el $30\%$ son proteínas, notando que se intenta reducir 
+            el consumo de carbohidratos; y el $20\%$ son carbohidratos, 
+            resaltando ser una dieta baja en carbohidratos. Como la 
+            proporciones de carbohidratos cuenta con un sesgo positivo, se 
+            tiene que refuerza el hecho de ser una dieta baja en carbohidratos. 
+            De los aportes de grasas, se observa que su sesgo es despreciable 
+            implicando que existen recetas tanto con aportes altos de este 
+            macronutriente (lo que se busca) mientras que hay recetas con 
+            una contribución baja o nula del mismo.
+        
+            \begin{center}
+                \begin{tabular}{l|lll}
+                    \toprule
+                        Medida & Carbs & Protein & Fat \\
+                    \midrule
+                        Media               & 0.198449 & 0.302718 & 0.498833 \\
+                        $Q_1$               & 0.085336 & 0.159164 & 0.408251 \\
+                        $Q_2$               & 0.156879 & 0.304214 & 0.506381 \\
+                        $Q_3$               & 0.264915 & 0.410555 & 0.592312 \\
+                        Desviación Estándar & 0.155979 & 0.166667 & 0.165075 \\
+                        Mínimo              & 0.002060 & 0.000000 & 0.000000 \\
+                        Máximo              & 1.000000 & 0.856868 & 0.997940 \\
+                        Asimetría de Fisher & 1.562095 & 0.313745 & -0.120900 \\
+                    \bottomrule
+                \end{tabular}\\
+                \vspace{0.5cm}
+                \includegraphics[width=0.9\textwidth]{Resources/EDA/Keto_1.png}
+            \end{center}
+
+            Para la dieta keto, lo más importante es mantener un consumo alto de grasas, o 
+            por al menos mayor que el de carbohidratos. Por lo que al ver la distribución de 
+            las grasas contra los carbohidratos en cada una de las cocinas se verifica esto, 
+            per además se reportan casos, datos atípicos, donde ocurre lo contrario; omitiendo 
+            esto, se puede ver como la tendencia es tener un consumo alto de grasas, aunque, por 
+            ejemplo la cocina asiática, su consumo de grasas figura ser más bajo pero tienen 
+            un sesgo negativo, por ello se puede determinar que sigue el principio de la dieto keto.
+
+            \begin{center}
+                \includegraphics[width=0.9\textwidth]{Resources/EDA/Keto_2.png}
+            \end{center}
+        }
+
+        \subsection{Dieta Mediterránea}
+        {
+            Una receta de esta dieta tendrá que, en promedio, el $42\%$ de sus 
+            macronutrientes son carbohidratos, esto debido a un alto consumo de 
+            productos como, frutas, vegetales y granos enteros; el $30\%$ son 
+            grasas, resaltando un alto consumo de nueces y aceite de oliva, como 
+            también un consumo moderado de pescado; y el $28\%$ son proteínas, 
+            vinculado con un consumo moderado de pescado y aves de corral, y un 
+            bajo consumo de carnes rojas. Las proteínas y grasas tienen un alto 
+            sesgo positivo junto con una desviación estándar bajo, esto representa 
+            que muchas de las recetas tendrán bajas proporciones de estos macronutrientes. 
+            Haciendo que se comporte de forma análoga que la dieta DASH pero incluso 
+            hasta más balanceada.\\
+
+            \begin{center}
+                \begin{tabular}{l|lll}
+                    \toprule
+                        Medida & Carbs & Protein & Fat \\
+                    \midrule
+                        Media               & 0.422803 & 0.280190 & 0.297007 \\
+                        $Q_1$               & 0.249507 & 0.159930 & 0.180738 \\
+                        $Q_2$               & 0.438382 & 0.229058 & 0.268950 \\
+                        $Q_3$               & 0.605733 & 0.377918 & 0.390790 \\
+                        Desviación Estándar & 0.212640 & 0.162485 & 0.160349 \\
+                        Mínimo              & 0.006733 & 0.005036 & 0.001731 \\
+                        Máximo              & 0.992746 & 0.887557 & 0.968722 \\
+                        Asimetría de Fisher & -0.123218 & 0.962969 & 0.878710 \\
+                    \bottomrule
+                \end{tabular}\\
+                \vspace{0.5cm}
+                \includegraphics[width=0.9\textwidth]{Resources/EDA/Mediterranean_1.png}
+            \end{center}       
+
+            Debido que para esta receta se cuenta con la región de dónde proviene, la 
+            comparativa se vuelve respecto a la distribución de los macronutrientes en 
+            la cocina del mediterráneo. Se tiene que las grasas se encuentran más variadas, 
+            es decir, en las cocinas diferentes a la mediterránea se puede ver que en 
+            algunas cocinas toman valores más altos o más bajos en las grasas. Al considerar 
+            las proteínas se puede apreciar este mismo fenómeno pero en menor medida, debido 
+            a que puede existir una diversificación de la dieta para adecuarse a los 
+            productos y alimentos propios de una cierta región.
+
+            \begin{center}
+                \includegraphics[width=0.9\textwidth]{Resources/EDA/Mediterranean_2.png}
+            \end{center}
+        }
+
+        \subsection{Dieta Paleo}
+        {
+            Una receta de esta dieta tendrá que, en promedio, el $38\%$ de sus 
+            macronutrientes son grasas y el $37\%$ son carbohidratos, esto se 
+            relaciona con el consumo de productos como frutas, vegetales, nueces 
+            y semillas; y el $25\%$ son proteínas cuyas principales fuentes son 
+            carnes margas y pescado. La posible limitante de alimentos asociados 
+            a proteínas	y grasas podría impactar en que las recetas estén hechas 
+            con los mismos productos dentro de la misma región geográfica. Estos 
+            se relacionaría con una baja variedad en la presencia de estos 
+            macronutrientes, esto podría incluso explicar que las desviaciones 
+            estándar se parezcan entre sí.\\
+
+            \begin{center}
+                \begin{tabular}{l|lll}
+                    \toprule
+                        Medida & Carbs & Protein & Fat \\
+                    \midrule
+                        Media               & 0.369912 & 0.250207 & 0.379881 \\
+                        $Q_1$               & 0.191815 & 0.103933 & 0.257510 \\
+                        $Q_2$               & 0.350726 & 0.207286 & 0.382872 \\
+                        $Q_3$               & 0.512822 & 0.375863 & 0.488153 \\
+                        Desviación Estándar & 0.219894 & 0.174915 & 0.174737 \\
+                        Mínimo              & 0.003612 & 0.000000 & 0.006210 \\
+                        Máximo              & 0.976322 & 0.858503 & 0.968835 \\
+                        Asimetría de Fisher & 0.473617 & 0.710366 & 0.325286 \\
+                    \bottomrule
+                \end{tabular}\\
+                \vspace{0.5cm}
+                \includegraphics[width=0.9\textwidth]{Resources/EDA/Paleo_1.png}
+            \end{center}       
+
+            Que las proteínas y grasas tengan distribuciones diferentes entre 
+            las cocinas se relaciona con el hecho de que cada región geográfica 
+            tiene diferentes disponibilidad de recursos alimentarios, haciendo que 
+            este fenómeno impacte en las recetas que se pueden hacer con lo que 
+            esté disponible.
+
+            \begin{center}
+                \includegraphics[width=0.9\textwidth]{Resources/EDA/Paleo_2.png}
+            \end{center}
+        }
+
+        \subsection{Dieta Vegana}
+        {
+            Una receta de esta dieta tendrá que, en promedio, el $60\%$ de 
+            sus macronutrientes son carbohidratos, que provienen de fuentes 
+            como vegetales, frutas, cereales y legumbres; el $25\%$ son grasas, 
+            relacionadas con el consumo de nueces y semillas; y el $15\%$ son 
+            proteínas, esto debido a un nulo consumo de alimentos de origen 
+            animal y que estas fuentes son reemplazadas por fuentes vegetales. 
+            En las proteínas, se puede observar un rango intercuartil reducido y una 
+            desviación estándar reducida, esto evoca a que las recetas tengan bajos 
+            aportes de proteínas así como también los valores de aportes se concentren 
+            en un rango reducido.\\
+
+            \begin{center}
+                \begin{tabular}{l|lll}
+                    \toprule
+                        Medida & Carbs & Protein & Fat \\
+                    \midrule
+                        Media               & 0.593169 & 0.148801 & 0.258029 \\
+                        $Q_1$               & 0.502866 & 0.085853 & 0.143034 \\
+                        $Q_2$               & 0.625406 & 0.139807 & 0.231985 \\
+                        $Q_3$               & 0.713660 & 0.190724 & 0.344991 \\
+                        Desviación Estándar & 0.171149 & 0.086151 & 0.160262 \\
+                        Mínimo              & 0.000330 & 0.001921 & 0.000112 \\
+                        Máximo              & 0.986872 & 0.647416 & 0.994887 \\
+                        Asimetría de Fisher & -0.735666 & 1.439623 & 1.092007 \\
+                    \bottomrule
+                \end{tabular}\\
+                \vspace{0.5cm}
+                \includegraphics[width=0.9\textwidth]{Resources/EDA/Vegan_1.png}
+            \end{center}       
+
+            Se tiene que entre las cocinas se encuentran diferencias en las 
+            proteínas y carbohidratos, representando que las distinciones sobre 
+            las dietas se haya que tan favorecidas son las proteínas, es decir, 
+            en qué cocinas se pueden encontrar alimentos con altos aportes de proteínas, 
+            como lo sería la asiática que también es la que sus aportes de carbohidratos 
+            tienden a ser bajos. 
+
+            \begin{center}
+                \includegraphics[width=0.9\textwidth]{Resources/EDA/Vegan_2.png}
+            \end{center}   
         }
     }
 
@@ -472,6 +662,7 @@
 
     }
 
+    \addcontentsline{toc}{section}{Anexos}
     \appendix
     {
         \section{Marco Teórico}\label{anexo:A}

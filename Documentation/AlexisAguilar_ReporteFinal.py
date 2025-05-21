@@ -4,15 +4,15 @@ __generated_with = "0.13.10"
 app = marimo.App()
 
 
-@app.cell(hide_code=True)
+@app.cell
 def _(mo):
-    mo.md(r"""# 0. Carga del Dataset y Otro Código""")
+    mo.md(r"# 0. Carga del Dataset y Otro Código")
     return
 
 
-@app.cell(hide_code=True)
+@app.cell
 def _(mo):
-    mo.md(r"""## 0.1 Importar Librerías y Funciones""")
+    mo.md(r"## 0.1 Importar Librerías y Funciones")
     return
 
 
@@ -66,9 +66,9 @@ def _():
     return Cuisine, Diet, Macronutrients, Recipe, Total
 
 
-@app.cell(hide_code=True)
+@app.cell
 def _(mo):
-    mo.md(r"""## 0.2 Carga de Datos""")
+    mo.md(r"## 0.2 Carga de Datos")
     return
 
 
@@ -84,9 +84,9 @@ def _(pd):
     return (Diets_Dataset,)
 
 
-@app.cell(hide_code=True)
+@app.cell
 def _(mo):
-    mo.md(r"""# 3. Presentación de los Datos""")
+    mo.md(r"# 3. Presentación de los Datos")
     return
 
 
@@ -106,15 +106,15 @@ def _(Diets_Dataset):
     return
 
 
-@app.cell(hide_code=True)
+@app.cell
 def _(mo):
-    mo.md(r"""# 4. Estadística Descriptiva""")
+    mo.md(r"# 4. Estadística Descriptiva")
     return
 
 
-@app.cell(hide_code=True)
+@app.cell
 def _(mo):
-    mo.md(r"""## 4.1 Preprocesamiento (Transformación) de los Datos""")
+    mo.md(r"## 4.1 Preprocesamiento (Transformación) de los Datos")
     return
 
 
@@ -174,9 +174,9 @@ def _(Cuisine, Diets_Dataset):
     return
 
 
-@app.cell(hide_code=True)
+@app.cell
 def _(mo):
-    mo.md(r"""## 4.3 Visión General de los Datos""")
+    mo.md(r"## 4.3 Visión General de los Datos")
     return
 
 
@@ -218,9 +218,9 @@ def _(Cuisine, Diets_Dataset):
     return
 
 
-@app.cell(hide_code=True)
+@app.cell
 def _(mo):
-    mo.md(r"""## 4.4 Dieta DASH""")
+    mo.md(r"## 4.4 Dieta DASH")
     return
 
 
@@ -234,28 +234,165 @@ def _(Diet, Diets_Dataset, src):
 
 @app.cell
 def _(Diet, Diets_Dataset, src):
-    PlotDash_1 = src.Plot_DistributionMacronutrients(Diets_Dataset.query(f'{Diet} == @dash'))
+    PlotDash_1 = src.Plot_DistributionMacronutrients(Diets_Dataset.query(f'{Diet} == @dash'),'DASH')
     src.SaveFig(PlotDash_1,'EDA','Dash_1')
 
     PlotDash_1
     return
 
 
-@app.cell(hide_code=True)
-def _(mo):
-    mo.md(r"""# 5. Análisis Bivariado""")
+@app.cell
+def _(Diet, Diets_Dataset, src):
+    PlotDash_2 = src.Plot_DistributionMacronutientsByCuisine(Diets_Dataset.query(f'{Diet} == @dash'),'DASH')
+    src.SaveFig(PlotDash_2,'EDA','Dash_2')
+
+    PlotDash_2
     return
 
 
-@app.cell(hide_code=True)
+@app.cell
 def _(mo):
-    mo.md(r"""# 6. Muestreo e Intervalos de Confianza""")
+    mo.md(r"## 4.5 Dieta Keto")
     return
 
 
-@app.cell(hide_code=True)
+@app.cell
+def _(Diet, Diets_Dataset, src):
+    keto = 'keto'
+
+    src.SummaryMeasures(Diets_Dataset.query(f'{Diet} == @keto'))
+    return
+
+
+@app.cell
+def _(Diet, Diets_Dataset, src):
+    PlotKeto_1 = src.Plot_DistributionMacronutrients(Diets_Dataset.query(f'{Diet} == @keto'),'Keto')
+    src.SaveFig(PlotKeto_1,'EDA','Keto_1')
+
+    PlotKeto_1
+    return
+
+
+@app.cell
+def _(Diet, Diets_Dataset, src):
+    PlotKeto_2 = src.Plot_DistributionMacronutientsByCuisine(Diets_Dataset.query(f'{Diet} == @keto'),'Keto')
+    src.SaveFig(PlotKeto_2,'EDA','Keto_2')
+
+    PlotKeto_2
+    return
+
+
+@app.cell
 def _(mo):
-    mo.md(r"""# 7. Pruebas de Hipótesis""")
+    mo.md(r"## 4.6 Dieta Mediterránea")
+    return
+
+
+@app.cell
+def _(Diet, Diets_Dataset, src):
+    mediterranean = 'mediterranean'
+
+    src.SummaryMeasures(Diets_Dataset.query(f'{Diet} == @mediterranean'))
+    return
+
+
+@app.cell
+def _(Diet, Diets_Dataset, src):
+    PlotMediterranean_1 = src.Plot_DistributionMacronutrients(Diets_Dataset.query(f'{Diet} == @mediterranean'),'Mediterranean')
+    src.SaveFig(PlotMediterranean_1,'EDA','Mediterranean_1')
+
+    PlotMediterranean_1
+    return
+
+
+@app.cell
+def _(Diet, Diets_Dataset, src):
+    PlotMediterranean_2 = src.Plot_DistributionMacronutientsByCuisine(Diets_Dataset.query(f'{Diet} == @mediterranean'),'Mediterranean')
+    src.SaveFig(PlotMediterranean_2,'EDA','Mediterranean_2')
+
+    PlotMediterranean_2
+    return
+
+
+@app.cell
+def _(mo):
+    mo.md(r"## 4.7 Dieta Paleo")
+    return
+
+
+@app.cell
+def _(Diet, Diets_Dataset, src):
+    paleo = 'paleo'
+
+    src.SummaryMeasures(Diets_Dataset.query(f'{Diet} == @paleo'))
+    return
+
+
+@app.cell
+def _(Diet, Diets_Dataset, src):
+    PlotPaleo_1 = src.Plot_DistributionMacronutrients(Diets_Dataset.query(f'{Diet} == @paleo'),'Paleo')
+    src.SaveFig(PlotPaleo_1,'EDA','Paleo_1')
+
+    PlotPaleo_1
+    return
+
+
+@app.cell
+def _(Diet, Diets_Dataset, src):
+    PlotPaleo_2 = src.Plot_DistributionMacronutientsByCuisine(Diets_Dataset.query(f'{Diet} == @paleo'),'Paleo')
+    src.SaveFig(PlotPaleo_2,'EDA','Paleo_2')
+
+    PlotPaleo_2
+    return
+
+
+@app.cell
+def _(mo):
+    mo.md(r"## 4.8 Dieta Vegana")
+    return
+
+
+@app.cell
+def _(Diet, Diets_Dataset, src):
+    vegan = 'vegan'
+
+    src.SummaryMeasures(Diets_Dataset.query(f'{Diet} == @vegan'))
+    return
+
+
+@app.cell
+def _(Diet, Diets_Dataset, src):
+    PlotVegan_1 = src.Plot_DistributionMacronutrients(Diets_Dataset.query(f'{Diet} == @vegan'),'Vegan')
+    src.SaveFig(PlotVegan_1,'EDA','Vegan_1')
+
+    PlotVegan_1
+    return
+
+
+@app.cell
+def _(Diet, Diets_Dataset, src):
+    PlotVegan_2 = src.Plot_DistributionMacronutientsByCuisine(Diets_Dataset.query(f'{Diet} == @vegan'),'Vegan')
+    src.SaveFig(PlotVegan_2,'EDA','Vegan_2')
+
+    PlotVegan_2
+    return
+
+
+@app.cell
+def _(mo):
+    mo.md(r"# 5. Análisis Bivariado")
+    return
+
+
+@app.cell
+def _(mo):
+    mo.md(r"# 6. Muestreo e Intervalos de Confianza")
+    return
+
+
+@app.cell
+def _(mo):
+    mo.md(r"# 7. Pruebas de Hipótesis")
     return
 
 

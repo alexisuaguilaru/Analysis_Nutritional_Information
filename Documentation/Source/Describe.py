@@ -25,7 +25,7 @@ def SummaryMeasures(Dataset:pd.DataFrame) -> pd.DataFrame:
 
     return summary_measures
 
-def Plot_DistributionMacronutrients(Dataset:pd.DataFrame):
+def Plot_DistributionMacronutrients(Dataset:pd.DataFrame,Diet:str=None):
     """
     Función para gráficar los gráficos de tipo cajas y bigotes 
     por cada macronutriente.
@@ -33,17 +33,18 @@ def Plot_DistributionMacronutrients(Dataset:pd.DataFrame):
     Parameters
     ----------
         Dataset : pd.DataFrame
+        Diet : str
     """
     fig , axes , ConfigPlot = CreateMosaicPlot()
     for macronutrient , display , color in ConfigPlot:
         sns.boxplot(data=Dataset,x=macronutrient,ax=axes[display],color=color)
         SetLabelsPlot(axes[display],MapTranslate[macronutrient],'Porcentaje de Gramos')
 
-    SetTitleFig(fig,'Distribución de Macronutrientes')
+    SetTitleFig(fig,'Distribución de Macronutrientes' + (f'\n en {Diet}' if Diet else ''))
 
     return fig
 
-def Plot_DistributionMacronutientsByCuisine(Dataset:pd.DataFrame):
+def Plot_DistributionMacronutientsByCuisine(Dataset:pd.DataFrame,Diet:str=None):
     """
     Función para gráficar la distribución de los 
     macronutrientes por estilo de cocina
@@ -51,12 +52,13 @@ def Plot_DistributionMacronutientsByCuisine(Dataset:pd.DataFrame):
     Parameters
     ----------
         Dataset : pd.DataFrame
+        Diet : str
     """
     fig , axes , ConfigPlot = CreateMosaicPlot()
     for macronutrient , display , color in ConfigPlot:
         sns.boxplot(data=Dataset,x=macronutrient,y=Cuisine,ax=axes[display],color=color)
         SetLabelsPlot(axes[display],MapTranslate[macronutrient],'Porcentaje de Gramos','Tipo de Cocina')
 
-    SetTitleFig(fig,'Distribución de Macronutrientes\nPor Cocina')
+    SetTitleFig(fig,'Distribución de Macronutrientes\nPor Cocina' + (f' en {Diet}' if Diet else ''))
 
     return fig

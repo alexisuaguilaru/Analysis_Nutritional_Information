@@ -108,6 +108,6 @@ def Plot_CorrelationMacronutrients(Dataset:pd.DataFrame):
         case_str = str.capitalize if diet != 'dash' else str.upper
         SetLabelsPlot(axes[str(index_diet)],case_str(diet),'Macronutrientes','Macronutrientes')
     
-    SetTitleFig(fig,'Correolograma de los Macronutrientes\nEn las Diferentes Dietas')
+    SetTitleFig(fig,'Correlograma de los Macronutrientes\nEn las Diferentes Dietas')
 
     return fig

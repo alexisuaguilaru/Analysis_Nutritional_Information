@@ -26,7 +26,7 @@ def _():
 
     import matplotlib.pyplot as plt
     import seaborn as sns
-    return mo, pd
+    return mo, pd, plt
 
 
 @app.cell
@@ -63,7 +63,7 @@ def _():
     }
 
     RANDOM_STATE = 8013
-    return Cuisine, Diet, Macronutrients, Recipe, Total
+    return Cuisine, Diet, Diets, Macronutrients, Recipe, Total
 
 
 @app.cell
@@ -205,7 +205,7 @@ def _(Diets_Dataset, src):
 
 @app.cell
 def _(Diets_Dataset, src):
-    VisionGeneral_2 = src.Plot_DistributionMacronutientsByCuisine(Diets_Dataset)
+    VisionGeneral_2 = src.Plot_DistributionMacronutrientsByCuisine(Diets_Dataset)
     src.SaveFig(VisionGeneral_2,'EDA','VisionGeneral_2')
 
     VisionGeneral_2
@@ -243,7 +243,7 @@ def _(Diet, Diets_Dataset, src):
 
 @app.cell
 def _(Diet, Diets_Dataset, src):
-    PlotDash_2 = src.Plot_DistributionMacronutientsByCuisine(Diets_Dataset.query(f'{Diet} == @dash'),'DASH')
+    PlotDash_2 = src.Plot_DistributionMacronutrientsByCuisine(Diets_Dataset.query(f'{Diet} == @dash'),'DASH')
     src.SaveFig(PlotDash_2,'EDA','Dash_2')
 
     PlotDash_2
@@ -275,7 +275,7 @@ def _(Diet, Diets_Dataset, src):
 
 @app.cell
 def _(Diet, Diets_Dataset, src):
-    PlotKeto_2 = src.Plot_DistributionMacronutientsByCuisine(Diets_Dataset.query(f'{Diet} == @keto'),'Keto')
+    PlotKeto_2 = src.Plot_DistributionMacronutrientsByCuisine(Diets_Dataset.query(f'{Diet} == @keto'),'Keto')
     src.SaveFig(PlotKeto_2,'EDA','Keto_2')
 
     PlotKeto_2
@@ -307,7 +307,7 @@ def _(Diet, Diets_Dataset, src):
 
 @app.cell
 def _(Diet, Diets_Dataset, src):
-    PlotMediterranean_2 = src.Plot_DistributionMacronutientsByCuisine(Diets_Dataset.query(f'{Diet} == @mediterranean'),'Mediterranean')
+    PlotMediterranean_2 = src.Plot_DistributionMacronutrientsByCuisine(Diets_Dataset.query(f'{Diet} == @mediterranean'),'Mediterranean')
     src.SaveFig(PlotMediterranean_2,'EDA','Mediterranean_2')
 
     PlotMediterranean_2
@@ -339,7 +339,7 @@ def _(Diet, Diets_Dataset, src):
 
 @app.cell
 def _(Diet, Diets_Dataset, src):
-    PlotPaleo_2 = src.Plot_DistributionMacronutientsByCuisine(Diets_Dataset.query(f'{Diet} == @paleo'),'Paleo')
+    PlotPaleo_2 = src.Plot_DistributionMacronutrientsByCuisine(Diets_Dataset.query(f'{Diet} == @paleo'),'Paleo')
     src.SaveFig(PlotPaleo_2,'EDA','Paleo_2')
 
     PlotPaleo_2
@@ -371,7 +371,7 @@ def _(Diet, Diets_Dataset, src):
 
 @app.cell
 def _(Diet, Diets_Dataset, src):
-    PlotVegan_2 = src.Plot_DistributionMacronutientsByCuisine(Diets_Dataset.query(f'{Diet} == @vegan'),'Vegan')
+    PlotVegan_2 = src.Plot_DistributionMacronutrientsByCuisine(Diets_Dataset.query(f'{Diet} == @vegan'),'Vegan')
     src.SaveFig(PlotVegan_2,'EDA','Vegan_2')
 
     PlotVegan_2
@@ -381,6 +381,49 @@ def _(Diet, Diets_Dataset, src):
 @app.cell
 def _(mo):
     mo.md(r"# 5. Análisis Bivariado")
+    return
+
+
+@app.cell
+def _(Diets_Dataset, src):
+    PlotCorrelation = src.Plot_CorrelationMacronutrients(Diets_Dataset)
+    src.SaveFig(PlotCorrelation,'Bivariado','Correlation')
+
+    PlotCorrelation
+    return
+
+
+@app.cell
+def _(Diet, Diets, Diets_Dataset, Macronutrients, pd):
+    dataset_biv = {feature : [] for feature in ['Dieta','Macronutrients','Centroide','Covarianza','Coeficiente']}
+
+    for diet in Diets:
+        data_diet = Diets_Dataset.query(f'{Diet} == @diet')
+        for macro_x , macro_y in [(Macronutrients[0],Macronutrients[1]),(Macronutrients[0],Macronutrients[2]),(Macronutrients[1],Macronutrients[2])]:
+            dataset_biv['Dieta'].append(diet)
+            dataset_biv['Macronutrients'].append(f'({macro_x},{macro_y})')
+
+            centroide = data_diet[[macro_x,macro_y]].mean().to_numpy()
+            dataset_biv['Centroide'].append(centroide)
+
+            covariance = data_diet[[macro_x,macro_y]].cov(ddof=1).iloc[0,1]
+            dataset_biv['Covarianza'].append(covariance)
+
+            correlation = data_diet[[macro_x,macro_y]].corr(method='pearson').iloc[0,1]
+            dataset_biv['Coeficiente'].append(correlation)
+
+    print(pd.DataFrame(dataset_biv).to_latex())
+    return
+
+
+@app.cell
+def _(Diet, Diets, Diets_Dataset, plt, src):
+    for diet_reg in Diets:
+        case_str_reg = str.capitalize if diet_reg != 'dash' else str.upper
+        PlotRegression = src.Plot_RegressionMacronutrients(Diets_Dataset.query(f'{Diet} == @diet_reg'),case_str_reg(diet_reg))
+        src.SaveFig(PlotRegression,'Bivariado','Regression'+diet_reg.capitalize())
+
+    plt.show()
     return
 
 

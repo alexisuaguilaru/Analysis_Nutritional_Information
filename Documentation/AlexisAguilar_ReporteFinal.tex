@@ -645,7 +645,60 @@
 
     \section{Análisis Bivariado}\label{sec:biva}
     {
+        El realizar un análisis bivariado usando todas las dietas va a 
+        provocar una desvanecimiento de la información debido a que las dietas 
+        tienen un comportamiento heterogéneas, haciendo que el mejor 
+        acercamiento para este análisis sea por cada una de las dietas; 
+        donde de nuevo se muestra que cada dieta sigue ciertos patrones 
+        y tendencias en sus macronutrientes. Debido a que los valores 
+        de los macronutrientes suman $1$ se tiene que el incrementar 
+        un macronutriente hace que los otros decrezcan, por lo que el 
+        valor de la correlación refleja esta fuerza en que decrece o, 
+        en ciertos casos, crece. En la mayoria de los casos se tienen 
+        correlaciones mayores a $0.5$ en valor absoluto, esto representa 
+        que son tendencias fuertes que tienen las diferentes dietas sobre 
+        la composiciones de sus macronutrientes. Se tiene que la relación 
+        entre carbohidratos contra proteínas y grasas permite describir de 
+        otra manera cada dieta, debido a que estas dos relaciones son las 
+        más relevantes para reflejar el cómo son las dietas.
 
+        \begin{center}
+            \begin{tabular}{lllrr}
+            \toprule
+                Dieta & Macronutrientes & Centroide & Covarianza & \makecell{Coeficiente\\Correlación} \\
+            \midrule
+                dash          & (Carbs,Protein) & [0.4916 0.2200] & -0.0275 & -0.6850 \\
+                dash          & (Carbs,Fat)     & [0.4916 0.2883] & -0.0348 & -0.7650 \\
+                dash          & (Protein,Fat)   & [0.2200 0.2883] &  0.0016 &  0.0550 \\
+                keto          & (Carbs,Protein) & [0.1984 0.3027] & -0.0124 & -0.4780 \\
+                keto          & (Carbs,Fat)     & [0.1984 0.4988] & -0.0119 & -0.4621 \\
+                keto          & (Protein,Fat)   & [0.3027 0.4988] & -0.0153 & -0.5578 \\
+                mediterranean & (Carbs,Protein) & [0.4228 0.2801] & -0.0229 & -0.6643 \\
+                mediterranean & (Carbs,Fat)     & [0.4228 0.2970] & -0.0222 & -0.6529 \\
+                mediterranean & (Protein,Fat)   & [0.2801 0.2970] & -0.0034 & -0.1323 \\
+                paleo         & (Carbs,Protein) & [0.3699 0.2502] & -0.0242 & -0.6293 \\
+                paleo         & (Carbs,Fat)     & [0.3699 0.3798] & -0.0241 & -0.6284 \\
+                paleo         & (Protein,Fat)   & [0.2502 0.3798] & -0.0063 & -0.2089 \\
+                vegan         & (Carbs,Protein) & [0.5931 0.1488] & -0.0055 & -0.3740 \\
+                vegan         & (Carbs,Fat)     & [0.5931 0.2580] & -0.0237 & -0.8668 \\
+                vegan         & (Protein,Fat)   & [0.1488 0.2580] & -0.0019 & -0.1381 \\
+            \bottomrule
+            \end{tabular}
+        \end{center}
+        
+        El tabular el coeficiente de correlación para cada par de macronutrientes y dieta, 
+        se permite observar con mayor detenimiento que todos los valores son diferentes y,  
+        por la cantidad de instancias por dieta, es significativo. Con ello, se tiene que 
+        los macronutrientes tendrán diferentes comportamientos según la dieta a la que 
+        pertenezcan. Esto implica que las dietas van a favorecer más a ciertas combinaciones 
+        entre macronutrientes, y esto se relaciona con los alimentos y productos que son 
+        consumidos dentro de cada dieta, así como también las cantidades; con ello, se 
+        muestra que se puede determinar cuál es la dieta que favorece un cierto macronutriente 
+        más que las otras.
+
+        \begin{center}
+            \includegraphics[width=0.85\textwidth]{Resources/Bivariado/Correlation.png}
+        \end{center}
     }
 
     \newpage

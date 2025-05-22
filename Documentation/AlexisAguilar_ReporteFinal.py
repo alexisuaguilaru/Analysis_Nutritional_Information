@@ -26,7 +26,7 @@ def _():
 
     import matplotlib.pyplot as plt
     import seaborn as sns
-    return mo, pd, plt
+    return mo, np, pd, plt
 
 
 @app.cell
@@ -63,7 +63,7 @@ def _():
     }
 
     RANDOM_STATE = 8013
-    return Cuisine, Diet, Diets, Macronutrients, Recipe, Total
+    return Cuisine, Diet, Diets, Macronutrients, RANDOM_STATE, Recipe, Total
 
 
 @app.cell
@@ -412,7 +412,7 @@ def _(Diet, Diets, Diets_Dataset, Macronutrients, pd):
             correlation = data_diet[[macro_x,macro_y]].corr(method='pearson').iloc[0,1]
             dataset_biv['Coeficiente'].append(correlation)
 
-    print(pd.DataFrame(dataset_biv).to_latex())
+    pd.DataFrame(dataset_biv)
     return
 
 
@@ -430,6 +430,114 @@ def _(Diet, Diets, Diets_Dataset, plt, src):
 @app.cell
 def _(mo):
     mo.md(r"# 6. Muestreo e Intervalos de Confianza")
+    return
+
+
+@app.cell
+def _(mo):
+    mo.md(r"## 6.1 Muestreo Simple Aleatorio")
+    return
+
+
+@app.cell
+def _(Diets_Dataset, Macronutrients, RANDOM_STATE):
+    random_sampling = Diets_Dataset.sample(50,random_state=RANDOM_STATE)
+
+    random_sampling[Macronutrients[0]]
+    return (random_sampling,)
+
+
+@app.cell
+def _(Macronutrients, random_sampling, src):
+    src.Sample_FrequencyTable(random_sampling[Macronutrients[0]],7)
+    return
+
+
+@app.cell
+def _(random_sampling, src):
+    src.SummaryMeasures(random_sampling)
+    return
+
+
+@app.cell
+def _(Macronutrients, random_sampling, src):
+    PlotRandomSample = src.Plot_Sampling(random_sampling,Macronutrients[0])
+    src.SaveFig(PlotRandomSample,'Sampling','Random')
+
+    PlotRandomSample
+    return
+
+
+@app.cell
+def _(mo):
+    mo.md(r"## 6.2 Muestreo Aleatorio Estratificado")
+    return
+
+
+@app.cell
+def _(Diet, Diets_Dataset, Recipe, np):
+    proportion_diets = (Diets_Dataset.groupby(Diet)[Recipe].count()/Diets_Dataset.shape[0])
+    size_strata_diet = np.round(proportion_diets*50)
+    return (size_strata_diet,)
+
+
+@app.cell
+def _(Diet, Diets_Dataset, Macronutrients, RANDOM_STATE, pd, size_strata_diet):
+    stratified_sampling = []
+    for strata_diet ,  size in  size_strata_diet.items():
+        sampling = Diets_Dataset.query(f'{Diet} == @strata_diet').sample(int(size),random_state=RANDOM_STATE)
+        stratified_sampling.append(sampling)
+
+    stratified_sampling = pd.concat(stratified_sampling)
+
+    stratified_sampling[Macronutrients[0]]
+
+    stratified_sampling[Macronutrients[0]]
+    return (stratified_sampling,)
+
+
+@app.cell
+def _(Macronutrients, src, stratified_sampling):
+    src.Sample_FrequencyTable(stratified_sampling[Macronutrients[0]],7)
+    return
+
+
+@app.cell
+def _(src, stratified_sampling):
+    src.SummaryMeasures(stratified_sampling)
+    return
+
+
+@app.cell
+def _(Macronutrients, src, stratified_sampling):
+    PlotStratifiedSample = src.Plot_Sampling(stratified_sampling,Macronutrients[0])
+    src.SaveFig(PlotStratifiedSample,'Sampling','Stratified')
+
+    PlotStratifiedSample
+    return
+
+
+@app.cell
+def _(mo):
+    mo.md(r"## 6.3 Intervalos de Confianza")
+    return
+
+
+@app.cell
+def _():
+    confidence_levels = [0.85,0.95,0.99]
+    return (confidence_levels,)
+
+
+@app.cell
+def _(Macronutrients, confidence_levels, random_sampling, src):
+    src.Sample_ConfidenceInterval(random_sampling[Macronutrients[0]],confidence_levels)
+    return
+
+
+@app.cell
+def _(Macronutrients, confidence_levels, src, stratified_sampling):
+    src.Sample_ConfidenceInterval(stratified_sampling[Macronutrients[0]],confidence_levels)
     return
 
 

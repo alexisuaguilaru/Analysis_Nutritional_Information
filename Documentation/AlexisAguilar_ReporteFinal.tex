@@ -699,7 +699,178 @@
 
     \section{Muestreo e Intervalos de Confianza}
     {
-        
+        Como las tres variables cuantitativas tienen el mismo nivel 
+        de relevancia, se opta por usar los \emph{Carbs} como atributo 
+        para el Muestreo. Y para ambos muestreos se realizan de 
+        tamaño $50$ y, usando la Regla de Sturges, se emplean 7 clases 
+        o bins para la tabla de frecuencias.
+
+        \subsection{Muestreo Simple Aleatorio}\label{subsec:sample_rand}
+        {
+            Al considerar los estadísticos muestrales se puede 
+            apreciar que difieren en todos las medidas, por lo que este muestreo 
+            no es representativo del conjunto de datos, es decir, siguen diferentes 
+            distribuciones principalmente al usar la media y los cuartiles. Por lo 
+            tanto, o se puede cambiar de estrategia o usar una tamaño de muestreo 
+            más grande.
+
+            \begin{center}
+                \begin{tabular}{ccccc}
+                        \multicolumn{5}{c}{Resultados del Muestreo} \\ 
+                    \midrule
+                        0.780289 &   0.15143502 & 0.13749852 &  0.60841622 & 0.69139498 \\ 
+                        0.04172702 & 0.44570519 & 0.74317898 & 0.53322363 & 0.23569666\\
+                        0.20240863 & 0.55306465 & 0.98825124 &  0.62201877 & 0.08367046 \\ 
+                        0.7226847 & 0.53068409 & 0.10743335 & 0.06312504 & 0.75586 \\
+                        0.69076424 & 0.18063042 & 0.14876349 &  0.76112551 & 0.61451786 \\ 
+                        0.81901361 & 0.61532896 & 0.22294326 & 0.58007183 & 0.66899583\\
+                        0.69092336 & 0.13819862 & 0.08259526 &  0.37709587 & 0.17925896 \\ 
+                        0.48040837 & 0.98382353 & 0.49527076 & 0.1451375 &  0.19026882\\
+                        0.63525297 & 0.44261674 & 0.22074399 &  0.41293142 & 0.60653006 \\ 
+                        0.55742063 & 0.42509449 & 0.19835071 & 0.45468297 & 0.3959553\\
+                \end{tabular}
+            \end{center}
+
+            \begin{center}
+                \begin{tabular}{lrrrr}
+                \toprule
+                    \makecell{Marca de\\Clase} & \makecell{Frecuencia\\Abosluta} & \makecell{Frecuencias\\Relativa} & \makecell{Frecuencia\\Acumuladas} & z-score \\
+                \midrule
+                    0.109336 & 10 & 0.20 & 0.20 & -1.308939 \\
+                    0.244554 & 8  & 0.16 & 0.36 & -0.786707 \\
+                    0.379771 & 6  & 0.12 & 0.48 & -0.264474 \\
+                    0.514989 & 8  & 0.16 & 0.64 &  0.257759 \\
+                    0.650207 & 10 & 0.20 & 0.84 &  0.779991 \\
+                    0.785425 & 6  & 0.12 & 0.96 &  1.302224 \\
+                    0.920642 & 2  & 0.04 & 1.00 &  1.824456 \\
+                \bottomrule
+                \end{tabular}
+            \end{center}
+
+            \begin{minipage}{0.35\textwidth}
+                \centering
+                \begin{tabular}{l|r}
+                \toprule
+                    Medida Muestral & Carbs \\
+                \midrule
+                    Media               & 0.448250 \\
+                    $Q_1$               & 0.192289 \\
+                    $Q_2$               & 0.467546 \\
+                    $Q_3$               & 0.631944 \\
+                    Desviación Estándar & 0.258922 \\
+                    Mínimo              & 0.041727 \\
+                    Máximo              & 0.988251 \\
+                    Asimetría de Fisher & 0.088215 \\
+                \bottomrule
+                \end{tabular}
+            \end{minipage}%
+            \begin{minipage}{0.65\textwidth}
+                \centering
+                \includegraphics[width=0.9\textwidth]{Resources/Sampling/Random.png}
+            \end{minipage}
+        }
+
+        \subsection{Muestreo Aleatorio Estratificado}
+        {
+            Al igual que en \fullref{subsec:sample_rand}, se tiene que en el muestreo 
+            estratificado no es representativo del conjunto de datos, esto se deriva 
+            del hecho de que las medidas muestrales difieren notoriamente de las poblacionales 
+            y además de seguir una distribución diferente. Con ello, se tiene que la solución 
+            para obtener un muestreo representativo se vuelve justamente incrementar 
+            el tamaño de la muestra.
+
+            \begin{center}
+                \begin{tabular}{ccccc}
+                        \multicolumn{5}{c}{Resultados del Muestreo} \\ 
+                    \midrule
+                        0.98825124 & 0.44840909 & 0.89960239 & 0.83874942 & 0.365615   \\
+                        0.49887176 & 0.58630187 & 0.3157274  & 0.5842796  & 0.57451464 \\
+                        0.08873597 & 0.68983711 & 0.16884721 & 0.15916624 & 0.09565607 \\
+                        0.52595787 & 0.07693278 & 0.27939369 & 0.12009859 & 0.22105597 \\
+                        0.45648684 & 0.56049479 & 0.57414311 & 0.28213503 & 0.61598047 \\
+                        0.56339749 & 0.52937621 & 0.5663925  & 0.65277566 & 0.2666113  \\
+                        0.13609793 & 0.41432132 & 0.13118082 & 0.07637211 & 0.17604633 \\
+                        0.77068989 & 0.52892388 & 0.39944097 & 0.13687658 & 0.00708689 \\
+                        0.6840657  & 0.32537609 & 0.3360161  & 0.50114789 & 0.89117851 \\
+                        0.65409493 & 0.30271941 & 0.80744214 & 0.60015393 & 0.65224341 \\
+                \end{tabular}
+            \end{center}
+
+            \begin{center}
+                \begin{tabular}{lrrrr}
+                \toprule
+                    \makecell{Marca de\\Clase} & \makecell{Frecuencia\\Abosluta} & \makecell{Frecuencias\\Relativa} & \makecell{Frecuencia\\Acumuladas} & z-score \\
+                \midrule
+                    0.077170 &  9 & 0.18 & 0.18 & -1.457119 \\
+                    0.217336 &  7 & 0.14 & 0.32 & -0.898073 \\
+                    0.357503 &  7 & 0.14 & 0.46 & -0.339028 \\
+                    0.497669 & 10 & 0.20 & 0.66 & 0.220017 \\
+                    0.637835 & 11 & 0.22 & 0.88 & 0.779062 \\
+                    0.778002 &  3 & 0.06 & 0.94 & 1.338107 \\
+                    0.918168 &  3 & 0.06 & 1.00 & 1.897152 \\
+                \bottomrule
+                \end{tabular}
+            \end{center}
+
+            \begin{minipage}{0.35\textwidth}
+                \centering
+                \begin{tabular}{l|r}
+                \toprule
+                    Medida Muestral & Carbs \\
+                \midrule
+                    Media               & 0.442505 \\
+                    $Q_1$               & 0.232445 \\
+                    $Q_2$               & 0.477679 \\
+                    $Q_3$               & 0.596691 \\
+                    Desviación Estándar & 0.250725 \\
+                    Mínimo              & 0.007087 \\
+                    Máximo              & 0.988251 \\
+                    Asimetría de Fisher & 0.129906 \\
+                \bottomrule
+                \end{tabular}
+            \end{minipage}%
+            \begin{minipage}{0.65\textwidth}
+                \centering
+                \includegraphics[width=0.9\textwidth]{Resources/Sampling/Stratified.png}
+            \end{minipage}
+        }
+    
+        \subsection{Intervalos de Confianza}
+        {
+            En cada muestreo, se determina los intervalos 
+            con los niveles de confianza del $85\%$, $95\%$ y $99\%$, 
+            y en cada intervalo se determinó si la media poblacional de 
+            los carbohidratos pertenece al intervalo construido. De los 
+            intervalos de confianza construidos, se tiene que en todos
+            pertenece la media poblacional.\\
+
+            \begin{minipage}{0.5\textwidth}
+                \centering
+                \begin{tabular}{r|rr}
+                    \multicolumn{3}{c}{Muestreo Simple Aleatorio} \\
+                \midrule
+                    \makecell{Nivel de\\Confianza} & \makecell{Límite\\Inferior} & \makecell{Límite\\Superior} \\
+                \midrule
+                    $85\%$ & 0.395538 & 0.500961 \\
+                    $95\%$ & 0.376481 & 0.520018 \\
+                    $99\%$ & 0.353930 & 0.542569 \\
+                \bottomrule
+                \end{tabular}
+            \end{minipage}% 
+            \begin{minipage}{0.5\textwidth}
+                \centering
+                \begin{tabular}{r|rr}
+                    \multicolumn{3}{c}{Muestreo Aleatorio Estratificado} \\
+                \midrule
+                    \makecell{Nivel de\\Confianza} & \makecell{Límite\\Inferior} & \makecell{Límite\\Superior} \\
+                \midrule
+                    $85\%$ & 0.391463 & 0.493548 \\
+                    $95\%$ & 0.373009 & 0.512001 \\
+                    $99\%$ & 0.351172 & 0.533839 \\
+                \bottomrule
+                \end{tabular}
+            \end{minipage}
+        }
     }
 
     \newpage

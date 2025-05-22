@@ -12,6 +12,9 @@ def CreateMosaicPlot():
 
     return fig , axes , ConfigPlot
 
+def SimplePlot():
+    return plt.subplots(figsize=(6,4),layout='constrained',subplot_kw={'xlim':(0-1e-2,1+1e-2)})
+
 def OrderDiets(Dataset:pd.DataFrame,Macronutrient:str) -> np.ndarray:
     return Dataset[Macronutrient].quantile(0.25).sort_values().index
 

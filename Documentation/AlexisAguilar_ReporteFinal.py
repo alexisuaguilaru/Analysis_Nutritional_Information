@@ -1,6 +1,6 @@
 import marimo
 
-__generated_with = "0.13.10"
+__generated_with = "0.13.11"
 app = marimo.App()
 
 
@@ -23,6 +23,7 @@ def _():
 
     import pandas as pd
     import numpy as np
+    from scipy import stats
 
     import matplotlib.pyplot as plt
     import seaborn as sns
@@ -197,7 +198,7 @@ def _(Cuisine, Diet, Diets_Dataset, Recipe):
 @app.cell
 def _(Diets_Dataset, src):
     VisionGeneral_1 = src.Plot_DistributionMacronutrients(Diets_Dataset)
-    src.SaveFig(VisionGeneral_1,'EDA','VisionGeneral_1')
+    #src.SaveFig(VisionGeneral_1,'EDA','VisionGeneral_1')
 
     VisionGeneral_1
     return
@@ -206,7 +207,7 @@ def _(Diets_Dataset, src):
 @app.cell
 def _(Diets_Dataset, src):
     VisionGeneral_2 = src.Plot_DistributionMacronutrientsByCuisine(Diets_Dataset)
-    src.SaveFig(VisionGeneral_2,'EDA','VisionGeneral_2')
+    #src.SaveFig(VisionGeneral_2,'EDA','VisionGeneral_2')
 
     VisionGeneral_2
     return
@@ -235,7 +236,7 @@ def _(Diet, Diets_Dataset, src):
 @app.cell
 def _(Diet, Diets_Dataset, src):
     PlotDash_1 = src.Plot_DistributionMacronutrients(Diets_Dataset.query(f'{Diet} == @dash'),'DASH')
-    src.SaveFig(PlotDash_1,'EDA','Dash_1')
+    #src.SaveFig(PlotDash_1,'EDA','Dash_1')
 
     PlotDash_1
     return
@@ -244,7 +245,7 @@ def _(Diet, Diets_Dataset, src):
 @app.cell
 def _(Diet, Diets_Dataset, src):
     PlotDash_2 = src.Plot_DistributionMacronutrientsByCuisine(Diets_Dataset.query(f'{Diet} == @dash'),'DASH')
-    src.SaveFig(PlotDash_2,'EDA','Dash_2')
+    #src.SaveFig(PlotDash_2,'EDA','Dash_2')
 
     PlotDash_2
     return
@@ -267,7 +268,7 @@ def _(Diet, Diets_Dataset, src):
 @app.cell
 def _(Diet, Diets_Dataset, src):
     PlotKeto_1 = src.Plot_DistributionMacronutrients(Diets_Dataset.query(f'{Diet} == @keto'),'Keto')
-    src.SaveFig(PlotKeto_1,'EDA','Keto_1')
+    #src.SaveFig(PlotKeto_1,'EDA','Keto_1')
 
     PlotKeto_1
     return
@@ -276,7 +277,7 @@ def _(Diet, Diets_Dataset, src):
 @app.cell
 def _(Diet, Diets_Dataset, src):
     PlotKeto_2 = src.Plot_DistributionMacronutrientsByCuisine(Diets_Dataset.query(f'{Diet} == @keto'),'Keto')
-    src.SaveFig(PlotKeto_2,'EDA','Keto_2')
+    #src.SaveFig(PlotKeto_2,'EDA','Keto_2')
 
     PlotKeto_2
     return
@@ -299,7 +300,7 @@ def _(Diet, Diets_Dataset, src):
 @app.cell
 def _(Diet, Diets_Dataset, src):
     PlotMediterranean_1 = src.Plot_DistributionMacronutrients(Diets_Dataset.query(f'{Diet} == @mediterranean'),'Mediterranean')
-    src.SaveFig(PlotMediterranean_1,'EDA','Mediterranean_1')
+    #src.SaveFig(PlotMediterranean_1,'EDA','Mediterranean_1')
 
     PlotMediterranean_1
     return
@@ -308,7 +309,7 @@ def _(Diet, Diets_Dataset, src):
 @app.cell
 def _(Diet, Diets_Dataset, src):
     PlotMediterranean_2 = src.Plot_DistributionMacronutrientsByCuisine(Diets_Dataset.query(f'{Diet} == @mediterranean'),'Mediterranean')
-    src.SaveFig(PlotMediterranean_2,'EDA','Mediterranean_2')
+    #src.SaveFig(PlotMediterranean_2,'EDA','Mediterranean_2')
 
     PlotMediterranean_2
     return
@@ -331,7 +332,7 @@ def _(Diet, Diets_Dataset, src):
 @app.cell
 def _(Diet, Diets_Dataset, src):
     PlotPaleo_1 = src.Plot_DistributionMacronutrients(Diets_Dataset.query(f'{Diet} == @paleo'),'Paleo')
-    src.SaveFig(PlotPaleo_1,'EDA','Paleo_1')
+    #src.SaveFig(PlotPaleo_1,'EDA','Paleo_1')
 
     PlotPaleo_1
     return
@@ -340,7 +341,7 @@ def _(Diet, Diets_Dataset, src):
 @app.cell
 def _(Diet, Diets_Dataset, src):
     PlotPaleo_2 = src.Plot_DistributionMacronutrientsByCuisine(Diets_Dataset.query(f'{Diet} == @paleo'),'Paleo')
-    src.SaveFig(PlotPaleo_2,'EDA','Paleo_2')
+    #src.SaveFig(PlotPaleo_2,'EDA','Paleo_2')
 
     PlotPaleo_2
     return
@@ -363,7 +364,7 @@ def _(Diet, Diets_Dataset, src):
 @app.cell
 def _(Diet, Diets_Dataset, src):
     PlotVegan_1 = src.Plot_DistributionMacronutrients(Diets_Dataset.query(f'{Diet} == @vegan'),'Vegan')
-    src.SaveFig(PlotVegan_1,'EDA','Vegan_1')
+    #src.SaveFig(PlotVegan_1,'EDA','Vegan_1')
 
     PlotVegan_1
     return
@@ -372,7 +373,7 @@ def _(Diet, Diets_Dataset, src):
 @app.cell
 def _(Diet, Diets_Dataset, src):
     PlotVegan_2 = src.Plot_DistributionMacronutrientsByCuisine(Diets_Dataset.query(f'{Diet} == @vegan'),'Vegan')
-    src.SaveFig(PlotVegan_2,'EDA','Vegan_2')
+    #src.SaveFig(PlotVegan_2,'EDA','Vegan_2')
 
     PlotVegan_2
     return
@@ -387,7 +388,7 @@ def _(mo):
 @app.cell
 def _(Diets_Dataset, src):
     PlotCorrelation = src.Plot_CorrelationMacronutrients(Diets_Dataset)
-    src.SaveFig(PlotCorrelation,'Bivariado','Correlation')
+    #src.SaveFig(PlotCorrelation,'Bivariado','Correlation')
 
     PlotCorrelation
     return
@@ -421,7 +422,7 @@ def _(Diet, Diets, Diets_Dataset, plt, src):
     for diet_reg in Diets:
         case_str_reg = str.capitalize if diet_reg != 'dash' else str.upper
         PlotRegression = src.Plot_RegressionMacronutrients(Diets_Dataset.query(f'{Diet} == @diet_reg'),case_str_reg(diet_reg))
-        src.SaveFig(PlotRegression,'Bivariado','Regression'+diet_reg.capitalize())
+        #src.SaveFig(PlotRegression,'Bivariado','Regression'+diet_reg.capitalize())
 
     plt.show()
     return
@@ -462,7 +463,7 @@ def _(random_sampling, src):
 @app.cell
 def _(Macronutrients, random_sampling, src):
     PlotRandomSample = src.Plot_Sampling(random_sampling,Macronutrients[0])
-    src.SaveFig(PlotRandomSample,'Sampling','Random')
+    #src.SaveFig(PlotRandomSample,'Sampling','Random')
 
     PlotRandomSample
     return
@@ -511,7 +512,7 @@ def _(src, stratified_sampling):
 @app.cell
 def _(Macronutrients, src, stratified_sampling):
     PlotStratifiedSample = src.Plot_Sampling(stratified_sampling,Macronutrients[0])
-    src.SaveFig(PlotStratifiedSample,'Sampling','Stratified')
+    #src.SaveFig(PlotStratifiedSample,'Sampling','Stratified')
 
     PlotStratifiedSample
     return
@@ -544,6 +545,207 @@ def _(Macronutrients, confidence_levels, src, stratified_sampling):
 @app.cell
 def _(mo):
     mo.md(r"# 7. Pruebas de Hipótesis")
+    return
+
+
+@app.cell
+def _(mo):
+    mo.md(r"## 7.1 Dieta DASH")
+    return
+
+
+@app.cell
+def _(Diets_Dataset, Macronutrients, RANDOM_STATE, Total):
+    # Muestreo de las recetas
+
+    test_dash_sample = Diets_Dataset.query("Diet_type == 'dash'").sample(250,random_state=RANDOM_STATE,ignore_index=True)[Macronutrients+[Total]]
+    test_dash_sample[Macronutrients] *= test_dash_sample[Total].to_numpy()[:,None]
+    return (test_dash_sample,)
+
+
+@app.cell
+def _(Macronutrients, Total, np, test_dash_sample):
+    # Formar la ingesta diaria siguiendo la receta
+
+    test_dash_daily = test_dash_sample.groupby(np.arange(250)//5).sum()
+    test_dash_daily[Macronutrients] /= test_dash_daily[Total].to_numpy()[:,None]
+    return (test_dash_daily,)
+
+
+@app.cell
+def _(src, test_dash_daily):
+    # Resultados de la prueba
+
+    src.TestDashDiet(test_dash_daily)
+    return
+
+
+@app.cell
+def _(mo):
+    mo.md(r"## 7.2 Dieta Keto")
+    return
+
+
+@app.cell
+def _(Cuisine, Diets_Dataset):
+    # Obtener las recetas por cocina
+
+    test_keto_recipes = Diets_Dataset.query("Diet_type == 'keto'").groupby(Cuisine)
+    return (test_keto_recipes,)
+
+
+@app.cell
+def _(src, test_keto_recipes):
+    # Resultados de la prueba
+
+    src.TestKetoDiet(test_keto_recipes)
+    return
+
+
+@app.cell
+def _(mo):
+    mo.md(r"## 7.3 Dieta Mediterráneo")
+    return
+
+
+@app.cell
+def _(Diets_Dataset):
+    # Obtener recetas por región
+
+    test_mediterranean_local = Diets_Dataset.query("Diet_type == 'mediterranean' & Cuisine_type == 'mediterranean'")
+    test_mediterranean_others = Diets_Dataset.query("Diet_type == 'mediterranean' & Cuisine_type != 'mediterranean'")
+    return test_mediterranean_local, test_mediterranean_others
+
+
+@app.cell
+def _(src, test_mediterranean_local, test_mediterranean_others):
+    # Resultados de la prueba
+
+    src.TestMediterraneanDiet(test_mediterranean_local,test_mediterranean_others)
+    return
+
+
+@app.cell
+def _(mo):
+    mo.md(r"## 7.4 Dieta Paleo")
+    return
+
+
+@app.cell
+def _(Cuisine, Diets_Dataset):
+    # Obtener recetas por cocina
+
+    test_paleo_recipes = Diets_Dataset.query("Diet_type == 'paleo'").groupby(Cuisine)
+    return (test_paleo_recipes,)
+
+
+@app.cell
+def _(src, test_paleo_recipes):
+    # Resultados de la prueba
+
+    src.TestPaleoDiet_1(test_paleo_recipes)
+    return
+
+
+@app.cell
+def _(src, test_paleo_recipes):
+    # Resultados de la prueba post-hoc
+
+    src.TestPaleoDiet_2(test_paleo_recipes)
+    return
+
+
+@app.cell
+def _(mo):
+    mo.md(r"## 7.5 Dieta Vegana")
+    return
+
+
+@app.cell
+def _(Cuisine, Diets_Dataset):
+
+    # Obtener recetas por cocina
+
+    test_vegan_recipes = Diets_Dataset.query("Diet_type == 'vegan'").groupby(Cuisine)
+    return (test_vegan_recipes,)
+
+
+@app.cell
+def _(src, test_vegan_recipes):
+    src.TestVeganDiet(test_vegan_recipes)
+    return
+
+
+@app.cell
+def _(mo):
+    mo.md(r"## 7.6 Diferencias entre Dietas")
+    return
+
+
+@app.cell
+def _(Diets_Dataset, src):
+    # Resultados de la prueba
+
+    src.TestDifferenceDiets(Diets_Dataset)
+    return
+
+
+@app.cell
+def _(mo):
+    mo.md(r"## 7.7 Interacción entre Dietas y Cocinas")
+    return
+
+
+@app.cell
+def _(Diets_Dataset, Macronutrients, src):
+    # Resultados de prueba
+
+    test_result_interaction = []
+    for macronutrient in Macronutrients:
+        result_interaction = src.TestInteractionDietCuisine(Diets_Dataset,macronutrient)
+        test_result_interaction.append((macronutrient,result_interaction))
+
+    test_result_interaction
+    return
+
+
+@app.cell
+def _(mo):
+    mo.md(r"## 7.8 Regresión Lineal")
+    return
+
+
+@app.cell
+def _(Diet, Diets_Dataset, Macronutrients):
+    # Obtener correlations
+
+    correlation_diets_macronutrients = Diets_Dataset.groupby(Diet)[Macronutrients].corr()
+    return (correlation_diets_macronutrients,)
+
+
+@app.cell
+def _(Diets, correlation_diets_macronutrients, src):
+    # Resultados de la prueba
+
+    test_result_regression = []
+    for diet_test in Diets:
+        result_regression = src.TestLinealDependency(correlation_diets_macronutrients.loc[diet_test])
+        test_result_regression.append([diet_test,result_regression])
+
+    test_result_regression
+    return
+
+
+@app.cell
+def _(Diet, Diets, Diets_Dataset, src):
+    # Parámetros de regresión lineal
+
+    test_result_fit = []
+    for diet_fit in Diets:
+        result_fit = src.FitLinealRegression(Diets_Dataset.query(f'{Diet} == @diet_fit'))
+        test_result_fit.append((diet_fit,result_fit))
+
+    test_result_fit
     return
 
 

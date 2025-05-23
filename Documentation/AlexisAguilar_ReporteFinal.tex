@@ -879,24 +879,200 @@
     {
         Para cada una de las pruebas se hace uso de una significancia de $\alpha = 0.05$, 
         para las diferentes pruebas se reportan los p valores (p-value) y el valor del 
-        estadístico que se obtuvieron, en los casos que sea posible. El procedimiento 
+        estadístico que se obtuvieron. El procedimiento 
         desarrollado en esta sección se encuentra en la sección de mismo nombre y 
         enumeración en la libreta de \href{https://github.com/marimo-team/marimo}{Marimo} 
         que se puede encontrar en \href{https://github.com/alexisuaguilaru/Analysis_Nutritional_Information/blob/main/Documentation/AlexisAguilar_ReporteFinal.py}{Analysis Nutritional Information} 
-        donde se expone el código y resultados más en ``crudo'' (sin interpretación).
+        donde se expone el código y resultados más en crudo (sin interpretación).
     
         \subsection{Dieta DASH}
         {
+            Se quiere probar si esta dieta se encuentra 
+            en balance nutricional, es decir, si se llega a consumir la 
+            misma proporción de macronutrientes diariamente. 
+            Se realiza el supuesto de que en un día normal se consumen 
+            cinco comidas, el equivalente a cinco recetas, por lo que 
+            se muestrean 50 días siguiendo esta dieta. 
+            Para generar el muestreo de 50 días se vuelve equivalente a 
+            que se muestreen de forma aleatoria 250 recetas que forman 
+            grupos de 5 recetas para después determinar las proporciones 
+            de macronutrientes que son consumidos en cada día.\\
 
+            Con las muestras de las proporciones de macronutrientes se realiza 
+            un conjunto de hipótesis por cada macronutriente, teniendo lo 
+            siguiente:
+            \begin{align*}
+                H_0 :& \overline{x}_M = 1/3  \\
+                H_1 :& \overline{x}_M \ne 1/3 
+            \end{align*}
+        
+            Donde $M$ se refiere a uno de los tres macronutrientes con los que 
+            se cuenta. Se hace uso de la Prueba t para determinar si existe 
+            una diferencia significativa respecto al balance. Se obtienen 
+            los siguientes resultados:
+
+            \begin{center}
+                \begin{tabular}{lrr}
+                \toprule
+                    Macronutriente & Valor P & Estadístico y \\
+                \midrule
+                    Carbs   & 0.0000 &  7.3856 \\
+                    Protein & 0.0000 & -9.2252 \\
+                    Fat     & 0.0816 & -1.7778 \\
+                \bottomrule
+                \end{tabular}
+            \end{center}
+
+            Se tiene que las grasas es el único macronutriente que se encuentra en 
+            balance pero aún así tiene un tendencia a ser menor al balance nutricional; 
+            mientras que los otros macronutrientes no se encuentran en este balance, 
+            debido a que los carbohidratos se vuelven un macronutriente dominante en 
+            esta receta dejando a las proteínas en una proporción mucho menor. Esto hace 
+            de la dieta DASH una que no tiene un balance nutricional.
         }
 
         \subsection{Dieta Keto}
+        {
+            Se quiere probar si en todas las cocinas de esta dieta 
+            se verifica que el consumo de carbohidratos es menor al de grasas. 
+            El conjunto de hipótesis son de la forma:
+            \begin{align*}
+                H_0 : \overline{c}_C = \overline{f}_C \\
+                H_1 : \overline{c}_C < \overline{f}_C
+            \end{align*}
+
+            Donde $\overline{c}_C$ y $\overline{f}_C$ representan 
+            la media de los carbohidratos y grasas, respectivamente, de 
+            una cocina $C$. Se realiza la Prueba t junto con la Prueba de Levenne para 
+            probar la homocedasticidad entre los macronutrientes. Se 
+            obtienen los siguientes resultados:
+
+            \begin{center}
+                \begin{tabular}{lrr}
+                \toprule
+                    Cocina & Valor P & Estadístico t \\
+                \midrule
+                    american       & 0.0000 & -35.6024 \\
+                    asian          & 0.0000 &  -8.1913 \\
+                    european       & 0.0000 & -34.4175 \\
+                    latin american & 0.0000 & -10.6138 \\
+                    mediterranean  & 0.0000 & -11.6289 \\
+                \bottomrule
+                \end{tabular}
+            \end{center}
+
+            Al observar los valores p, se tiene que en todas las cocinas se cumple 
+            que la ingesta de grasas es mayor que la de carbohidratos, por lo 
+            tanto, las diferentes cocinas son representativas de la dieta keto.
+        }
 
         \subsection{Dieta Mediterránea}
+        {
+            Se quiere probar si existe una diferencia en el comportamiento, aportes 
+            nutricionales, entre las recetas de la propia región del Mediterráneo en contraste 
+            con las recetas de las demás cocinas. Se tiene el siguiente conjunto de hipótesis:
+            \begin{align*}
+                H_0 : F^M_m = F^O_m \\
+                H_1 : F^M_m \ne F^O_m  
+            \end{align*}
+
+            Donde $F^M_m$ y $F^O_m$ representan la distribución del macronutriente $m$ sobre las 
+            recetas pertenecientes al mediterráneo, $M$, y de las que no pertenecen, $O$, respectivamente. 
+            Se hace uso de la Prueba Kolmogorov-Smirnov para detectar cualquier diferencia entre las distribuciones.
+            Se obtienen los siguientes resultados:
+
+            \begin{center}
+                \begin{tabular}{lrr}
+                \toprule
+                    Macronutrientes & Valores P & Estadístico d \\
+                \midrule
+                    Carbs   & 0.3476 & 0.0497 \\
+                    Protein & 0.0018 & 0.0998 \\
+                    Fat     & 0.7416 & 0.0361 \\
+                \bottomrule
+                \end{tabular}
+            \end{center}
+            
+            De los valores p, se tiene que los carbohidratos y las grasas 
+            no tienen una difeerencia significa, por lo que siguen la misma 
+            distribución y, por lo tanto, las recetas tendrán composiciones 
+            similares en estos macronutrientes. En cambio, en las porteínas 
+            occure lo contrario, mostrando que las regiones influyen sobre 
+            los alimentos de origen animal emplean.
+        }
 
         \subsection{Dieta Paleo}
+        {
+            Se quire probar como las regiones geográficas imponen o contribuyen 
+            a los aportes de proteínas en las recetas pertenecientes a una cocina. 
+            Se tiene el siguiente conjunot de hipótesis:
+            \begin{align*}
+                H_0 :& \text{Todas las medianas son iguales} \\
+                H_1 :& \text{Por al menos una de las medianas es diferente}
+            \end{align*}
+
+            Donde las medianas se refieren a las de proteínas por cocina. Para probar 
+            estas hipótesis se hace uso de la Prueba de Kruskal-Wallis junto con la 
+            Prueba de Dunn para probar en qué cocinas, específicamente, difieren. Lo 
+            anterior debido a que las distribuciones son no normales. Se obtienen los 
+            siguientes resultados: el valor p es $0.0000349902$ y el estadístico h es 
+            $25.783473$. Aplicando la prueba de Dunn, se tiene que:
+
+            \begin{center}
+                \begin{tabular}{lrrrrr}
+                \toprule
+                 & american & asian & european & latin american & mediterranean \\
+                \midrule
+                american       & 1 & 0.000007 & 1 & 1 & 1 \\
+                asian          & 0.000007 & 1 & 0.000096 & 0.006961 & 0.000319 \\
+                european       & 1 & 0.000096 & 1 & 1 & 1 \\
+                latin american & 1 & 0.006961 & 1 & 1 & 1 \\
+                mediterranean  & 1 & 0.000319 & 1 & 1 & 1 \\
+                \bottomrule
+                \end{tabular}
+            \end{center}
+
+            Se tiene que la dieta asiática es la única que difiere significamente 
+            de las demás en las proteínas, haciendo que sea una cocina con recetas 
+            más ricas en proteínas que en las demás, esto se podría explicar por 
+            medio de un mejor aprovechamiento de los recursos pesqueros e hidrícos.
+        }
 
         \subsection{Dieta Vegana}
+        {
+            Se quiere probar si los aportes de carbohidratos son mayores 
+            que a los de proteínas en cada una de las cocinas. Se tiene el 
+            siguiente conjunto de hipótesis:
+            \begin{align*}
+                H_0 : \overline{p}_C = \overline{c}_C \\
+                H_1 : \overline{p}_C < \overline{c}_C
+            \end{align*}
+
+            De donde $\overline{p}_C$ y $\overline{c}_C$ representan la media 
+            de las proteinas y carbohidratos, respectivamente, de una cocina $C$. 
+            Se realiza la Prueba t junto con la Prueba de Levenne para 
+            probar la homocedasticidad entre los macronutrientes. Se obtienen 
+            los siguientes resultados:
+
+            \begin{center}
+                \begin{tabular}{lrr}
+                \toprule
+                    Cocina & Valores P & Estadístico t \\
+                \midrule
+                    american       & 0 & -70.993397 \\
+                    asian          & 0 & -28.727771 \\
+                    european       & 0 & -35.549140 \\
+                    latin american & 0 & -27.142548 \\
+                    mediterranean  & 0 & -24.670579 \\
+                \bottomrule
+                \end{tabular}
+            \end{center}
+
+            De los valores p, se tiene que en todas las dietas la ingesta de 
+            proteínas es menor que la de carbohidratos, esto representa que 
+            es una dieta baja de proteínas y que se tiene que complementar 
+            con una fuente rica en proteínas.
+        }
 
         \subsection{Diferencias entre Dietas}
 
@@ -904,6 +1080,8 @@
 
         \subsection{Regresión Lineal}
     }
+
+    \newpage
 
     \addcontentsline{toc}{section}{Anexos}
     \appendix

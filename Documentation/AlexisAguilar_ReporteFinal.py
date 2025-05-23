@@ -621,7 +621,7 @@ def _(Diets_Dataset):
 def _(src, test_mediterranean_local, test_mediterranean_others):
     # Resultados de la prueba
 
-    src.TestMediterraneanDiet(test_mediterranean_local,test_mediterranean_others)
+    print(src.TestMediterraneanDiet(test_mediterranean_local,test_mediterranean_others).to_latex())
     return
 
 
@@ -672,7 +672,7 @@ def _(Cuisine, Diets_Dataset):
 
 @app.cell
 def _(src, test_vegan_recipes):
-    src.TestVeganDiet(test_vegan_recipes)
+    print(src.TestVeganDiet(test_vegan_recipes).to_latex())
     return
 
 

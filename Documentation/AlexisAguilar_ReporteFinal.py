@@ -418,17 +418,6 @@ def _(Diet, Diets, Diets_Dataset, Macronutrients, pd):
 
 
 @app.cell
-def _(Diet, Diets, Diets_Dataset, plt, src):
-    for diet_reg in Diets:
-        case_str_reg = str.capitalize if diet_reg != 'dash' else str.upper
-        PlotRegression = src.Plot_RegressionMacronutrients(Diets_Dataset.query(f'{Diet} == @diet_reg'),case_str_reg(diet_reg))
-        #src.SaveFig(PlotRegression,'Bivariado','Regression'+diet_reg.capitalize())
-
-    plt.show()
-    return
-
-
-@app.cell
 def _(mo):
     mo.md(r"# 6. Muestreo e Intervalos de Confianza")
     return
@@ -621,7 +610,7 @@ def _(Diets_Dataset):
 def _(src, test_mediterranean_local, test_mediterranean_others):
     # Resultados de la prueba
 
-    print(src.TestMediterraneanDiet(test_mediterranean_local,test_mediterranean_others).to_latex())
+    src.TestMediterraneanDiet(test_mediterranean_local,test_mediterranean_others)
     return
 
 
@@ -663,7 +652,6 @@ def _(mo):
 
 @app.cell
 def _(Cuisine, Diets_Dataset):
-
     # Obtener recetas por cocina
 
     test_vegan_recipes = Diets_Dataset.query("Diet_type == 'vegan'").groupby(Cuisine)
@@ -672,7 +660,7 @@ def _(Cuisine, Diets_Dataset):
 
 @app.cell
 def _(src, test_vegan_recipes):
-    print(src.TestVeganDiet(test_vegan_recipes).to_latex())
+    src.TestVeganDiet(test_vegan_recipes)
     return
 
 
@@ -716,20 +704,12 @@ def _(mo):
 
 
 @app.cell
-def _(Diet, Diets_Dataset, Macronutrients):
-    # Obtener correlations
-
-    correlation_diets_macronutrients = Diets_Dataset.groupby(Diet)[Macronutrients].corr()
-    return (correlation_diets_macronutrients,)
-
-
-@app.cell
-def _(Diets, correlation_diets_macronutrients, src):
+def _(Diet, Diets, Diets_Dataset, src):
     # Resultados de la prueba
 
     test_result_regression = []
     for diet_test in Diets:
-        result_regression = src.TestLinealDependency(correlation_diets_macronutrients.loc[diet_test])
+        result_regression = src.TestLinealDependency(Diets_Dataset.query(f'{Diet} == @diet_test'))
         test_result_regression.append([diet_test,result_regression])
 
     test_result_regression
@@ -746,6 +726,17 @@ def _(Diet, Diets, Diets_Dataset, src):
         test_result_fit.append((diet_fit,result_fit))
 
     test_result_fit
+    return
+
+
+@app.cell
+def _(Diet, Diets, Diets_Dataset, plt, src):
+    for diet_reg in Diets:
+        case_str_reg = str.capitalize if diet_reg != 'dash' else str.upper
+        PlotRegression = src.Plot_RegressionMacronutrients(Diets_Dataset.query(f'{Diet} == @diet_reg'),case_str_reg(diet_reg))
+        src.SaveFig(PlotRegression,'Bivariado','Regression'+diet_reg.capitalize())
+
+    plt.show()
     return
 
 

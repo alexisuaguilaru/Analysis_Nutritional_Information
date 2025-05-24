@@ -24,7 +24,10 @@
 \usepackage{csquotes}
 \usepackage{hyperref}
 \usepackage[noabbrev,capitalize]{cleveref}
-\usepackage[style=ieee]{biblatex}
+\usepackage[style=ieee,backend=biber]{biblatex}
+
+\usepackage{setspace}
+
 \addbibresource{referencias.bib}
 
 \newcommand{\fullref}[1]{%
@@ -39,7 +42,6 @@
 \crefname{table}{Tabla}{Tablas}
 \crefname{anexo}{Anexo}{Anexos}
 
-\usepackage{setspace}
 \setstretch{1.25}
 \setlength{\parindent}{0pt}
 
@@ -967,6 +969,7 @@
         }
 
         \subsection{Dieta Mediterránea}
+
         {
             Se quiere probar si existe una diferencia en el comportamiento, aportes 
             nutricionales, entre las recetas de la propia región del Mediterráneo en contraste 
@@ -1075,10 +1078,236 @@
         }
 
         \subsection{Diferencias entre Dietas}
+        {
+            Se quiere probar el objetivo principal del trabajo, el relacionado a que si
+            existe una diferencia en los aportes nutricionales entre las diferentes 
+            dietas. Para ello, se hace uso de las distribuciones de los macronutrientes 
+            que presentan las diferentes dietas. Se tiene el siguiente conjunto de  
+            hipótesis:
+            \begin{align*}
+                H_0 : F_m(x) = G_m(x) \\
+                H_1 : F_m(x) \ne G_m(x)
+            \end{align*}
+
+            Donde $F_m(x)$ y $G_m(x)$ son las distribuciones del macronutriente $m$ en 
+            dos dietas diferentes. Se hace uso de la Prueba de Kolmogorov-Smirnov para detectar 
+            cualquier diferencia en las distribuciones. Para cuantificar la diferencia entre dietas 
+            se promedian los resultados del estadístico calculado en cada una de las pruebas.
+            Se obtienen los siguientes resultados.
+
+            \begin{center}
+                \begin{tabular}{lrrrrr}
+                \toprule
+                    \multicolumn{6}{c}{Diferencias Significativas} \\
+                \midrule
+                    & dash & keto & mediterranean & paleo & vegan \\
+                \midrule
+                    dash & 0 & 3 & 3 & 3 & 3 \\
+                    keto & 3 & 0 & 3 & 3 & 3 \\
+                    mediterranean & 3 & 3 & 0 & 3 & 3 \\
+                    paleo & 3 & 3 & 3 & 0 & 3 \\
+                    vegan & 3 & 3 & 3 & 3 & 3 \\
+                \bottomrule
+                \end{tabular}
+            \end{center}
+            
+            \begin{center}
+                \begin{tabular}{lrrrrr}
+                \toprule
+                    \multicolumn{6}{c}{Promedio de los Estadísticos d} \\
+                \midrule
+                    & dash & keto & mediterranean & paleo & vegan \\
+                \midrule
+                    dash          & 0.000000 & 0.450111 & 0.147704 & 0.207993 & 0.206442 \\
+                    keto          & 0.450111 & 0.000000 & 0.391530 & 0.299025 & 0.624274 \\
+                    mediterranean & 0.147704 & 0.391530 & 0.000000 & 0.198158 & 0.282763 \\
+                    paleo         & 0.207993 & 0.299025 & 0.198158 & 0.000000 & 0.394270 \\
+                    vegan         & 0.206442 & 0.624274 & 0.282763 & 0.394270 & 0.000000 \\
+                \bottomrule
+                \end{tabular}
+            \end{center}
+
+            Se tiene que todas las dietas son diferentes entre sí, esto lleva a que 
+            los propios estilos de cocina, los ingredientes que usen y las preparaciones 
+            sean lo suficientemente diversas y únicas para que no se parezcan entre sí. 
+            Y al usar el promedio del estadístico, se tiene que no hay dietas que se acerquen 
+            mucho a otras, es decir, que se parezcan, siendo la dieta DASH y mediterránea las 
+            que más se parecen, mientras que la dieta vegana y la keto son opuestas de la otra. 
+        }
 
         \subsection{Interacción entre Dietas y Cocina}
+        {
+            Se quiere probar si las dietas y las cocinas (en conjunto) tienen una influencia 
+            sobre los diferentes macronutrientes. Para ello se realiza una ANOVA de dos vías 
+            no paramétricas, por medio de la Prueba de Scheirer-Ray-Hare, los resultados que 
+            se obtienen por macronutriente y fuente de variación son:
+
+            \begin{center}
+                \begin{tabular}{lrr}
+                \toprule
+                    \multicolumn{3}{c}{Carbs} \\
+                \midrule
+                    Fuente & Valores P & Estadístico F \\
+                \midrule
+                    Dieta               & 0.0000 & 796.5672 \\
+                    Cocina              & 0.0039 &   3.8450 \\
+                    Dieta $\ast$ Cocina & 0.0153 &   1.9108 \\
+                \bottomrule
+                \end{tabular}
+                \vspace*{0.5cm}
+                \begin{tabular}{lrr}
+                    \toprule
+                    \multicolumn{3}{c}{Protein} \\
+                \midrule
+                    Fuente & Valores P & Estadístico F \\
+                \midrule
+                    Dieta               & 0.0000 & 220.3292 \\
+                    Cocina              & 0.0000 &  30.4022 \\
+                    Dieta $\ast$ Cocina & 0.0052 &   2.1329 \\
+                \bottomrule
+                \end{tabular}\\
+                \vspace*{0.1cm}
+                \begin{tabular}{lrr}
+                    \toprule
+                    \multicolumn{3}{c}{Fat} \\
+                \midrule
+                    Fuente & Valores P & Estadístico F \\
+                \midrule
+                    Dieta               & 0.0000   & 523.5090 \\
+                    Cocina              & 0.0000   &   8.7621 \\
+                    Dieta $\ast$ Cocina & 0.000070 &   2.9393 \\
+                \bottomrule
+                \end{tabular}
+            \end{center}
+
+            De manera individual, las dietas y las cocinas si tienen una influencia 
+            sobre los valores en los macronutrientes de manera contundente, esto 
+            coincide con las conclusiones del apartado anterior además de que las 
+            deberían que tender a tener diferencias.\\
+            
+            Cuando se considera su interacción, 
+            se tiene que en las proteínas y grasas tienen una interacción fuerte debido 
+            a sus valores, además de ser los macronutrientes que más fluctúan cuando 
+            se comparan entre dietas y recetas. En carbohidratos, se tiene que esta 
+            influencia se reduce, esto se relaciona a que los carbohidratos son más 
+            estables entre las dietas y cocinas, haciendo que tomen rango de valorse 
+            parecidos.
+        }
 
         \subsection{Regresión Lineal}
+        {
+            Se quiere probar si la dependencia lineal de los macronutrientes en cada 
+            dieta es significativa, para ello se hace uso de la prueba de Correlación 
+            de Pearson. Se tinen los siguientes conjunto de hipótesis:\\
+            \begin{minipage}{0.5\textwidth}
+                \begin{align*}
+                    H_0 :& \rho = 0 \\
+                    H_1 :& \rho < 0
+                \end{align*}
+            \end{minipage}%
+            \begin{minipage}{0.5\textwidth}
+                \begin{align*}
+                    H_0 :& \rho = 0 \\
+                    H_1 :& \rho > 0
+                \end{align*}
+            \end{minipage}
+
+            Donde se hace uso de $<$ si el signo de la correlación muestral es negativa y, 
+            en caso contrario, se usa $>$, y donde $\rho$ se refiere al coeficiente de correlación 
+            que hay entre dos macronutrientes en una dieta. Se tienen los siguientes resultados:\\
+            
+            \begin{minipage}{0.5\textwidth}
+                \centering                
+                \begin{tabular}{lrr}
+                    \toprule
+                    \multicolumn{3}{c}{DASH}\\
+                    \midrule
+                        Macronutrientes & Valores P & Estadístico r \\
+                    \midrule
+                        Carbs Protein & 0.0000 & -0.6850 \\
+                        Carbs Fat     & 0.0000 & -0.7650 \\
+                        Protein Fat   & 0.0161 &  0.0550 \\
+                    \bottomrule
+                \end{tabular}
+            \end{minipage}%
+            \begin{minipage}{0.5\textwidth}
+                \centering                
+                \begin{tabular}{lrr}
+                    \toprule
+                    \multicolumn{3}{c}{Keto}\\
+                    \midrule
+                        Macronutrientes & Valores P & Estadístico r \\
+                    \midrule
+                        Carbs Protein & 0 & -0.4780 \\
+                        Carbs Fat     & 0 & -0.4621 \\
+                        Protein Fat   & 0 & -0.5578 \\
+                    \bottomrule
+                \end{tabular}
+            \end{minipage}\\
+            \newline 
+            
+            \begin{minipage}{0.5\textwidth}
+                \centering                
+                \begin{tabular}{lrr}
+                    \toprule
+                    \multicolumn{3}{c}{Mediterranean}\\
+                    \midrule
+                        Macronutrientes & Valores P & Estadístico r \\
+                    \midrule
+                        Carbs Protein & 0 & -0.66431 \\
+                       Carbs Fat     & 0 & -0.65294 \\
+                        Protein Fat   & 0 & -0.13236 \\
+                    \bottomrule
+                \end{tabular}
+            \end{minipage}%
+            \begin{minipage}{0.5\textwidth}
+                \centering                
+                \begin{tabular}{lrr}
+                    \toprule
+                    \multicolumn{3}{c}{Paleo}\\
+                    \midrule
+                        Macronutrientes & Valores P & Estadístico r \\
+                    \midrule
+                        Carbs Protein & 0 & -0.6293 \\
+                        Carbs Fat     & 0 & -0.6284 \\
+                        Protein Fat   & 0 & -0.2089 \\
+                    \bottomrule
+                \end{tabular}
+            \end{minipage}\\
+
+            \begin{center}
+                \begin{tabular}{lrr}
+                    \toprule
+                    \multicolumn{3}{c}{Vegana}\\
+                    \midrule
+                        Macronutrientes & Valores P & Estadístico r \\
+                    \midrule
+                        Carbs Protein & 0 & -0.3740 \\
+                        Carbs Fat     & 0 & -0.8668 \\
+                        Protein Fat   & 0 & -0.1381 \\
+                    \bottomrule
+                \end{tabular}
+            \end{center}
+
+            En todos los valores p, se tiene que existe una correlación y que los valores 
+            reportados en \fullref{sec:biva} se vuelven las correlacionados entre los 
+            macronutrientes. Por lo que se puede construir un modelo lienal que sea confiable 
+            sobre sus predicciones que realice, teniendo los siguientes parámetros por 
+            cada dieta donde $m$ es la pendiente y $b$ es la intercepción con el eje y:
+
+            \begin{center}
+                \includegraphics[width=0.9\textwidth]{Resources/Bivariado/RegressionDash.png}\\
+                \includegraphics[width=0.9\textwidth]{Resources/Bivariado/RegressionKeto.png}\\
+                \includegraphics[width=0.9\textwidth]{Resources/Bivariado/RegressionMediterranean.png}\\
+                \includegraphics[width=0.9\textwidth]{Resources/Bivariado/RegressionPaleo.png}\\
+                \includegraphics[width=0.9\textwidth]{Resources/Bivariado/RegressionVegan.png}
+            \end{center}
+
+            Donde se puede apreciar que tienen un buen ajuste según el valor abosluto de la 
+            correlación que tengan, es decir, los macronutrientes de las recetas de una dieta 
+            siguen la tendencia de la recta de regresión generada mostrando así la correlación 
+            entre los macronutrientes.
+        }
     }
 
     \newpage
@@ -1131,7 +1360,7 @@
             
             El objetivo de la dieta cetogénica es inducir la cetosis, un estado 
             metabólico que se produce cuando el cuerpo quema grasa para obtener 
-            energía en lugar de glucosa, lo que induce la pérdida de peso.
+            energía en lugar de glucosa, lo que induce la pérdida de peso. 
         }
                 
         \subsection{Dieta Mediterránea}
@@ -1172,12 +1401,14 @@
         }
         }
 
+        \newpage
+
         \section{Figuras Adicionales}\label{anexo:B}
         {
             \subsection{Correlograma de los Macronutrientes En las Diferentes Dietas}\label{anexo:B.1}
             {
                 \begin{center}
-                   \includegraphics[width=0.8\textwidth]{Resources/Bivariado/Correlation.png}
+                   \includegraphics[height=0.9\textheight]{Resources/Bivariado/Correlation.png}
                 \end{center}
             }
         }

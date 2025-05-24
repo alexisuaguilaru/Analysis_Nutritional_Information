@@ -1,5 +1,6 @@
 import pandas as pd
 import seaborn as sns
+from scipy import stats
 
 from .Base import Macronutrients
 from .BasePlot import *
@@ -82,8 +83,9 @@ def Plot_RegressionMacronutrients(Dataset:pd.DataFrame,Diet:str=None):
 
         x_label = MapTranslate[macronutrient_1]
         y_label = MapTranslate[macronutrient_2]
-        rho = Dataset[[macronutrient_1,macronutrient_2]].corr().iloc[0,1]
-        SetLabelsPlot(axes[display],f'{x_label} contra {y_label}\n'+rf'$\rho$={rho:.4f}',x_label,y_label)
+        slope , intercept , *_ = stats.linregress(Dataset[macronutrient_1],Dataset[macronutrient_2])
+
+        SetLabelsPlot(axes[display],f'{x_label} contra {y_label}\n'+rf'$m$={slope:.4f} y $b$={intercept:.4f}',x_label,y_label)
 
     SetTitleFig(fig,f'Correlación entre Macronutrientes' + (f'\nen {Diet}' if Diet else ''))
 

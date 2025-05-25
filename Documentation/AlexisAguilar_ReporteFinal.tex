@@ -15,16 +15,16 @@
 \usepackage{graphicx}
 \usepackage{wrapfig}
 \usepackage{makecell}
+\usepackage{array,calc,xtab}
 
 \usepackage{booktabs}
 \usepackage{enumitem}
 \usepackage{xcolor}
 
-
 \usepackage{csquotes}
+\usepackage[style=ieee,backend=biber]{biblatex}
 \usepackage{hyperref}
 \usepackage[noabbrev,capitalize]{cleveref}
-\usepackage[style=ieee,backend=biber]{biblatex}
 
 \usepackage{setspace}
 
@@ -136,42 +136,32 @@
     {
         \subsection{Fuente de Datos}
         {
-            El conjunto de datos con el que se está trabajando para este proyecto 
-            se encuentran en \cite{dataset_macronutrients}, publicado por la comunidad 
-            de Kaggle. Los datos consisten de un conjunto de recetas de diferentes 
-            dietas y cocinas, además incluye información de los macronutrientes que 
+            El conjunto de datos se encuentra disponible en \cite{dataset_macronutrients}, 
+            publicado por la comunidad de Kaggle. Los datos consisten de un conjunto 
+            de recetas de diferentes dietas y cocinas, además incluye información de los macronutrientes que 
             aporta cada receta.\\
             
-            \cite{dataset_macronutrients} Aunque en la descripción ni en los metadatos del conjunto de datos se 
-            haga mención de las fuentes explícitas de los datos ni el objetivo de 
-            esta extracción, sí cuenta con una sección de cómo usar el conjunto de 
-            datos, ideas de investigación y reconocimientos.\\
-            
+            \cite{dataset_macronutrients} Del apartado de reconocimientos, se concluye que las recetas fueron 
+            proporcionadas por diferentes creadores de las mismas y demás contribuidores 
+            al conjunto de datos. 
             De los apartados de cómo usar el conjunto de datos e ideas de investigación, 
             se encuentra una idea, implícita, de la información que se quería estudiar. 
             La principal información de interés se vuelve que es: el crear planes 
-            alimenticios saludables, ya sea usando las recetas proporcionadas o creando 
-            unas nuevas basadas en una dieta y cocina, y el estudiar la relación entre 
-            dieta y salud.\\
-            
-            Del apartado de reconocimientos, se concluye que las recetas fueron 
-            proporcionadas por diferentes creadores de las mismas y demás contribuidores 
-            al conjunto de datos. 
+            alimenticios saludables, y el estudiar la relación entre dieta y salud.
         }
 
         \subsection{Interés del Estudio}
         {
             Se consultó \cite{marvastipopular} en sus 
-            capítulos 4 y 8, de donde se proporciona un mejor entendimiento de la 
+            capítulos 4 y 8, de donde se proporciona un entendimiento de la 
             importancia de los macronutrientes y una descripción general de las 
-            dietas en este trabajo, resultando interesante que en cada dieta se 
+            dietas, resultando interesante que en cada dieta se 
             consumen diferentes alimentos y productos con ciertas características 
             para ya sea respetar alguna creencia, fundamento o cuota de macronutrientes. 
             De esto último, proporciona un indicio de que existe una diferencia entre 
-            las dietas a nivel de sus aportes nutricionales, por lo tanto, lo que se 
-            quiere realizar es probar esta diferencia de manera significativa haciendo 
-            uso de la estadística y, en caso de que la haya, mostrar que tanta es ésta 
-            diferencia y sus implicaciones.
+            las dietas a nivel de aportes nutricionales, por lo tanto, lo que se 
+            quiere realizar es probar esta diferencia haciendo 
+            uso de la estadística.
         }
 
         \subsection{Variables del Conjunto de Datos}
@@ -198,40 +188,6 @@
             dentro del dataset. Se hace mención que el conjunto de datos no presenta 
             valores faltantes.
         }
-
-        \subsection{Ejemplo de Registros en el Conjunto de Datos}\label{subsec:ejemplos}
-        {
-            Para ejemplificar como luce el conjunto de datos, se presente 
-            una instancia de cada tipo de dieta:
-            
-            \begin{center}       
-                \begin{tabular}{lll}
-                    \toprule
-                    \textbf{Diet\_type} & \textbf{Recipe\_name} & \textbf{Cuisine\_type} \\
-                    \midrule
-                    dash          & Old Fashioned                     & world \\
-                    keto          & Keto Egg Drop Soup                & chinese \\
-                    mediterranean & Mediterranean Mix                 & mediterranean \\
-                    paleo         & Easy Paleo Herb Gravy recipes     & french \\
-                    vegan         & Braised Green Beans with Tomatoes & mediterranean \\
-                    \bottomrule
-                \end{tabular}
-            \end{center}
-            
-            \begin{center}
-                \begin{tabular}{rrr}
-                    \toprule
-                    \textbf{Protein} & \textbf{Carbs} & \textbf{Fat} \\
-                    \midrule
-                    0.12 &  9.66 &  0.02 \\
-                    21.31 &  9.11 & 60.88 \\
-                    8.11 &  9.59 & 14.64 \\
-                    23.56 & 39.05 & 42.25 \\
-                    17.49 & 77.86 & 70.20 \\
-                    \bottomrule
-                \end{tabular}
-            \end{center}
-            }
     }
 
     \newpage
@@ -240,50 +196,46 @@
     {
         \subsection{Preprocesamiento (Transformación) de los Datos}\label{subsec:trans_datos}
         {
-            De las instancias presentadas en \fullref{subsec:ejemplos}, se tiene 
-            que los valores de los macronutrientes pueden tomar un amplio rango 
-            de valores, esto puede generar un conflicto al momento de generar una 
-            comparativa entre dietas, debido a principalmente los rangos de valores. 
-            Para resolver esta situación los valores de los macronutrientes son 
-            normalizados con la norma $l1$, es decir, se calcula el total de macronutrientes 
-            (que se guarda como otra variable en \emph{Total\_macronutrients}) de cada 
-            receta y cada macronutriente se divide por este total.\\
+            Los macronutrientes pueden tomar un amplio rango 
+            de valores, esto puede generar un conflicto al momento de compara 
+            entre dietas. 
+            Por ello valores de los macronutrientes de cada receta son 
+            normalizados con la norma $l1$, y la norma calculada, el total de macronutrientes,
+            se guarda como otra variable en \emph{Total\_macronutrients}.\cite{beta_distribution}
 
             \begin{center}
-                \begin{tabular}{l|rrrrr|r}
+                \begin{tabular}{l|rrrrr}
                 \toprule
-                    & dash & keto & mediterranean & paleo & vegan & Suma Dietas \\
+                    & dash & keto & mediterranean & paleo & vegan \\
                 \midrule
-                    kosher           & 5    & 0    & 0    & 2    & 0    & 7    \\
-                    caribbean        & 3    & 7    & 1    & 6    & 1    & 18   \\
-                    central europe   & 9    & 11   & 1    & 9    & 4    & 34   \\
-                    japanese         & 9    & 10   & 2    & 5    & 24   & 50   \\
-                    eastern europe   & 10   & 11   & 3    & 27   & 4    & 55   \\
-                    middle eastern   & 21   & 17   & 26   & 12   & 15   & 91   \\
-                    indian           & 20   & 12   & 3    & 9    & 48   & 92   \\
-                    chinese          & 38   & 38   & 1    & 26   & 17   & 120  \\
-                    asian            & 24   & 11   & 12   & 12   & 67   & 126  \\
-                    south american   & 54   & 21   & 10   & 21   & 31   & 137  \\
-                    south east asian & 31   & 34   & 8    & 29   & 46   & 148  \\
-                    nordic           & 32   & 35   & 31   & 45   & 9    & 152  \\
-                    mexican          & 61   & 60   & 17   & 48   & 38   & 224  \\
-                    british          & 64   & 90   & 4    & 54   & 27   & 239  \\
-                    world            & 234  & 6    & 6    & 3    & 10   & 259  \\
-                    french           & 150  & 163  & 61   & 154  & 76   & 604  \\
-                    italian          & 165  & 234  & 148  & 171  & 81   & 799  \\
-                    mediterranean    & 176  & 89   & 1274 & 106  & 99   & 1744 \\
-                    american         & 639  & 663  & 145  & 535  & 925  & 2097 \\
-                \midrule
-                    Suma Cocinas     & 1745 & 1512 & 1753 & 1274 & 1522 & 7806 \\
+                    kosher           & 5    & 0    & 0    & 2    & 0   \\
+                    caribbean        & 3    & 7    & 1    & 6    & 1   \\
+                    central europe   & 9    & 11   & 1    & 9    & 4   \\
+                    japanese         & 9    & 10   & 2    & 5    & 24  \\
+                    eastern europe   & 10   & 11   & 3    & 27   & 4   \\
+                    middle eastern   & 21   & 17   & 26   & 12   & 15  \\
+                    indian           & 20   & 12   & 3    & 9    & 48  \\
+                    chinese          & 38   & 38   & 1    & 26   & 17  \\
+                    asian            & 24   & 11   & 12   & 12   & 67  \\
+                    south american   & 54   & 21   & 10   & 21   & 31  \\
+                    south east asian & 31   & 34   & 8    & 29   & 46  \\
+                    nordic           & 32   & 35   & 31   & 45   & 9   \\
+                    mexican          & 61   & 60   & 17   & 48   & 38  \\
+                    british          & 64   & 90   & 4    & 54   & 27  \\
+                    world            & 234  & 6    & 6    & 3    & 10  \\
+                    french           & 150  & 163  & 61   & 154  & 76  \\
+                    italian          & 165  & 234  & 148  & 171  & 81  \\
+                    mediterranean    & 176  & 89   & 1274 & 106  & 99  \\
+                    american         & 639  & 663  & 145  & 535  & 925 \\
                 \bottomrule
                 \end{tabular}
             \end{center}
 
-            Al considerar la cantidad de recetas que hay por dieta y cocina, se 
-            descubre que, para ciertas grupos o configuraciones no contienen recetas, 
-            por lo que para mitigar esta falta de instancias lo que se realizar es juntar 
+            Al considerar la cantidad de recetas que hay por dieta y cocina, se tiene que 
+            hay configuraciones donde cuentan con pocas recetas, 
+            por lo que para mitigar esta falta, lo que se realizar es juntar 
             los \emph{Cuisine\_type} en base a la cercanía geográfica, esto debido a 
-            que son colindantes comparten historia, cultura y, lo más relevante, ideas 
+            que si son colindantes comparten historia, cultura y, lo más relevante, ideas 
             gastronómicas. Por ello, las \emph{Cuisine\_type} se reagrupan de la siguiente 
             manera: 
 
@@ -305,26 +257,21 @@
 
         \subsection{Descripción de los Valores de las Variables}
         {
-            Para el presente trabajo se harán uso de las siguientes variables, se 
-            acompañan con una descripción de su significado o representación:
-
             \begin{itemize}[label=\textbullet]
             {
                 \item \textbf{Diet\_type}: Variable nominal que representa el tipo de 
-                dieta (DASH, keto, mediterránea, paleo, vegana) a la que 
-                pertenece una receta. Con esta variable se va permitir estratificar 
-                las recetas y estudiarlas de una manera más granular, y para realizar 
-                hipótesis sobre lo qué está pasando en una dieta o entre las diferentes dietas.
+                dieta a la que pertenece una receta. Permite la estratificación principal de  
+                las recetas y realizar hipótesis sobre lo qué está sucede en una dieta o entre las diferentes dietas.
                 
-                \item \textbf{Cuisine\_type}: Variable nominal que representa a qué (estilo 
-                de) cocina o región (mexicana, americana, italiana, entre otras) pertenece una 
-                receta. Al usarla va a permitir el comparar cómo son las recetas 
-                de una dieta en diferentes regiones, y realizar comparativas a lo 
-                largo de las dietas.
+                \item \textbf{Cuisine\_type}: Variable nominal que representa a qué 
+                cocina o región pertenece una 
+                receta. Permite el comparar cómo son las recetas 
+                de una dieta en diferentes regiones.
                 
                 \item \textbf{Protein}: Variable continua que representa el 
                 porcentaje, respecto al total de macronutrientes, de proteínas que son 
                 aportados por una receta.
+
                 \item \textbf{Carbs}: Variable continua que representa el 
                 porcentaje, respecto al total de macronutrientes, de carbohidratos que 
                 son aportados por una receta.
@@ -335,8 +282,7 @@
                 
                 \item \textbf{Total\_Macronutrients}: Variable continua que representa 
                 el total de macronutrientes que son aportados por una receta. Esta variable 
-                es auxiliar para la prueba de hipótesis, y no estará presente en la parte 
-                del Análisis Estadístico,    
+                es auxiliar para la prueba de hipótesis.
             }
             \end{itemize}
         }
@@ -347,7 +293,7 @@
             las recetas sin estratificarlas según el tipo de dieta:
 
             \begin{center}
-                \begin{tabular}{l|rrr}
+                \begin{xtabular}{w{l}{\widthof{Desviación Estándar}}|rrr}
                 \toprule
                     Medida & Carbs & Protein & Fat \\  
                 \midrule
@@ -360,30 +306,27 @@
                     Máximo              & 1.000000 & 0.887557 & 0.997940 \\
                     Asimetría de Fisher & 0.189556 & 0.922401 & 0.461455 \\
                 \bottomrule
-                \end{tabular}
+                \end{xtabular}
             \end{center}
 
-            Se reportan bajos valores en proteínas en comparación 
+            Los valores en proteínas son bajos en comparación 
             con los carbohidratos y grasas si se hace uso de la mediana ($Q_2$), 
-            dicho así: el cincuenta por ciento de las recetas tienen a lo mucho  
-            $19.09\%$ de proteínas, en comparación con el $43.20\%$ de carbohidratos 
-            y el $31.43\%$ de grasas. Esto es un indicio de que las recetas, en general, 
-            tienden a ser altas en carbohidratos y grasas entre las diferentes dietas y 
-            cocinas; mientras que son bajas en proteínas. Este último punto se apoya 
-            al considerar la asimetría que reportan las proteínas a ser un valor extremadamente 
-            alto y positivo.\\
+            dicho así. Esto es un indicio de que las recetas, en general, 
+            tienden a ser altas en carbohidratos y grasas; mientras que son bajas 
+            en proteínas. Este último punto se apoya al considerar la asimetría de 
+            las proteínas.\newline 
 
             Si se gráfica la distribución de los macronutrientes se tiene que, debido 
             a la asimetría y a la desviación estándar, contienen datos atípicos en proteínas 
             y grasas en una región positiva respecto a la mediana, y esto se relaciona con 
             lo mencionado de que una receta no tiende a un aporte alto de proteínas ni de grasas. 
-            Y si se consider el rango intercuartil, se observa que en estos macronutrientes es 
-            menor, en comparación, que con el de los carbohidratos. Por ello, se tiene que 
-            una receta es rica en carbohidratos y este patrón se repite en todas las dietas 
-            por las asimetrías y desviación estándar.
+            Por ello, se tiene que una receta es rica en carbohidratos y este patrón se 
+            repite en todas las dietas.
 
             \begin{center}
-                \begin{tabular}{l|rrrrr}
+                \includegraphics[width=0.85\textwidth]{Resources/EDA/VisionGeneral_1.png}
+
+                \begin{xtabular}{w{l}{\widthof{latin american}}|w{r}{\widthof{dash}} w{r}{\widthof{keto}} w{r}{\widthof{mediterranean}} w{r}{\widthof{paleo}} w{r}{\widthof{vegan}}}
                 \toprule
                     & dash & keto & mediterranean & paleo & vegan \\
                 \midrule
@@ -394,16 +337,13 @@
                     mediterranean & 176 & 89 & 1274 & 106 & 99 \\
                     world & 234 & 6 & 6 & 3 & 10 \\
                 \bottomrule
-                \end{tabular}
-
-                \includegraphics[width=0.9\textwidth]{Resources/EDA/VisionGeneral_1.png}
+                \end{xtabular}
             \end{center}
 
             Al considerar la influencia de \emph{Cuisine\_type}, se tiene que las diferentes 
             cocinas conservan ligeros matices sobre la distribución de los macronutrientes, es 
             decir, pero por el solapamiento de las cajas y bigotes se podría esperar que no tengan 
-            una diferencia significativa, indicando que las cocinas no tienen un influencia notoria 
-            sobre los macronutrientes. En el tipo de cocina \emph{world} parece ser que tiene 
+            una diferencia significativa. En el tipo de cocina \emph{world} parece ser que tiene 
             un comportamiento atípico en comparación con las demás cocinas, por ello se va a 
             descartar del análisis.
 
@@ -411,235 +351,11 @@
                 \includegraphics[width=0.9\textwidth]{Resources/EDA/VisionGeneral_2.png}
             \end{center}
         }
-        
-        \subsection{Dieta DASH}
+
+        \subsection{Estratificación de las Recetas por Dieta}
         {
-            Una receta de esta dieta tendrá que, en promedio, el $49\%$ de sus 
-            macronutrientes son carbohidratos (provenientes de frutas, vegetales 
-            y granos enteros); el $29\%$ son grasas que, por su naturaleza, son 
-            saludables; y el $22\%$ son proteínas, las cuáles provienen de carnes margas.
-            Aunque esta dieta se menciona ser saludable para la salud cardiovascular, 
-            no implica que exista un balance o equilibrio en los macronutrientes 
-            consumidos por receta. Debido a la desviación estándar y rango intercuartil de las 
-            de proteínas y grasas, se tiene que estos macronutrientes se encuentran 
-            concentrados en un rango más pequeño de valores en comparación con los 
-            carbohidratos. De lo mencionado, podría significar que la contribución 
-            de los macronutrientes no son tan variadas como lo que se esperaría 
-            contradiciendo que sea una dieta saludable, notando que es una dieta 
-            rica en carbohidratos. Esto no excluye que el consumir varias recetas 
-            (comidas) se logré un balance.
-
-            \begin{center}
-                \begin{tabular}{l|rrr}
-                \toprule
-                    Medida & Carbs & Protein & Fat \\
-                \midrule
-                    Media               & 0.491629 & 0.220058 & 0.288313 \\
-                    $Q_1$               & 0.299070 & 0.094259 & 0.159870 \\
-                    $Q_2$               & 0.502760 & 0.180192 & 0.267363 \\
-                    $Q_3$               & 0.683241 & 0.311076 & 0.393803 \\
-                    Desviación Estándar & 0.249919 & 0.161171 & 0.182336 \\
-                    Mínimo              & 0.001526 & 0.000000 & 0.000000 \\
-                    Máximo              & 1.000000 & 0.833467 & 0.973404 \\
-                    Asimetría de Fisher & -0.009756 & 1.029402 & 0.766955 \\
-                \bottomrule
-                \end{tabular}\\
-                \vspace{0.5cm}
-                \includegraphics[width=0.9\textwidth]{Resources/EDA/Dash_1.png}
-            \end{center}
-
-            Al usar los tipos de cocina, se puede apreciar el como en cada una de 
-            ellas tiene un comportamiento ligeramente diferente, es decir, al considerar 
-            las cocinas en la dieta DASH se puede apreciar como los macronutrientes no 
-            tienen una diferencia notoria sino que son cambios ligeros sobre su comportamiento. 
-            Por ello, se puede decir que la dieta DASH es consistente sobre las cocinas y 
-            que se comporta de la misma manera, aunque si se hace uso de un estadístico para 
-            medir esta diferencia, tendrá un valor bajo más no será nulo.
-
-            \begin{center}
-                \includegraphics[width=0.9\textwidth]{Resources/EDA/Dash_2.png}
-            \end{center}
-        }
-
-        \subsection{Dieta Keto}
-        {
-            Una receta de esta dieta tendrá que, en promedio, el $50\%$ de 
-            sus macronutrientes son grasas, esto se relaciona con el hecho de 
-            que se intenta inducir la ketosis (principio en que se basa esta         
-            dieta); el $30\%$ son proteínas, notando que se intenta reducir 
-            el consumo de carbohidratos; y el $20\%$ son carbohidratos, 
-            resaltando ser una dieta baja en carbohidratos. Como la 
-            proporciones de carbohidratos cuenta con un sesgo positivo, se 
-            tiene que refuerza el hecho de ser una dieta baja en carbohidratos. 
-            De los aportes de grasas, se observa que su sesgo es despreciable 
-            implicando que existen recetas tanto con aportes altos de este 
-            macronutriente (lo que se busca) mientras que hay recetas con 
-            una contribución baja o nula del mismo.
-        
-            \begin{center}
-                \begin{tabular}{l|lll}
-                    \toprule
-                        Medida & Carbs & Protein & Fat \\
-                    \midrule
-                        Media               & 0.198449 & 0.302718 & 0.498833 \\
-                        $Q_1$               & 0.085336 & 0.159164 & 0.408251 \\
-                        $Q_2$               & 0.156879 & 0.304214 & 0.506381 \\
-                        $Q_3$               & 0.264915 & 0.410555 & 0.592312 \\
-                        Desviación Estándar & 0.155979 & 0.166667 & 0.165075 \\
-                        Mínimo              & 0.002060 & 0.000000 & 0.000000 \\
-                        Máximo              & 1.000000 & 0.856868 & 0.997940 \\
-                        Asimetría de Fisher & 1.562095 & 0.313745 & -0.120900 \\
-                    \bottomrule
-                \end{tabular}\\
-                \vspace{0.5cm}
-                \includegraphics[width=0.9\textwidth]{Resources/EDA/Keto_1.png}
-            \end{center}
-
-            Para la dieta keto, lo más importante es mantener un consumo alto de grasas, o 
-            por al menos mayor que el de carbohidratos. Por lo que al ver la distribución de 
-            las grasas contra los carbohidratos en cada una de las cocinas se verifica esto, 
-            per además se reportan casos, datos atípicos, donde ocurre lo contrario; omitiendo 
-            esto, se puede ver como la tendencia es tener un consumo alto de grasas, aunque, por 
-            ejemplo la cocina asiática, su consumo de grasas figura ser más bajo pero tienen 
-            un sesgo negativo, por ello se puede determinar que sigue el principio de la dieto keto.
-
-            \begin{center}
-                \includegraphics[width=0.9\textwidth]{Resources/EDA/Keto_2.png}
-            \end{center}
-        }
-
-        \subsection{Dieta Mediterránea}
-        {
-            Una receta de esta dieta tendrá que, en promedio, el $42\%$ de sus 
-            macronutrientes son carbohidratos, esto debido a un alto consumo de 
-            productos como, frutas, vegetales y granos enteros; el $30\%$ son 
-            grasas, resaltando un alto consumo de nueces y aceite de oliva, como 
-            también un consumo moderado de pescado; y el $28\%$ son proteínas, 
-            vinculado con un consumo moderado de pescado y aves de corral, y un 
-            bajo consumo de carnes rojas. Las proteínas y grasas tienen un alto 
-            sesgo positivo junto con una desviación estándar bajo, esto representa 
-            que muchas de las recetas tendrán bajas proporciones de estos macronutrientes. 
-            Haciendo que se comporte de forma análoga que la dieta DASH pero incluso 
-            hasta más balanceada.\\
-
-            \begin{center}
-                \begin{tabular}{l|lll}
-                    \toprule
-                        Medida & Carbs & Protein & Fat \\
-                    \midrule
-                        Media               & 0.422803 & 0.280190 & 0.297007 \\
-                        $Q_1$               & 0.249507 & 0.159930 & 0.180738 \\
-                        $Q_2$               & 0.438382 & 0.229058 & 0.268950 \\
-                        $Q_3$               & 0.605733 & 0.377918 & 0.390790 \\
-                        Desviación Estándar & 0.212640 & 0.162485 & 0.160349 \\
-                        Mínimo              & 0.006733 & 0.005036 & 0.001731 \\
-                        Máximo              & 0.992746 & 0.887557 & 0.968722 \\
-                        Asimetría de Fisher & -0.123218 & 0.962969 & 0.878710 \\
-                    \bottomrule
-                \end{tabular}\\
-                \vspace{0.5cm}
-                \includegraphics[width=0.9\textwidth]{Resources/EDA/Mediterranean_1.png}
-            \end{center}       
-
-            Debido que para esta receta se cuenta con la región de dónde proviene, la 
-            comparativa se vuelve respecto a la distribución de los macronutrientes en 
-            la cocina del mediterráneo. Se tiene que las grasas se encuentran más variadas, 
-            es decir, en las cocinas diferentes a la mediterránea se puede ver que en 
-            algunas cocinas toman valores más altos o más bajos en las grasas. Al considerar 
-            las proteínas se puede apreciar este mismo fenómeno pero en menor medida, debido 
-            a que puede existir una diversificación de la dieta para adecuarse a los 
-            productos y alimentos propios de una cierta región.
-
-            \begin{center}
-                \includegraphics[width=0.9\textwidth]{Resources/EDA/Mediterranean_2.png}
-            \end{center}
-        }
-
-        \subsection{Dieta Paleo}
-        {
-            Una receta de esta dieta tendrá que, en promedio, el $38\%$ de sus 
-            macronutrientes son grasas y el $37\%$ son carbohidratos, esto se 
-            relaciona con el consumo de productos como frutas, vegetales, nueces 
-            y semillas; y el $25\%$ son proteínas cuyas principales fuentes son 
-            carnes margas y pescado. La posible limitante de alimentos asociados 
-            a proteínas	y grasas podría impactar en que las recetas estén hechas 
-            con los mismos productos dentro de la misma región geográfica. Estos 
-            se relacionaría con una baja variedad en la presencia de estos 
-            macronutrientes, esto podría incluso explicar que las desviaciones 
-            estándar se parezcan entre sí.\\
-
-            \begin{center}
-                \begin{tabular}{l|lll}
-                    \toprule
-                        Medida & Carbs & Protein & Fat \\
-                    \midrule
-                        Media               & 0.369912 & 0.250207 & 0.379881 \\
-                        $Q_1$               & 0.191815 & 0.103933 & 0.257510 \\
-                        $Q_2$               & 0.350726 & 0.207286 & 0.382872 \\
-                        $Q_3$               & 0.512822 & 0.375863 & 0.488153 \\
-                        Desviación Estándar & 0.219894 & 0.174915 & 0.174737 \\
-                        Mínimo              & 0.003612 & 0.000000 & 0.006210 \\
-                        Máximo              & 0.976322 & 0.858503 & 0.968835 \\
-                        Asimetría de Fisher & 0.473617 & 0.710366 & 0.325286 \\
-                    \bottomrule
-                \end{tabular}\\
-                \vspace{0.5cm}
-                \includegraphics[width=0.9\textwidth]{Resources/EDA/Paleo_1.png}
-            \end{center}       
-
-            Que las proteínas y grasas tengan distribuciones diferentes entre 
-            las cocinas se relaciona con el hecho de que cada región geográfica 
-            tiene diferentes disponibilidad de recursos alimentarios, haciendo que 
-            este fenómeno impacte en las recetas que se pueden hacer con lo que 
-            esté disponible.
-
-            \begin{center}
-                \includegraphics[width=0.9\textwidth]{Resources/EDA/Paleo_2.png}
-            \end{center}
-        }
-
-        \subsection{Dieta Vegana}
-        {
-            Una receta de esta dieta tendrá que, en promedio, el $60\%$ de 
-            sus macronutrientes son carbohidratos, que provienen de fuentes 
-            como vegetales, frutas, cereales y legumbres; el $25\%$ son grasas, 
-            relacionadas con el consumo de nueces y semillas; y el $15\%$ son 
-            proteínas, esto debido a un nulo consumo de alimentos de origen 
-            animal y que estas fuentes son reemplazadas por fuentes vegetales. 
-            En las proteínas, se puede observar un rango intercuartil reducido y una 
-            desviación estándar reducida, esto evoca a que las recetas tengan bajos 
-            aportes de proteínas así como también los valores de aportes se concentren 
-            en un rango reducido.\\
-
-            \begin{center}
-                \begin{tabular}{l|lll}
-                    \toprule
-                        Medida & Carbs & Protein & Fat \\
-                    \midrule
-                        Media               & 0.593169 & 0.148801 & 0.258029 \\
-                        $Q_1$               & 0.502866 & 0.085853 & 0.143034 \\
-                        $Q_2$               & 0.625406 & 0.139807 & 0.231985 \\
-                        $Q_3$               & 0.713660 & 0.190724 & 0.344991 \\
-                        Desviación Estándar & 0.171149 & 0.086151 & 0.160262 \\
-                        Mínimo              & 0.000330 & 0.001921 & 0.000112 \\
-                        Máximo              & 0.986872 & 0.647416 & 0.994887 \\
-                        Asimetría de Fisher & -0.735666 & 1.439623 & 1.092007 \\
-                    \bottomrule
-                \end{tabular}\\
-                \vspace{0.5cm}
-                \includegraphics[width=0.9\textwidth]{Resources/EDA/Vegan_1.png}
-            \end{center}       
-
-            Se tiene que entre las cocinas se encuentran diferencias en las 
-            proteínas y carbohidratos, representando que las distinciones sobre 
-            las dietas se haya que tan favorecidas son las proteínas, es decir, 
-            en qué cocinas se pueden encontrar alimentos con altos aportes de proteínas, 
-            como lo sería la asiática que también es la que sus aportes de carbohidratos 
-            tienden a ser bajos. 
-
-            \begin{center}
-                \includegraphics[width=0.9\textwidth]{Resources/EDA/Vegan_2.png}
-            \end{center}   
+            Estratificando las recetas según el tipo de dieta, se resumen 
+            los siguientes resultados:
         }
     }
 
@@ -655,7 +371,9 @@
         de los macronutrientes suman $1$ se tiene que el incrementar 
         un macronutriente hace que los otros decrezcan, por lo que el 
         valor de la correlación refleja esta fuerza en que decrece o, 
-        en ciertos casos, crece. En la mayoría de los casos se tienen 
+        en ciertos casos, crece.\newline 
+        
+        En la mayoría de los casos se tienen 
         correlaciones mayores a $0.5$ en valor absoluto, esto representa 
         que son tendencias fuertes que tienen las diferentes dietas sobre 
         la composiciones de sus macronutrientes. Se tiene que la relación 
@@ -686,14 +404,14 @@
             \end{tabular}
         \end{center}
         
-        El tabular el coeficiente de correlación para cada par de macronutrientes y dieta, 
-        se permite observar con mayor detenimiento que todos los valores son diferentes y,  
-        por la cantidad de instancias por dieta, es significativo. Con ello, se tiene que 
+        La tabla de coeficientes de correlación, 
+        permite observar con mayor detenimiento que todos los valores son diferentes. Con 
+        ello, se tiene que 
         los macronutrientes tendrán diferentes comportamientos según la dieta a la que 
         pertenezcan. Esto implica que las dietas van a favorecer más a ciertas combinaciones 
         entre macronutrientes, y esto se relaciona con los alimentos y productos que son 
-        consumidos dentro de cada dieta, así como también las cantidades; con ello, se 
-        muestra que se puede determinar cuál es la dieta que favorece un cierto macronutriente 
+        consumidos dentro de cada dieta. Por lo tanto, se 
+        muestra que se puede determinar cuál es la dieta que favorece más un cierto macronutriente 
         más que las otras.
     }
 
@@ -703,7 +421,7 @@
     {
         Como las tres variables cuantitativas tienen el mismo nivel 
         de relevancia, se opta por usar los \emph{Carbs} como atributo 
-        para el Muestreo. Y para ambos muestreos se realizan de 
+        para el muestreo. Y para ambos muestreos se realizan de 
         tamaño $50$ y, usando la Regla de Sturges, se emplean 7 clases 
         o bins para la tabla de frecuencias.
 
@@ -881,11 +599,7 @@
     {
         Para cada una de las pruebas se hace uso de una significancia de $\alpha = 0.05$, 
         para las diferentes pruebas se reportan los p valores (p-value) y el valor del 
-        estadístico que se obtuvieron. El procedimiento 
-        desarrollado en esta sección se encuentra en la sección de mismo nombre y 
-        enumeración en la libreta de \href{https://github.com/marimo-team/marimo}{Marimo} 
-        que se puede encontrar en \href{https://github.com/alexisuaguilaru/Analysis_Nutritional_Information/blob/main/Documentation/AlexisAguilar_ReporteFinal.py}{Analysis Nutritional Information} 
-        donde se expone el código y resultados más en crudo (sin interpretación).
+        estadístico que se obtuvieron.
     
         \subsection{Dieta DASH}
         {
@@ -894,11 +608,9 @@
             misma proporción de macronutrientes diariamente. 
             Se realiza el supuesto de que en un día normal se consumen 
             cinco comidas, el equivalente a cinco recetas, por lo que 
-            se muestrean 50 días siguiendo esta dieta. 
-            Para generar el muestreo de 50 días se vuelve equivalente a 
-            que se muestreen de forma aleatoria 250 recetas que forman 
-            grupos de 5 recetas para después determinar las proporciones 
-            de macronutrientes que son consumidos en cada día.\\
+            se muestrean 50 días siguiendo esta dieta (o 250 recetas), 
+            para después determinar las proporciones 
+            de macronutrientes que son consumidos en cada día.\newline
 
             Con las muestras de las proporciones de macronutrientes se realiza 
             un conjunto de hipótesis por cada macronutriente, teniendo lo 
@@ -916,7 +628,7 @@
             \begin{center}
                 \begin{tabular}{lrr}
                 \toprule
-                    Macronutriente & Valor P & Estadístico y \\
+                    Macronutriente & Valor P & Estadístico t \\
                 \midrule
                     Carbs   & 0.0000 &  7.3856 \\
                     Protein & 0.0000 & -9.2252 \\
@@ -927,9 +639,8 @@
 
             Se tiene que las grasas es el único macronutriente que se encuentra en 
             balance pero aún así tiene un tendencia a ser menor al balance nutricional; 
-            mientras que los otros macronutrientes no se encuentran en este balance, 
-            debido a que los carbohidratos se vuelven un macronutriente dominante en 
-            esta receta dejando a las proteínas en una proporción mucho menor. Esto hace 
+            mientras que los otros macronutrientes no se encuentran en este balance.
+             Esto hace 
             de la dieta DASH una que no tiene un balance nutricional.
         }
 
@@ -997,18 +708,18 @@
             \end{center}
             
             De los valores p, se tiene que los carbohidratos y las grasas 
-            no tienen una difeerencia significa, por lo que siguen la misma 
+            no tienen una diferencia significa, por lo que siguen la misma 
             distribución y, por lo tanto, las recetas tendrán composiciones 
-            similares en estos macronutrientes. En cambio, en las porteínas 
-            occure lo contrario, mostrando que las regiones influyen sobre 
-            los alimentos de origen animal emplean.
+            similares en estos macronutrientes. En cambio, en las proteínas 
+            ocurre lo contrario, mostrando que las regiones influyen sobre 
+            los alimentos de origen animal que emplean.
         }
 
         \subsection{Dieta Paleo}
         {
             Se quire probar como las regiones geográficas imponen o contribuyen 
             a los aportes de proteínas en las recetas pertenecientes a una cocina. 
-            Se tiene el siguiente conjunot de hipótesis:
+            Se tiene el siguiente conjunto de hipótesis:
             \begin{align*}
                 H_0 :& \text{Todas las medianas son iguales} \\
                 H_1 :& \text{Por al menos una de las medianas es diferente}
@@ -1016,8 +727,8 @@
 
             Donde las medianas se refieren a las de proteínas por cocina. Para probar 
             estas hipótesis se hace uso de la Prueba de Kruskal-Wallis junto con la 
-            Prueba de Dunn para probar en qué cocinas, específicamente, difieren. Lo 
-            anterior debido a que las distribuciones son no normales. Se obtienen los 
+            Prueba de Dunn para probar en qué cocinas, específicamente, difieren. 
+            Se obtienen los 
             siguientes resultados: el valor p es $0.0000349902$ y el estadístico h es 
             $25.783473$. Aplicando la prueba de Dunn, se tiene que:
 
@@ -1035,10 +746,10 @@
                 \end{tabular}
             \end{center}
 
-            Se tiene que la dieta asiática es la única que difiere significamente 
+            Se tiene que la dieta asiática es la única que difiere significativamente 
             de las demás en las proteínas, haciendo que sea una cocina con recetas 
             más ricas en proteínas que en las demás, esto se podría explicar por 
-            medio de un mejor aprovechamiento de los recursos pesqueros e hidrícos.
+            medio de un mejor aprovechamiento de los recursos pesqueros e hídricos.
         }
 
         \subsection{Dieta Vegana}
@@ -1052,7 +763,7 @@
             \end{align*}
 
             De donde $\overline{p}_C$ y $\overline{c}_C$ representan la media 
-            de las proteinas y carbohidratos, respectivamente, de una cocina $C$. 
+            de las proteínas y carbohidratos, respectivamente, de una cocina $C$. 
             Se realiza la Prueba t junto con la Prueba de Levenne para 
             probar la homocedasticidad entre los macronutrientes. Se obtienen 
             los siguientes resultados:
@@ -1079,7 +790,7 @@
 
         \subsection{Diferencias entre Dietas}
         {
-            Se quiere probar el objetivo principal del trabajo, el relacionado a que si
+            Se quiere probar si
             existe una diferencia en los aportes nutricionales entre las diferentes 
             dietas. Para ello, se hace uso de las distribuciones de los macronutrientes 
             que presentan las diferentes dietas. Se tiene el siguiente conjunto de  
@@ -1090,8 +801,8 @@
             \end{align*}
 
             Donde $F_m(x)$ y $G_m(x)$ son las distribuciones del macronutriente $m$ en 
-            dos dietas diferentes. Se hace uso de la Prueba de Kolmogorov-Smirnov para detectar 
-            cualquier diferencia en las distribuciones. Para cuantificar la diferencia entre dietas 
+            dos dietas diferentes. Se hace uso de la Prueba de Kolmogorov-Smirnov. Para 
+            cuantificar la diferencia entre dietas 
             se promedian los resultados del estadístico calculado en cada una de las pruebas.
             Se obtienen los siguientes resultados.
 
@@ -1106,7 +817,7 @@
                     keto & 3 & 0 & 3 & 3 & 3 \\
                     mediterranean & 3 & 3 & 0 & 3 & 3 \\
                     paleo & 3 & 3 & 3 & 0 & 3 \\
-                    vegan & 3 & 3 & 3 & 3 & 3 \\
+                    vegan & 3 & 3 & 3 & 3 & 0 \\
                 \bottomrule
                 \end{tabular}
             \end{center}
@@ -1128,7 +839,7 @@
             \end{center}
 
             Se tiene que todas las dietas son diferentes entre sí, esto lleva a que 
-            los propios estilos de cocina, los ingredientes que usen y las preparaciones 
+            los propios estilos de cocina, los ingredientes que usan y las preparaciones 
             sean lo suficientemente diversas y únicas para que no se parezcan entre sí. 
             Y al usar el promedio del estadístico, se tiene que no hay dietas que se acerquen 
             mucho a otras, es decir, que se parezcan, siendo la dieta DASH y mediterránea las 
@@ -1147,7 +858,7 @@
                 \toprule
                     \multicolumn{3}{c}{Carbs} \\
                 \midrule
-                    Fuente & Valores P & Estadístico F \\
+                    Fuente & Valores P & Estadístico f \\
                 \midrule
                     Dieta               & 0.0000 & 796.5672 \\
                     Cocina              & 0.0039 &   3.8450 \\
@@ -1198,102 +909,104 @@
         {
             Se quiere probar si la dependencia lineal de los macronutrientes en cada 
             dieta es significativa, para ello se hace uso de la prueba de Correlación 
-            de Pearson. Se tinen los siguientes conjunto de hipótesis:\\
+            de Pearson. Se tienen los siguientes conjunto de hipótesis:\\
+            
             \begin{minipage}{0.5\textwidth}
                 \begin{align*}
                     H_0 :& \rho = 0 \\
                     H_1 :& \rho < 0
                 \end{align*}
             \end{minipage}%
+            \hfill
             \begin{minipage}{0.5\textwidth}
                 \begin{align*}
                     H_0 :& \rho = 0 \\
                     H_1 :& \rho > 0
                 \end{align*}
-            \end{minipage}
-
+            \end{minipage}\\
+            \vspace{\baselineskip} 
             Donde se hace uso de $<$ si el signo de la correlación muestral es negativa y, 
             en caso contrario, se usa $>$, y donde $\rho$ se refiere al coeficiente de correlación 
-            que hay entre dos macronutrientes en una dieta. Se tienen los siguientes resultados:\\
-            
-            \begin{minipage}{0.5\textwidth}
-                \centering                
-                \begin{tabular}{lrr}
-                    \toprule
-                    \multicolumn{3}{c}{DASH}\\
-                    \midrule
-                        Macronutrientes & Valores P & Estadístico r \\
-                    \midrule
-                        Carbs Protein & 0.0000 & -0.6850 \\
-                        Carbs Fat     & 0.0000 & -0.7650 \\
-                        Protein Fat   & 0.0161 &  0.0550 \\
-                    \bottomrule
-                \end{tabular}
-            \end{minipage}%
-            \begin{minipage}{0.5\textwidth}
-                \centering                
-                \begin{tabular}{lrr}
-                    \toprule
-                    \multicolumn{3}{c}{Keto}\\
-                    \midrule
-                        Macronutrientes & Valores P & Estadístico r \\
-                    \midrule
-                        Carbs Protein & 0 & -0.4780 \\
-                        Carbs Fat     & 0 & -0.4621 \\
-                        Protein Fat   & 0 & -0.5578 \\
-                    \bottomrule
-                \end{tabular}
-            \end{minipage}\\
-            \newline 
-            
-            \begin{minipage}{0.5\textwidth}
-                \centering                
-                \begin{tabular}{lrr}
-                    \toprule
-                    \multicolumn{3}{c}{Mediterranean}\\
-                    \midrule
-                        Macronutrientes & Valores P & Estadístico r \\
-                    \midrule
-                        Carbs Protein & 0 & -0.66431 \\
-                       Carbs Fat     & 0 & -0.65294 \\
-                        Protein Fat   & 0 & -0.13236 \\
-                    \bottomrule
-                \end{tabular}
-            \end{minipage}%
-            \begin{minipage}{0.5\textwidth}
-                \centering                
-                \begin{tabular}{lrr}
-                    \toprule
-                    \multicolumn{3}{c}{Paleo}\\
-                    \midrule
-                        Macronutrientes & Valores P & Estadístico r \\
-                    \midrule
-                        Carbs Protein & 0 & -0.6293 \\
-                        Carbs Fat     & 0 & -0.6284 \\
-                        Protein Fat   & 0 & -0.2089 \\
-                    \bottomrule
-                \end{tabular}
-            \end{minipage}\\
-
-            \begin{center}
-                \begin{tabular}{lrr}
-                    \toprule
-                    \multicolumn{3}{c}{Vegana}\\
-                    \midrule
-                        Macronutrientes & Valores P & Estadístico r \\
-                    \midrule
-                        Carbs Protein & 0 & -0.3740 \\
-                        Carbs Fat     & 0 & -0.8668 \\
-                        Protein Fat   & 0 & -0.1381 \\
-                    \bottomrule
-                \end{tabular}
-            \end{center}
-
-            En todos los valores p, se tiene que existe una correlación y que los valores 
-            reportados en \fullref{sec:biva} se vuelven las correlacionados entre los 
+            que hay entre dos macronutrientes en una dieta.\\
+            \vspace{\baselineskip} 
+            % \begin{minipage}{0.5\textwidth}
+                % \centering                
+                % \begin{tabular}{lrr}
+                    % \toprule
+                    % \multicolumn{3}{c}{DASH}\\
+                    % \midrule
+                        % Macronutrientes & Valores P & Estadístico r \\
+                    % \midrule
+                        % Carbs Protein & 0.0000 & -0.6850 \\
+                        % Carbs Fat     & 0.0000 & -0.7650 \\
+                        % Protein Fat   & 0.0161 &  0.0550 \\
+                    % \bottomrule
+                % \end{tabular}
+            % \end{minipage}%
+            % \begin{minipage}{0.5\textwidth}
+                % \centering                
+                % \begin{tabular}{lrr}
+                    % \toprule
+                    % \multicolumn{3}{c}{Keto}\\
+                    % \midrule
+                        % Macronutrientes & Valores P & Estadístico r \\
+                    % \midrule
+                        % Carbs Protein & 0 & -0.4780 \\
+                        % Carbs Fat     & 0 & -0.4621 \\
+                        % Protein Fat   & 0 & -0.5578 \\
+                    % \bottomrule
+                % \end{tabular}
+            % \end{minipage}\\
+            % \vspace{\baselineskip} 
+            % \begin{minipage}{0.5\textwidth}
+                % \centering                
+                % \begin{tabular}{lrr}
+                    % \toprule
+                    % \multicolumn{3}{c}{Mediterranean}\\
+                    % \midrule
+                        % Macronutrientes & Valores P & Estadístico r \\
+                    % \midrule
+                        % Carbs Protein & 0 & -0.66431 \\
+                    %    Carbs Fat     & 0 & -0.65294 \\
+                        % Protein Fat   & 0 & -0.13236 \\
+                    % \bottomrule
+                % \end{tabular}
+            % \end{minipage}%
+            % \begin{minipage}{0.5\textwidth}
+                % \centering                
+                % \begin{tabular}{lrr}
+                    % \toprule
+                    % \multicolumn{3}{c}{Paleo}\\
+                    % \midrule
+                        % Macronutrientes & Valores P & Estadístico r \\
+                    % \midrule
+                        % Carbs Protein & 0 & -0.6293 \\
+                        % Carbs Fat     & 0 & -0.6284 \\
+                        % Protein Fat   & 0 & -0.2089 \\
+                    % \bottomrule
+                % \end{tabular}
+            % \end{minipage}\\
+            % \vspace{\baselineskip} 
+            % \begin{minipage}{\textwidth}
+                % \centering
+                % \begin{tabular}{lrr}
+                    % \toprule
+                    % \multicolumn{3}{c}{Vegana}\\
+                    % \midrule
+                        % Macronutrientes & Valores P & Estadístico r \\
+                    % \midrule
+                        % Carbs Protein & 0 & -0.3740 \\
+                        % Carbs Fat     & 0 & -0.8668 \\
+                        % Protein Fat   & 0 & -0.1381 \\
+                    % \bottomrule
+                % \end{tabular}
+            % \end{minipage}\\ 
+            % \vspace{\baselineskip} 
+            Como todos los valores p son $0$ se tiene que existe una correlación y que los valores 
+            reportados en \fullref{sec:biva} se vuelven buenas estimaciones de las correlaciones entre los 
             macronutrientes. Por lo que se puede construir un modelo lienal que sea confiable 
-            sobre sus predicciones que realice, teniendo los siguientes parámetros por 
-            cada dieta donde $m$ es la pendiente y $b$ es la intercepción con el eje y:
+            sobre las tendencias de sus predicciones que realice, teniendo los siguientes parámetros por 
+            cada dieta, donde $m$ es la pendiente y $b$ es la intercepción con el eje $y$:
 
             \begin{center}
                 \includegraphics[width=0.9\textwidth]{Resources/Bivariado/RegressionDash.png}\\
@@ -1303,10 +1016,11 @@
                 \includegraphics[width=0.9\textwidth]{Resources/Bivariado/RegressionVegan.png}
             \end{center}
 
-            Donde se puede apreciar que tienen un buen ajuste según el valor abosluto de la 
+            Donde se puede apreciar que tienen un buen ajuste según el valor absoluto de la 
             correlación que tengan, es decir, los macronutrientes de las recetas de una dieta 
             siguen la tendencia de la recta de regresión generada mostrando así la correlación 
-            entre los macronutrientes.
+            entre los macronutrientes. En específico, como cada dieta sigue ciertos patrones 
+            sobre las composiciones de los macronutrientes de una receta.
         }
     }
 
@@ -1324,7 +1038,7 @@
         creencias, en alimentos específicos o en nutrientes; centradas en la 
         pérdida de peso o en el aumento de peso (muscular); dietas de desintoxicación 
         (detox) y dietas diseñadas por razones médicas específicas.\cite{marvastipopular} \\
-        
+        \vspace{\baselineskip}
         Las \emph{dietas de moda} son dietas populares durante un tiempo sin basarse 
         necesariamente en una recomendación dietética estándar. A menudo promueven 
         una pérdida de peso irracionalmente rápida o afirmaciones de salud sin 
@@ -1332,7 +1046,7 @@
         quien las sigue. La promesa de ganancias fáciles, combinada con la presión 
         social para lograr un determinado tipo de cuerpo, puede dejar al público 
         susceptible a afirmaciones infundadas o exageradas.\cite{marvastipopular} \\
-        
+        \vspace{\baselineskip}
         Las dietas estudiadas desde una perspectiva estadística en el presente 
         trabajo, son englobadas en las \emph{dietas de moda}, que a veces son referidas 
         como \emph{dietas sin evidencia científica}. Siendo  la dieta DASH la única 
@@ -1357,7 +1071,7 @@
             proteínas y grasas. La dieta cetogénica es una forma de dieta baja en 
             carbohidratos con un alto contenido en grasas en relación con la ingesta 
             de proteínas y carbohidratos.\\
-            
+            \vspace{\baselineskip}
             El objetivo de la dieta cetogénica es inducir la cetosis, un estado 
             metabólico que se produce cuando el cuerpo quema grasa para obtener 
             energía en lugar de glucosa, lo que induce la pérdida de peso. 
@@ -1379,7 +1093,7 @@
             paleolítica o dieta del hombre de las cavernas, es un enfoque 
             dietético que pretende imitar los hábitos alimentarios de nuestros 
             antiguos antepasados del Paleolítico. \\
-            
+            \vspace{\baselineskip}
             Hace hincapié en el consumo de alimentos integrales y no procesados 
             que habrían estado al alcance de los primeros humanos, como carnes magras, 
             pescado, frutas, verduras, frutos secos y semillas, y excluye los cereales, 
@@ -1393,13 +1107,251 @@
             plantas que excluye el consumo de todos los productos de origen animal. Se 
             centra en el consumo de una variedad de alimentos de origen vegetal, como 
             frutas, verduras, cereales legumbres, frutos secos y semillas.\\
-
+            \vspace{\baselineskip}
             Es importante señalar que, aunque las dietas veganas pueden ser 
             nutricionalmente adecuadas, debe prestarse atención a garantizar una 
             ingesta suficiente de nutrientes esenciales como proteínas, hierro, 
             calcio, vitamina B12 y ácidos grasos omega-3.
         }
         }
+
+        \newpage
+
+        \section{Estratificación por Tipo de Dieta}\label{anexo:C}
+        {
+            \subsection{Dieta DASH}\label{anexo:C_dash}
+            {
+            Una receta de esta dieta tendrá que, en promedio, el $49\%$ de sus 
+            macronutrientes son carbohidratos (provenientes de frutas, vegetales 
+            y granos enteros); el $29\%$ son grasas que, por su naturaleza, son 
+            saludables; y el $22\%$ son proteínas, las cuáles provienen de carnes margas.
+            Aunque esta dieta se menciona ser saludable para la salud cardiovascular, 
+            no implica que exista un balance o equilibrio en los macronutrientes 
+            consumidos por receta.\newline
+            
+            Debido a la desviación estándar y rango intercuartilíco de las 
+            proteínas y grasas, se tiene que estos macronutrientes se encuentran 
+            concentrados en un rango más pequeño que el de los 
+            carbohidratos. De lo mencionado, podría significar que la contribución 
+            de los macronutrientes no son tan variadas como lo que se esperaría 
+            contradiciendo que sea una dieta saludable, notando que es una dieta 
+            rica en carbohidratos.
+
+            \begin{center}
+                \begin{tabular}{l|rrr}
+                \toprule
+                    Medida & Carbs & Protein & Fat \\
+                \midrule
+                    Media               & 0.491629 & 0.220058 & 0.288313 \\
+                    $Q_1$               & 0.299070 & 0.094259 & 0.159870 \\
+                    $Q_2$               & 0.502760 & 0.180192 & 0.267363 \\
+                    $Q_3$               & 0.683241 & 0.311076 & 0.393803 \\
+                    Desviación Estándar & 0.249919 & 0.161171 & 0.182336 \\
+                    Mínimo              & 0.001526 & 0.000000 & 0.000000 \\
+                    Máximo              & 1.000000 & 0.833467 & 0.973404 \\
+                    Asimetría de Fisher & -0.009756 & 1.029402 & 0.766955 \\
+                \bottomrule
+                \end{tabular}\\
+                \vspace{0.5cm}
+                \includegraphics[width=0.9\textwidth]{Resources/EDA/Dash_1.png}
+            \end{center}
+
+            Al usar los tipos de cocina, se puede apreciar el como en cada una de 
+            ellas tiene un comportamiento ligeramente diferente, es decir, al considerar 
+            las cocinas en la dieta DASH se puede apreciar como los macronutrientes no 
+            tienen una diferencia notoria sino que son cambios ligeros sobre su comportamiento. 
+            Por ello, se puede decir que la dieta DASH es consistente sobre las cocinas y 
+            que se comporta de la misma manera, aunque si se hace uso de un estadístico para 
+            medir esta diferencia, tendrá un valor bajo más no sería nulo.
+
+            \begin{center}
+                \includegraphics[width=0.9\textwidth]{Resources/EDA/Dash_2.png}
+            \end{center}
+            }
+
+            \subsection{Dieta Keto}\label{anexo:C_keto}
+            {
+            Una receta de esta dieta tendrá que, en promedio, el $50\%$ de 
+            sus macronutrientes son grasas, esto se relaciona con el hecho de 
+            que se intenta inducir la ketosis (principio en que se basa esta         
+            dieta); el $30\%$ son proteínas, notando que se intenta reducir 
+            el consumo de carbohidratos; y el $20\%$ son carbohidratos, 
+            resaltando ser una dieta baja en carbohidratos.\newline 
+            
+            Como la proporciones de carbohidratos cuenta con un sesgo positivo, se 
+            tiene que refuerza el hecho de ser una dieta baja en carbohidratos. 
+            De los aportes de grasas, se observa que su sesgo es despreciable 
+            implicando que existen recetas tanto con aportes altos de este 
+            macronutriente mientras que hay recetas con 
+            una contribución baja o nula del mismo.
+        
+            \begin{center}
+                \begin{tabular}{l|lll}
+                    \toprule
+                        Medida & Carbs & Protein & Fat \\
+                    \midrule
+                        Media               & 0.198449 & 0.302718 & 0.498833 \\
+                        $Q_1$               & 0.085336 & 0.159164 & 0.408251 \\
+                        $Q_2$               & 0.156879 & 0.304214 & 0.506381 \\
+                        $Q_3$               & 0.264915 & 0.410555 & 0.592312 \\
+                        Desviación Estándar & 0.155979 & 0.166667 & 0.165075 \\
+                        Mínimo              & 0.002060 & 0.000000 & 0.000000 \\
+                        Máximo              & 1.000000 & 0.856868 & 0.997940 \\
+                        Asimetría de Fisher & 1.562095 & 0.313745 & -0.120900 \\
+                    \bottomrule
+                \end{tabular}\\
+                \vspace{0.5cm}
+                \includegraphics[width=0.9\textwidth]{Resources/EDA/Keto_1.png}
+            \end{center}
+
+            Para la dieta keto, lo más importante es mantener un consumo alto de grasas, o 
+            por al menos mayor que el de carbohidratos. Por lo que al ver la distribución de 
+            las grasas contra los carbohidratos en cada una de las cocinas se verifica. 
+            Además se puede ver como la tendencia es tener un consumo alto de grasas, aunque, por 
+            ejemplo la cocina asiática, su consumo de grasas figura ser más bajo pero tienen 
+            un sesgo negativo, por ello se puede determinar que sigue el principio de la dieto keto.
+
+            \begin{center}
+                \includegraphics[width=0.9\textwidth]{Resources/EDA/Keto_2.png}
+            \end{center}
+            }
+
+            \subsection{Dieta Mediterránea}\label{anexo:C_medit}
+            {
+            Una receta de esta dieta tendrá que, en promedio, el $42\%$ de sus 
+            macronutrientes son carbohidratos, esto debido a un alto consumo de 
+            productos como, frutas, vegetales y granos enteros; el $30\%$ son 
+            grasas, resaltando un alto consumo de nueces y aceite de oliva, como 
+            también un consumo moderado de pescado; y el $28\%$ son proteínas, 
+            vinculado con un consumo moderado de pescado y aves de corral, y un 
+            bajo consumo de carnes rojas.\newline 
+            
+            Las proteínas y grasas tienen un alto 
+            sesgo positivo junto con una desviación estándar bajo, esto representa 
+            que muchas de las recetas tendrán bajas proporciones de estos macronutrientes.
+
+            \begin{center}
+                \begin{tabular}{l|lll}
+                    \toprule
+                        Medida & Carbs & Protein & Fat \\
+                    \midrule
+                        Media               & 0.422803 & 0.280190 & 0.297007 \\
+                        $Q_1$               & 0.249507 & 0.159930 & 0.180738 \\
+                        $Q_2$               & 0.438382 & 0.229058 & 0.268950 \\
+                        $Q_3$               & 0.605733 & 0.377918 & 0.390790 \\
+                        Desviación Estándar & 0.212640 & 0.162485 & 0.160349 \\
+                        Mínimo              & 0.006733 & 0.005036 & 0.001731 \\
+                        Máximo              & 0.992746 & 0.887557 & 0.968722 \\
+                        Asimetría de Fisher & -0.123218 & 0.962969 & 0.878710 \\
+                    \bottomrule
+                \end{tabular}\\
+                \vspace{0.5cm}
+                \includegraphics[width=0.9\textwidth]{Resources/EDA/Mediterranean_1.png}
+            \end{center}       
+
+            Debido que para esta receta se cuenta con la región de dónde proviene, la 
+            comparativa se vuelve respecto a la distribución de los macronutrientes en 
+            la cocina del mediterráneo. Se tiene que las grasas se encuentran más variadas, 
+            es decir, se puede ver que en 
+            algunas cocinas toman valores más altos o más bajos en las grasas; al considerar 
+            las proteínas se puede apreciar este mismo fenómeno pero en menor medida. Esto se relaciona 
+            a que puede existir una diversificación de la dieta para adecuarse a los 
+            productos y alimentos propios de una cierta región.
+
+            \begin{center}
+                \includegraphics[width=0.9\textwidth]{Resources/EDA/Mediterranean_2.png}
+            \end{center}
+            }
+
+            \subsection{Dieta Paleo}\label{anexo:C_paleo}
+            {
+            Una receta de esta dieta tendrá que, en promedio, el $38\%$ de sus 
+            macronutrientes son grasas y el $37\%$ son carbohidratos, esto se 
+            relaciona con el consumo de productos como frutas, vegetales, nueces 
+            y semillas; y el $25\%$ son proteínas cuyas principales fuentes son 
+            carnes margas y pescado. La posible limitante de alimentos asociados 
+            a proteínas	y grasas podría impactar en que las recetas estén hechas 
+            con los mismos productos dentro de la misma región geográfica. Estos 
+            se relacionaría con una baja variedad en la presencia de estos 
+            macronutrientes.
+
+            \begin{center} 
+                \begin{xtabular}{w{l}{\widthof{Desviación Estándar}}|lll}
+                    \toprule
+                        Medida & Carbs & Protein & Fat \\
+                    \midrule
+                        Media               & 0.369912 & 0.250207 & 0.379881 \\
+                        $Q_1$               & 0.191815 & 0.103933 & 0.257510 \\
+                        $Q_2$               & 0.350726 & 0.207286 & 0.382872 \\
+                        $Q_3$               & 0.512822 & 0.375863 & 0.488153 \\
+                        Desviación Estándar & 0.219894 & 0.174915 & 0.174737 \\
+                        Mínimo              & 0.003612 & 0.000000 & 0.006210 \\
+                        Máximo              & 0.976322 & 0.858503 & 0.968835 \\
+                        Asimetría de Fisher & 0.473617 & 0.710366 & 0.325286 \\
+                    \bottomrule
+                \end{xtabular}\\
+                \vspace{0.5cm}
+                \includegraphics[width=0.9\textwidth]{Resources/EDA/Paleo_1.png}
+            \end{center}       
+
+            \begin{center}
+                \includegraphics[width=0.9\textwidth]{Resources/EDA/Paleo_2.png}
+            \end{center}
+
+            Que las proteínas y grasas tengan distribuciones diferentes entre 
+            las cocinas se relaciona con el hecho de que cada región geográfica 
+            tiene diferentes disponibilidad de recursos alimentarios, haciendo que 
+            este fenómeno impacte en las recetas que se pueden hacer con lo que 
+            esté disponible.
+            }
+
+            \subsection{Dieta Vegana}\label{anexo:C_vegan}
+            {
+            Una receta de esta dieta tendrá que, en promedio, el $60\%$ de 
+            sus macronutrientes son carbohidratos, que provienen de fuentes 
+            como vegetales, frutas, cereales y legumbres; el $25\%$ son grasas, 
+            relacionadas con el consumo de nueces y semillas; y el $15\%$ son 
+            proteínas, esto debido a un nulo consumo de alimentos de origen 
+            animal y que estas fuentes son reemplazadas por fuentes vegetales.\newline
+
+            En las proteínas, se puede observar un rango intercuartilico reducido y una 
+            desviación estándar reducida, esto evoca a que las recetas tengan bajos 
+            aportes de proteínas así como también los valores de aportes se concentren 
+            en un rango reducido.\newline
+
+            Se tiene que entre las cocinas se encuentran diferencias en las 
+            proteínas y carbohidratos, representando que las distinciones sobre 
+            las dietas se haya que tan favorecidas son las proteínas, es decir, 
+            en qué cocinas se pueden encontrar alimentos con altos aportes de proteínas, 
+            como lo sería la asiática que también es la que sus aportes de carbohidratos 
+            tienden a ser bajos. 
+
+            \begin{center}
+                \begin{tabular}{l|lll}
+                    \toprule
+                        Medida & Carbs & Protein & Fat \\
+                    \midrule
+                        Media               & 0.593169 & 0.148801 & 0.258029 \\
+                        $Q_1$               & 0.502866 & 0.085853 & 0.143034 \\
+                        $Q_2$               & 0.625406 & 0.139807 & 0.231985 \\
+                        $Q_3$               & 0.713660 & 0.190724 & 0.344991 \\
+                        Desviación Estándar & 0.171149 & 0.086151 & 0.160262 \\
+                        Mínimo              & 0.000330 & 0.001921 & 0.000112 \\
+                        Máximo              & 0.986872 & 0.647416 & 0.994887 \\
+                        Asimetría de Fisher & -0.735666 & 1.439623 & 1.092007 \\
+                    \bottomrule
+                \end{tabular}\\
+                \vspace{0.5cm}
+                \includegraphics[width=0.9\textwidth]{Resources/EDA/Vegan_1.png}
+            \end{center}       
+
+            \begin{center}
+                \includegraphics[width=0.9\textwidth]{Resources/EDA/Vegan_2.png}
+            \end{center}   
+            }
+        }
+
+        
 
         \newpage
 

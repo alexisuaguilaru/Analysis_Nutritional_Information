@@ -131,7 +131,9 @@ def TestDifferenceDiets(Dataset:pd.DataFrame):
             pvalue_results[macronutrient].loc[diet_2,diet_1] = result_test.pvalue
 
             statistic_results[macronutrient].loc[diet_1,diet_1] = 0
+            statistic_results[macronutrient].loc[diet_2,diet_2] = 0
             pvalue_results[macronutrient].loc[diet_1,diet_1] = 1
+            pvalue_results[macronutrient].loc[diet_2,diet_2] = 1
 
     return sum(statistic_results[macronutrient] for macronutrient in Macronutrients)/3 , sum(pvalue_results[macronutrient] < 0.05 for macronutrient in Macronutrients)
 

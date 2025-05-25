@@ -224,161 +224,13 @@ def _(Cuisine, Diets_Dataset__2):
 
 @app.cell
 def _(mo):
-    mo.md(r"## 4.4 Dieta DASH")
+    mo.md(r"## 4.4 Estratificación de las Recetas por Dieta")
     return
 
 
 @app.cell
-def _(Diet, Diets_Dataset, src):
-    dash = 'dash'
-
-    src.SummaryMeasures(Diets_Dataset.query(f'{Diet} == @dash'))
-    return
-
-
-@app.cell
-def _(Diet, Diets_Dataset, src):
-    PlotDash_1 = src.Plot_DistributionMacronutrients(Diets_Dataset.query(f'{Diet} == @dash'),'DASH')
-    #src.SaveFig(PlotDash_1,'EDA','Dash_1')
-
-    PlotDash_1
-    return
-
-
-@app.cell
-def _(Diet, Diets_Dataset, src):
-    PlotDash_2 = src.Plot_DistributionMacronutrientsByCuisine(Diets_Dataset.query(f'{Diet} == @dash'),'DASH')
-    #src.SaveFig(PlotDash_2,'EDA','Dash_2')
-
-    PlotDash_2
-    return
-
-
-@app.cell
-def _(mo):
-    mo.md(r"## 4.5 Dieta Keto")
-    return
-
-
-@app.cell
-def _(Diet, Diets_Dataset, src):
-    keto = 'keto'
-
-    src.SummaryMeasures(Diets_Dataset.query(f'{Diet} == @keto'))
-    return
-
-
-@app.cell
-def _(Diet, Diets_Dataset, src):
-    PlotKeto_1 = src.Plot_DistributionMacronutrients(Diets_Dataset.query(f'{Diet} == @keto'),'Keto')
-    #src.SaveFig(PlotKeto_1,'EDA','Keto_1')
-
-    PlotKeto_1
-    return
-
-
-@app.cell
-def _(Diet, Diets_Dataset, src):
-    PlotKeto_2 = src.Plot_DistributionMacronutrientsByCuisine(Diets_Dataset.query(f'{Diet} == @keto'),'Keto')
-    #src.SaveFig(PlotKeto_2,'EDA','Keto_2')
-
-    PlotKeto_2
-    return
-
-
-@app.cell
-def _(mo):
-    mo.md(r"## 4.6 Dieta Mediterránea")
-    return
-
-
-@app.cell
-def _(Diet, Diets_Dataset, src):
-    mediterranean = 'mediterranean'
-
-    src.SummaryMeasures(Diets_Dataset.query(f'{Diet} == @mediterranean'))
-    return
-
-
-@app.cell
-def _(Diet, Diets_Dataset, src):
-    PlotMediterranean_1 = src.Plot_DistributionMacronutrients(Diets_Dataset.query(f'{Diet} == @mediterranean'),'Mediterranean')
-    #src.SaveFig(PlotMediterranean_1,'EDA','Mediterranean_1')
-
-    PlotMediterranean_1
-    return
-
-
-@app.cell
-def _(Diet, Diets_Dataset, src):
-    PlotMediterranean_2 = src.Plot_DistributionMacronutrientsByCuisine(Diets_Dataset.query(f'{Diet} == @mediterranean'),'Mediterranean')
-    #src.SaveFig(PlotMediterranean_2,'EDA','Mediterranean_2')
-
-    PlotMediterranean_2
-    return
-
-
-@app.cell
-def _(mo):
-    mo.md(r"## 4.7 Dieta Paleo")
-    return
-
-
-@app.cell
-def _(Diet, Diets_Dataset, src):
-    paleo = 'paleo'
-
-    src.SummaryMeasures(Diets_Dataset.query(f'{Diet} == @paleo'))
-    return
-
-
-@app.cell
-def _(Diet, Diets_Dataset, src):
-    PlotPaleo_1 = src.Plot_DistributionMacronutrients(Diets_Dataset.query(f'{Diet} == @paleo'),'Paleo')
-    #src.SaveFig(PlotPaleo_1,'EDA','Paleo_1')
-
-    PlotPaleo_1
-    return
-
-
-@app.cell
-def _(Diet, Diets_Dataset, src):
-    PlotPaleo_2 = src.Plot_DistributionMacronutrientsByCuisine(Diets_Dataset.query(f'{Diet} == @paleo'),'Paleo')
-    #src.SaveFig(PlotPaleo_2,'EDA','Paleo_2')
-
-    PlotPaleo_2
-    return
-
-
-@app.cell
-def _(mo):
-    mo.md(r"## 4.8 Dieta Vegana")
-    return
-
-
-@app.cell
-def _(Diet, Diets_Dataset, src):
-    vegan = 'vegan'
-
-    src.SummaryMeasures(Diets_Dataset.query(f'{Diet} == @vegan'))
-    return
-
-
-@app.cell
-def _(Diet, Diets_Dataset, src):
-    PlotVegan_1 = src.Plot_DistributionMacronutrients(Diets_Dataset.query(f'{Diet} == @vegan'),'Vegan')
-    #src.SaveFig(PlotVegan_1,'EDA','Vegan_1')
-
-    PlotVegan_1
-    return
-
-
-@app.cell
-def _(Diet, Diets_Dataset, src):
-    PlotVegan_2 = src.Plot_DistributionMacronutrientsByCuisine(Diets_Dataset.query(f'{Diet} == @vegan'),'Vegan')
-    #src.SaveFig(PlotVegan_2,'EDA','Vegan_2')
-
-    PlotVegan_2
+def _(src):
+    src.SummaryMeasures
     return
 
 
@@ -737,9 +589,169 @@ def _(Diet, Diets, Diets_Dataset, plt, src):
     for diet_reg in Diets:
         case_str_reg = str.capitalize if diet_reg != 'dash' else str.upper
         PlotRegression = src.Plot_RegressionMacronutrients(Diets_Dataset.query(f'{Diet} == @diet_reg'),case_str_reg(diet_reg))
-        src.SaveFig(PlotRegression,'Bivariado','Regression'+diet_reg.capitalize())
+        # src.SaveFig(PlotRegression,'Bivariado','Regression'+diet_reg.capitalize())
 
     plt.show()
+    return
+
+
+@app.cell
+def _(mo):
+    mo.md(r"## B.1 Dieta DASH")
+    return
+
+
+@app.cell
+def _(Diet, Diets_Dataset, src):
+    dash = 'dash'
+
+    src.SummaryMeasures(Diets_Dataset.query(f'{Diet} == @dash'))
+    return
+
+
+@app.cell
+def _(Diet, Diets_Dataset, src):
+    PlotDash_1 = src.Plot_DistributionMacronutrients(Diets_Dataset.query(f'{Diet} == @dash'),'DASH')
+    #src.SaveFig(PlotDash_1,'EDA','Dash_1')
+
+    PlotDash_1
+    return
+
+
+@app.cell
+def _(Diet, Diets_Dataset, src):
+    PlotDash_2 = src.Plot_DistributionMacronutrientsByCuisine(Diets_Dataset.query(f'{Diet} == @dash'),'DASH')
+    #src.SaveFig(PlotDash_2,'EDA','Dash_2')
+
+    PlotDash_2
+    return
+
+
+@app.cell
+def _(mo):
+    mo.md(r"## B.2 Dieta Keto")
+    return
+
+
+@app.cell
+def _(Diet, Diets_Dataset, src):
+    keto = 'keto'
+
+    src.SummaryMeasures(Diets_Dataset.query(f'{Diet} == @keto'))
+    return
+
+
+@app.cell
+def _(Diet, Diets_Dataset, src):
+    PlotKeto_1 = src.Plot_DistributionMacronutrients(Diets_Dataset.query(f'{Diet} == @keto'),'Keto')
+    #src.SaveFig(PlotKeto_1,'EDA','Keto_1')
+
+    PlotKeto_1
+    return
+
+
+@app.cell
+def _(Diet, Diets_Dataset, src):
+    PlotKeto_2 = src.Plot_DistributionMacronutrientsByCuisine(Diets_Dataset.query(f'{Diet} == @keto'),'Keto')
+    #src.SaveFig(PlotKeto_2,'EDA','Keto_2')
+
+    PlotKeto_2
+    return
+
+
+@app.cell
+def _(mo):
+    mo.md(r"## B.3 Dieta Mediterránea")
+    return
+
+
+@app.cell
+def _(Diet, Diets_Dataset, src):
+    mediterranean = 'mediterranean'
+
+    src.SummaryMeasures(Diets_Dataset.query(f'{Diet} == @mediterranean'))
+    return
+
+
+@app.cell
+def _(Diet, Diets_Dataset, src):
+    PlotMediterranean_1 = src.Plot_DistributionMacronutrients(Diets_Dataset.query(f'{Diet} == @mediterranean'),'Mediterranean')
+    #src.SaveFig(PlotMediterranean_1,'EDA','Mediterranean_1')
+
+    PlotMediterranean_1
+    return
+
+
+@app.cell
+def _(Diet, Diets_Dataset, src):
+    PlotMediterranean_2 = src.Plot_DistributionMacronutrientsByCuisine(Diets_Dataset.query(f'{Diet} == @mediterranean'),'Mediterranean')
+    #src.SaveFig(PlotMediterranean_2,'EDA','Mediterranean_2')
+
+    PlotMediterranean_2
+    return
+
+
+@app.cell
+def _(mo):
+    mo.md(r"## B.4 Dieta Paleo")
+    return
+
+
+@app.cell
+def _(Diet, Diets_Dataset, src):
+    paleo = 'paleo'
+
+    src.SummaryMeasures(Diets_Dataset.query(f'{Diet} == @paleo'))
+    return
+
+
+@app.cell
+def _(Diet, Diets_Dataset, src):
+    PlotPaleo_1 = src.Plot_DistributionMacronutrients(Diets_Dataset.query(f'{Diet} == @paleo'),'Paleo')
+    #src.SaveFig(PlotPaleo_1,'EDA','Paleo_1')
+
+    PlotPaleo_1
+    return
+
+
+@app.cell
+def _(Diet, Diets_Dataset, src):
+    PlotPaleo_2 = src.Plot_DistributionMacronutrientsByCuisine(Diets_Dataset.query(f'{Diet} == @paleo'),'Paleo')
+    #src.SaveFig(PlotPaleo_2,'EDA','Paleo_2')
+
+    PlotPaleo_2
+    return
+
+
+@app.cell
+def _(mo):
+    mo.md(r"## B.5 Dieta Vegana")
+    return
+
+
+@app.cell
+def _(Diet, Diets_Dataset, src):
+    vegan = 'vegan'
+
+    src.SummaryMeasures(Diets_Dataset.query(f'{Diet} == @vegan'))
+    return
+
+
+@app.cell
+def _(Diet, Diets_Dataset, src):
+    PlotVegan_1 = src.Plot_DistributionMacronutrients(Diets_Dataset.query(f'{Diet} == @vegan'),'Vegan')
+    #src.SaveFig(PlotVegan_1,'EDA','Vegan_1')
+
+    PlotVegan_1
+    return
+
+
+@app.cell
+def _(Diet, Diets_Dataset, src):
+    PlotVegan_2 = src.Plot_DistributionMacronutrientsByCuisine(Diets_Dataset.query(f'{Diet} == @vegan'),'Vegan')
+    #src.SaveFig(PlotVegan_2,'EDA','Vegan_2')
+
+    PlotVegan_2
     return
 
 

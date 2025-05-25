@@ -79,10 +79,10 @@ def _(pd):
 
     macronutrients = ['Carbs(g)','Protein(g)','Fat(g)']
 
-    Diets_Dataset = pd.read_csv('Datasets/Diets_Dataset.csv')
-    Diets_Dataset.drop(columns=['Extraction_day','Extraction_time'],inplace=True)
-    Diets_Dataset.rename(columns={macronutrient : macronutrient[:-3] for macronutrient in macronutrients},inplace=True)
-    return (Diets_Dataset,)
+    Diets_Dataset__0 = pd.read_csv('Datasets/Diets_Dataset.csv')
+    Diets_Dataset__0.drop(columns=['Extraction_day','Extraction_time'],inplace=True)
+    Diets_Dataset__0.rename(columns={macronutrient : macronutrient[:-3] for macronutrient in macronutrients},inplace=True)
+    return (Diets_Dataset__0,)
 
 
 @app.cell
@@ -92,18 +92,18 @@ def _(mo):
 
 
 @app.cell
-def _(Diets_Dataset):
+def _(Diets_Dataset__0):
     # Ejemplos de registros del conjunto de datos
 
-    Diets_Dataset
+    Diets_Dataset__0
     return
 
 
 @app.cell
-def _(Diets_Dataset):
+def _(Diets_Dataset__0):
     # Valore únicos por variable en el conjunto de datos
 
-    Diets_Dataset.apply(lambda column: column.unique().shape[0],axis=0)
+    Diets_Dataset__0.apply(lambda column: column.unique().shape[0],axis=0)
     return
 
 
@@ -120,24 +120,24 @@ def _(mo):
 
 
 @app.cell
-def _(Diets_Dataset, Macronutrients, Total):
+def _(Diets_Dataset__0, Macronutrients, Total):
     # Normalización de los Macronutrientes
-
-    Diets_Dataset[Total] = Diets_Dataset[Macronutrients].sum(axis=1)
-    Diets_Dataset[Macronutrients] /= Diets_Dataset[Total].to_numpy()[:,None]
-    return
+    Diets_Dataset__1 = Diets_Dataset__0.copy()
+    Diets_Dataset__1[Total] = Diets_Dataset__1[Macronutrients].sum(axis=1)
+    Diets_Dataset__1[Macronutrients] /= Diets_Dataset__1[Total].to_numpy()[:,None]
+    return (Diets_Dataset__1,)
 
 
 @app.cell
-def _(Cuisine, Diet, Diets_Dataset, Recipe):
+def _(Cuisine, Diet, Diets_Dataset__1, Recipe):
     # Recetas por Dieta y Cocina
 
-    Diets_Dataset.pivot_table(Recipe,Cuisine,Diet,'count',margins=True,margins_name='Total').sort_values('Total')
+    Diets_Dataset__1.pivot_table(Recipe,Cuisine,Diet,'count',margins=True,margins_name='Total').sort_values('Total')
     return
 
 
 @app.cell
-def _(Cuisine, Diets_Dataset):
+def _(Cuisine, Diets_Dataset__1):
     # Agrupación de Tipos de Cocina por Regiones Geográficas
 
     GroupsCuisine = {
@@ -171,8 +171,9 @@ def _(Cuisine, Diets_Dataset):
         5 : 'asian'
     }
 
-    Diets_Dataset[Cuisine] = Diets_Dataset[Cuisine].apply(GroupsCuisine.get).apply(groups_names.get)
-    return
+    Diets_Dataset__2 = Diets_Dataset__1.copy()
+    Diets_Dataset__2[Cuisine] = Diets_Dataset__1[Cuisine].apply(GroupsCuisine.get).apply(groups_names.get)
+    return (Diets_Dataset__2,)
 
 
 @app.cell
@@ -182,41 +183,43 @@ def _(mo):
 
 
 @app.cell
-def _(Diets_Dataset, src):
+def _(Diets_Dataset__2, src):
     # Calculo de las medidas de tendencia central, dispersión y asimetría 
 
-    src.SummaryMeasures(Diets_Dataset)
+    src.SummaryMeasures(Diets_Dataset__2)
     return
 
 
 @app.cell
-def _(Cuisine, Diet, Diets_Dataset, Recipe):
-    Diets_Dataset.pivot_table(Recipe,Cuisine,Diet,'count')
+def _(Cuisine, Diet, Diets_Dataset__2, Recipe):
+    Diets_Dataset__2.pivot_table(Recipe,Cuisine,Diet,'count')
     return
 
 
 @app.cell
-def _(Diets_Dataset, src):
-    VisionGeneral_1 = src.Plot_DistributionMacronutrients(Diets_Dataset)
-    #src.SaveFig(VisionGeneral_1,'EDA','VisionGeneral_1')
+def _(Diets_Dataset__2, src):
+    VisionGeneral_1 = src.Plot_DistributionMacronutrients(Diets_Dataset__2)
+    # src.SaveFig(VisionGeneral_1,'EDA','VisionGeneral_1')
 
     VisionGeneral_1
     return
 
 
 @app.cell
-def _(Diets_Dataset, src):
-    VisionGeneral_2 = src.Plot_DistributionMacronutrientsByCuisine(Diets_Dataset)
-    #src.SaveFig(VisionGeneral_2,'EDA','VisionGeneral_2')
+def _(Diets_Dataset__2, src):
+    VisionGeneral_2 = src.Plot_DistributionMacronutrientsByCuisine(Diets_Dataset__2)
+    # src.SaveFig(VisionGeneral_2,'EDA','VisionGeneral_2')
 
     VisionGeneral_2
     return
 
 
 @app.cell
-def _(Cuisine, Diets_Dataset):
-    Diets_Dataset.query(f"{Cuisine} != 'world'",inplace=True)
-    return
+def _(Cuisine, Diets_Dataset__2):
+    # Eliminar la cocian world
+
+    Diets_Dataset = Diets_Dataset__2.query(f"{Cuisine} != 'world'")
+    return (Diets_Dataset,)
 
 
 @app.cell

@@ -229,8 +229,26 @@ def _(mo):
 
 
 @app.cell
-def _(src):
-    src.SummaryMeasures
+def _(Diet, Diets, Diets_Dataset, src):
+    # Medidas por dieta
+
+    summary_diet_measures = []
+    for __diet in Diets:
+        summary_diet = src.SummaryMeasures(Diets_Dataset.query(f'{Diet} == @__diet'))
+        summary_diet_measures.append((__diet,summary_diet))
+    return (summary_diet_measures,)
+
+
+@app.cell
+def _(Diets, Macronutrients, pd, summary_diet_measures):
+    # Obteniendo el resumen final
+
+    summary_macronutrients = []
+    for __macronutrient in Macronutrients:
+        summary_macronutrient = pd.concat([summary[1][__macronutrient].rename(__diet) for __diet , summary in zip(Diets,summary_diet_measures)],axis=1)
+        summary_macronutrients.append((__macronutrient,summary_macronutrient))
+
+    summary_macronutrients
     return
 
 
@@ -394,7 +412,7 @@ def _(mo):
 
 @app.cell
 def _(mo):
-    mo.md(r"## 7.1 Dieta DASH")
+    mo.md(r"## 7.2 Dieta DASH")
     return
 
 
@@ -426,7 +444,7 @@ def _(src, test_dash_daily):
 
 @app.cell
 def _(mo):
-    mo.md(r"## 7.2 Dieta Keto")
+    mo.md(r"## 7.3 Dieta Keto")
     return
 
 
@@ -448,7 +466,7 @@ def _(src, test_keto_recipes):
 
 @app.cell
 def _(mo):
-    mo.md(r"## 7.3 Dieta Mediterráneo")
+    mo.md(r"## 7.4 Dieta Mediterráneo")
     return
 
 
@@ -471,7 +489,7 @@ def _(src, test_mediterranean_local, test_mediterranean_others):
 
 @app.cell
 def _(mo):
-    mo.md(r"## 7.4 Dieta Paleo")
+    mo.md(r"## 7.5 Dieta Paleo")
     return
 
 
@@ -501,7 +519,7 @@ def _(src, test_paleo_recipes):
 
 @app.cell
 def _(mo):
-    mo.md(r"## 7.5 Dieta Vegana")
+    mo.md(r"## 7.6 Dieta Vegana")
     return
 
 
@@ -521,7 +539,7 @@ def _(src, test_vegan_recipes):
 
 @app.cell
 def _(mo):
-    mo.md(r"## 7.6 Diferencias entre Dietas")
+    mo.md(r"## 7.7 Diferencias entre Dietas")
     return
 
 
@@ -535,7 +553,7 @@ def _(Diets_Dataset, src):
 
 @app.cell
 def _(mo):
-    mo.md(r"## 7.7 Interacción entre Dietas y Cocinas")
+    mo.md(r"## 7.8 Interacción entre Dietas y Cocinas")
     return
 
 
@@ -554,7 +572,7 @@ def _(Diets_Dataset, Macronutrients, src):
 
 @app.cell
 def _(mo):
-    mo.md(r"## 7.8 Regresión Lineal")
+    mo.md(r"## 7.9 Regresión Lineal")
     return
 
 
@@ -592,6 +610,12 @@ def _(Diet, Diets, Diets_Dataset, plt, src):
         # src.SaveFig(PlotRegression,'Bivariado','Regression'+diet_reg.capitalize())
 
     plt.show()
+    return
+
+
+@app.cell
+def _(mo):
+    mo.md(r"# Anexo B: Estratificación de las Recetas por Dieta")
     return
 
 

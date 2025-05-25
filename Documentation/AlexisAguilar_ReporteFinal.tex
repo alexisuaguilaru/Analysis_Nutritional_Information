@@ -19,7 +19,7 @@
 
 \usepackage{booktabs}
 \usepackage{enumitem}
-\usepackage{xcolor}
+\usepackage[dvipsnames]{xcolor}
 
 \usepackage{csquotes}
 \usepackage[style=ieee,backend=biber]{biblatex}
@@ -62,7 +62,7 @@
 
         \centering
         {\large{Reporte Final\\}}
-        {\Large\textbf{Análisis de Valores Nutricionales por Tipo de Dieta}}
+        {\Large\textbf{Análisis de Valores Nutricionales}}
         \vspace{2cm}
 
         {{PRESENTA:\\}}
@@ -107,7 +107,12 @@
         están siendo estudiadas. La anterior prueba se basa en recetas de diferentes 
         cocinas a nivel mundial, y sobre éstas últimas serán auxiliares para realizar 
         un estudio más granulado sobre el comportamiento de las dietas en escenarios 
-        más específicos.
+        más específicos.\\
+
+        Los diferentes resultados y gráficas generadas que se presentan en las secciones 
+        siguientes se encuentran disponibles en una libreta de \href{https://github.com/marimo-team/marimo}{Marimo} 
+        en el siguiente recurso \href{https://github.com/alexisuaguilaru/Analysis_Nutritional_Information/blob/main/Documentation/AlexisAguilar_ReporteFinal.py}{Código para Reporte Final} 
+        que pertenece al repositorio de código en GitHub para el presente proyecto.
     }
 
     \section{Objetivos Generales}
@@ -123,8 +128,8 @@
             sobre los aportes nutricionales en cada dieta en base al análisis estadístico. 
             
             \item Probar si existe una diferencia significativa en los aportes 
-            nutricionales entre las diferentes dietas con el fin de probar si cada 
-            dieta de estudio es única.
+            nutricionales entre las diferentes dietas con el fin de mostrar si cada 
+            dieta del estudio es única.
         \end{itemize}
     }
 
@@ -139,7 +144,7 @@
             El conjunto de datos se encuentra disponible en \cite{dataset_macronutrients}, 
             publicado por la comunidad de Kaggle. Los datos consisten de un conjunto 
             de recetas de diferentes dietas y cocinas, además incluye información de los macronutrientes que 
-            aporta cada receta.\\
+            aporta cada una.\\
             
             \cite{dataset_macronutrients} Del apartado de reconocimientos, se concluye que las recetas fueron 
             proporcionadas por diferentes creadores de las mismas y demás contribuidores 
@@ -166,20 +171,20 @@
 
         \subsection{Variables del Conjunto de Datos}
         {
-            El conjunto de datos consta de las siguientes variables. Se menciona su 
+            El conjunto de datos consta de las siguientes variables y con $7806$ registros o instancias. Se menciona su 
             nombre, el tipo de variable y sus valores (en total y únicos):
             
             \begin{center}
-                \begin{tabular}{r|llrr}
+                \begin{tabular}{r|llr}
                     \toprule
-                    Variable & Nombre & Tipo & Cantidad de Datos & Valores Únicos\\
+                    Variable & Nombre & Tipo & Valores Únicos\\
                     \midrule
-                    1 & Diet\_type & Cualitativa Nominal & 7806 & 5 \\
-                    2 & Recipe\_name & Cualitativa Nominal & 7806 & 7062\\
-                    3 & Cuisine\_type & Cualitativa Nominal & 7806 & 19\\
-                    4 & Protein & Cuantitativa Continua & 7806 & 6060\\
-                    5 & Carbs & Cuantitativa Continua & 7806 & 6618\\
-                    6 & Fat & Cuantitativa Continua & 7806 & 6322\\
+                    1 & Diet\_type    & Cualitativa Nominal   &    5 \\
+                    2 & Recipe\_name  & Cualitativa Nominal   & 7062 \\
+                    3 & Cuisine\_type & Cualitativa Nominal   &   19 \\
+                    4 & Protein       & Cuantitativa Continua & 6060 \\
+                    5 & Carbs         & Cuantitativa Continua & 6618 \\
+                    6 & Fat           & Cuantitativa Continua & 6322 \\
                     \bottomrule
                 \end{tabular}
             \end{center}
@@ -197,11 +202,11 @@
         \subsection{Preprocesamiento (Transformación) de los Datos}\label{subsec:trans_datos}
         {
             Los macronutrientes pueden tomar un amplio rango 
-            de valores, esto puede generar un conflicto al momento de compara 
+            de valores, esto puede generar un conflicto al momento de comparar 
             entre dietas. 
-            Por ello valores de los macronutrientes de cada receta son 
+            Por ello, los valores de los macronutrientes de cada receta son 
             normalizados con la norma $l1$, y la norma calculada, el total de macronutrientes,
-            se guarda como otra variable en \emph{Total\_macronutrients}.\cite{beta_distribution}
+            se guarda como otra variable en \emph{Total\_macronutrients}.
 
             \begin{center}
                 \begin{tabular}{l|rrrrr}
@@ -242,7 +247,7 @@
             \begin{center}
                 \begin{tabular}{l|l}
                 \toprule
-                    Grupo de \emph{Cuisine\_type} & \emph{Cuisine\_type} \\
+                    Grupos de \emph{Cuisine\_type} & \emph{Cuisine\_type} \\
                 \midrule
                     american & american \\
                     mediterranean & mediterranean \\
@@ -261,7 +266,7 @@
             {
                 \item \textbf{Diet\_type}: Variable nominal que representa el tipo de 
                 dieta a la que pertenece una receta. Permite la estratificación principal de  
-                las recetas y realizar hipótesis sobre lo qué está sucede en una dieta o entre las diferentes dietas.
+                las recetas y realizar hipótesis sobre lo qué está sucediendo en una dieta o entre las diferentes dietas.
                 
                 \item \textbf{Cuisine\_type}: Variable nominal que representa a qué 
                 cocina o región pertenece una 
@@ -282,7 +287,7 @@
                 
                 \item \textbf{Total\_Macronutrients}: Variable continua que representa 
                 el total de macronutrientes que son aportados por una receta. Esta variable 
-                es auxiliar para la prueba de hipótesis.
+                es auxiliar para prueba de hipótesis.
             }
             \end{itemize}
         }
@@ -290,7 +295,7 @@
         \subsection{Visión General de los Datos}
         {
             Primero se presenta un análisis sobre los macronutrientes de 
-            las recetas sin estratificarlas según el tipo de dieta:
+            las recetas sin estratificarlas según \emph{Diet\_type}:
 
             \begin{center}
                 \begin{xtabular}{w{l}{\widthof{Desviación Estándar}}|rrr}
@@ -312,7 +317,7 @@
             Los valores en proteínas son bajos en comparación 
             con los carbohidratos y grasas si se hace uso de la mediana ($Q_2$), 
             dicho así. Esto es un indicio de que las recetas, en general, 
-            tienden a ser altas en carbohidratos y grasas; mientras que son bajas 
+            tienden a ser altas en carbohidratos y, en menor medida, grasas; mientras que son bajas 
             en proteínas. Este último punto se apoya al considerar la asimetría de 
             las proteínas.\newline 
 
@@ -330,20 +335,20 @@
                 \toprule
                     & dash & keto & mediterranean & paleo & vegan \\
                 \midrule
-                    american & 639 & 663 & 145 & 535 & 925 \\
-                    asian & 143 & 122 & 52 & 93 & 217 \\
-                    european & 435 & 544 & 248 & 462 & 201 \\
-                    latin american & 118 & 88 & 28 & 75 & 70 \\
-                    mediterranean & 176 & 89 & 1274 & 106 & 99 \\
-                    world & 234 & 6 & 6 & 3 & 10 \\
+                    american       & 639 & 663 & 145 & 535 & 925 \\
+                    asian          & 143 & 122 & 52 & 93 & 217 \\
+                    european       & 435 & 544 & 248 & 462 & 201 \\
+                    latin american & 118 &  88 & 28 & 75 & 70 \\
+                    mediterranean  & 176 &  89 & 1274 & 106 & 99 \\
+                    world          & 234 &   6 & 6 & 3 & 10 \\
                 \bottomrule
                 \end{xtabular}
             \end{center}
 
-            Al considerar la influencia de \emph{Cuisine\_type}, se tiene que las diferentes 
-            cocinas conservan ligeros matices sobre la distribución de los macronutrientes, es 
-            decir, pero por el solapamiento de las cajas y bigotes se podría esperar que no tengan 
-            una diferencia significativa. En el tipo de cocina \emph{world} parece ser que tiene 
+            Al considerar la influencia de \emph{Cuisine\_type}, se tiene que las cajas y 
+            bigotes (distribuciones) son diferentes (aunque comparten algunos rangos de valores) 
+            y junto con la cantidad de datos, se podría esperar que tengan diferencias significativas. 
+            En el tipo de cocina \emph{world} parece ser que tiene 
             un comportamiento atípico en comparación con las demás cocinas, por ello se va a 
             descartar del análisis.
 
@@ -414,7 +419,7 @@
                 \end{xtabular} 
             \end{center}
 
-            Al considerar las medias de en los diferentes macronutrientes y dietas, se tiene 
+            Al considerar las medias de los diferentes macronutrientes y dietas, se tiene 
             que siguen diferentes patrones, es decir, cada dieta propicia que ciertos macronutrientes 
             sean más dominantes en las recetas, como también qué tanto dominan esos valores al 
             considerar la asimetría. Por ello, se podría esperar que las dietas 
@@ -430,8 +435,7 @@
         El realizar un análisis bivariado usando todas las dietas va a 
         provocar una desvanecimiento de la información debido a que las dietas 
         tienen comportamientos heterogéneas; 
-        donde de nuevo se muestra que cada dieta sigue ciertos patrones 
-        y tendencias en sus macronutrientes. Debido a que los valores 
+        donde esto se muestra en \fullref{sec:eda}. Debido a que los valores 
         de los macronutrientes suman $1$ se tiene que el incrementar 
         un macronutriente hace que los otros decrezcan, por lo que el 
         valor de la correlación refleja esta fuerza en que decrece o, 
@@ -440,8 +444,8 @@
         En la mayoría de los casos se tienen 
         correlaciones mayores a $0.5$ en valor absoluto, esto representa 
         que son tendencias fuertes que tienen las diferentes dietas sobre 
-        la composiciones de sus macronutrientes. Se tiene que la relación 
-        entre carbohidratos contra proteínas y grasas permite describir de 
+        la composiciones de sus macronutrientes. Se tiene que las relaciones 
+        entre carbohidratos contra proteínas y grasas permiten describir de 
         otra manera cada dieta. \anexoref{anexo:B.1}
 
         \begin{center}
@@ -449,34 +453,33 @@
             \toprule
                 Dieta & Macronutrientes & Centroide & Covarianza & \makecell{Coeficiente\\Correlación} \\
             \midrule
-                dash          & (Carbs,Protein) & [0.4916 0.2200] & -0.0275 & -0.6850 \\
-                dash          & (Carbs,Fat)     & [0.4916 0.2883] & -0.0348 & -0.7650 \\
-                dash          & (Protein,Fat)   & [0.2200 0.2883] &  0.0016 &  0.0550 \\
-                keto          & (Carbs,Protein) & [0.1984 0.3027] & -0.0124 & -0.4780 \\
-                keto          & (Carbs,Fat)     & [0.1984 0.4988] & -0.0119 & -0.4621 \\
-                keto          & (Protein,Fat)   & [0.3027 0.4988] & -0.0153 & -0.5578 \\
-                mediterranean & (Carbs,Protein) & [0.4228 0.2801] & -0.0229 & -0.6643 \\
-                mediterranean & (Carbs,Fat)     & [0.4228 0.2970] & -0.0222 & -0.6529 \\
-                mediterranean & (Protein,Fat)   & [0.2801 0.2970] & -0.0034 & -0.1323 \\
-                paleo         & (Carbs,Protein) & [0.3699 0.2502] & -0.0242 & -0.6293 \\
-                paleo         & (Carbs,Fat)     & [0.3699 0.3798] & -0.0241 & -0.6284 \\
-                paleo         & (Protein,Fat)   & [0.2502 0.3798] & -0.0063 & -0.2089 \\
-                vegan         & (Carbs,Protein) & [0.5931 0.1488] & -0.0055 & -0.3740 \\
-                vegan         & (Carbs,Fat)     & [0.5931 0.2580] & -0.0237 & -0.8668 \\
-                vegan         & (Protein,Fat)   & [0.1488 0.2580] & -0.0019 & -0.1381 \\
+                dash          & (\textcolor{ForestGreen}{Carbs} , \textcolor{BrickRed}{Protein}) & [0.4916 0.2200] & -0.0275 & -0.6850 \\
+                dash          & (\textcolor{ForestGreen}{Carbs} , \textcolor{YellowOrange}{Fat})     & [0.4916 0.2883] & -0.0348 & -0.7650 \\
+                dash          & (\textcolor{BrickRed}{Protein}  , \textcolor{YellowOrange}{Fat})   & [0.2200 0.2883] &  0.0016 &  0.0550 \\
+                keto          & (\textcolor{ForestGreen}{Carbs} , \textcolor{BrickRed}{Protein}) & [0.1984 0.3027] & -0.0124 & -0.4780 \\
+                keto          & (\textcolor{ForestGreen}{Carbs} , \textcolor{YellowOrange}{Fat})     & [0.1984 0.4988] & -0.0119 & -0.4621 \\
+                keto          & (\textcolor{BrickRed}{Protein}  , \textcolor{YellowOrange}{Fat})   & [0.3027 0.4988] & -0.0153 & -0.5578 \\
+                mediterranean & (\textcolor{ForestGreen}{Carbs} , \textcolor{BrickRed}{Protein}) & [0.4228 0.2801] & -0.0229 & -0.6643 \\
+                mediterranean & (\textcolor{ForestGreen}{Carbs} , \textcolor{YellowOrange}{Fat})     & [0.4228 0.2970] & -0.0222 & -0.6529 \\
+                mediterranean & (\textcolor{BrickRed}{Protein}  , \textcolor{YellowOrange}{Fat})   & [0.2801 0.2970] & -0.0034 & -0.1323 \\
+                paleo         & (\textcolor{ForestGreen}{Carbs} , \textcolor{BrickRed}{Protein}) & [0.3699 0.2502] & -0.0242 & -0.6293 \\
+                paleo         & (\textcolor{ForestGreen}{Carbs} , \textcolor{YellowOrange}{Fat})     & [0.3699 0.3798] & -0.0241 & -0.6284 \\
+                paleo         & (\textcolor{BrickRed}{Protein}  , \textcolor{YellowOrange}{Fat})   & [0.2502 0.3798] & -0.0063 & -0.2089 \\
+                vegan         & (\textcolor{ForestGreen}{Carbs} , \textcolor{BrickRed}{Protein}) & [0.5931 0.1488] & -0.0055 & -0.3740 \\
+                vegan         & (\textcolor{ForestGreen}{Carbs} , \textcolor{YellowOrange}{Fat})     & [0.5931 0.2580] & -0.0237 & -0.8668 \\
+                vegan         & (\textcolor{BrickRed}{Protein}  , \textcolor{YellowOrange}{Fat})   & [0.1488 0.2580] & -0.0019 & -0.1381 \\
             \bottomrule
             \end{tabular}
         \end{center}
         
-        La tabla de coeficientes de correlación, 
-        permite observar con mayor detenimiento que todos los valores son diferentes. Con 
-        ello, se tiene que 
+        La tabla anterior permite observar con mayor detenimiento que todos los valores 
+        son diferentes. Con ello, se tiene que 
         los macronutrientes tendrán diferentes comportamientos según la dieta a la que 
         pertenezcan. Esto implica que las dietas van a favorecer más a ciertas combinaciones 
         entre macronutrientes, y esto se relaciona con los alimentos y productos que son 
         consumidos dentro de cada dieta. Por lo tanto, se 
         muestra que se puede determinar cuál es la dieta que favorece más un cierto macronutriente 
-        más que las otras.
+        más que las otras; esto se realiza al considerar justamente los coeficientes de correlación.
     }
 
     \newpage
@@ -495,7 +498,7 @@
             apreciar que difieren en todos las medidas, por lo que este muestreo 
             no es representativo del conjunto de datos, es decir, siguen diferentes 
             distribuciones principalmente al usar la media y los cuartiles. Por lo 
-            tanto, o se puede cambiar de estrategia o usar una tamaño de muestreo 
+            tanto, o se puede cambiar de estrategia o usar un tamaño de muestreo 
             más grande.
 
             \begin{center}
@@ -567,18 +570,21 @@
                 \begin{tabular}{ccccc}
                         \multicolumn{5}{c}{Resultados del Muestreo} \\ 
                     \midrule
-                        0.98825124 & 0.44840909 & 0.89960239 & 0.83874942 & 0.365615   \\
-                        0.49887176 & 0.58630187 & 0.3157274  & 0.5842796  & 0.57451464 \\
-                        0.08873597 & 0.68983711 & 0.16884721 & 0.15916624 & 0.09565607 \\
-                        0.52595787 & 0.07693278 & 0.27939369 & 0.12009859 & 0.22105597 \\
-                        0.45648684 & 0.56049479 & 0.57414311 & 0.28213503 & 0.61598047 \\
-                        0.56339749 & 0.52937621 & 0.5663925  & 0.65277566 & 0.2666113  \\
-                        0.13609793 & 0.41432132 & 0.13118082 & 0.07637211 & 0.17604633 \\
-                        0.77068989 & 0.52892388 & 0.39944097 & 0.13687658 & 0.00708689 \\
-                        0.6840657  & 0.32537609 & 0.3360161  & 0.50114789 & 0.89117851 \\
-                        0.65409493 & 0.30271941 & 0.80744214 & 0.60015393 & 0.65224341 \\
+                        \textcolor{Mulberry}{0.98825124} & \textcolor{Mulberry}{0.44840909} & \textcolor{Mulberry}{0.89960239} & \textcolor{Mulberry}{0.83874942} & \textcolor{Mulberry}{0.365615}   \\
+                        \textcolor{Mulberry}{0.49887176} & \textcolor{Mulberry}{0.58630187} & \textcolor{Mulberry}{0.3157274}  & \textcolor{Mulberry}{0.5842796}  & \textcolor{Mulberry}{0.57451464} \\
+                        \textcolor{BurntOrange}{0.08873597} & \textcolor{BurntOrange}{0.68983711} & \textcolor{BurntOrange}{0.16884721} & \textcolor{BurntOrange}{0.15916624} & \textcolor{BurntOrange}{0.09565607} \\
+                        \textcolor{BurntOrange}{0.52595787} & \textcolor{BurntOrange}{0.07693278} & \textcolor{BurntOrange}{0.27939369} & \textcolor{BurntOrange}{0.12009859} & \textcolor{BurntOrange}{0.22105597} \\
+                        \textcolor{Cyan}{0.45648684} & \textcolor{Cyan}{0.56049479} & \textcolor{Cyan}{0.57414311} & \textcolor{Cyan}{0.28213503} & \textcolor{Cyan}{0.61598047} \\
+                        \textcolor{Cyan}{0.56339749} & \textcolor{Cyan}{0.52937621} & \textcolor{Cyan}{0.5663925}  & \textcolor{Cyan}{0.65277566} & \textcolor{Cyan}{0.2666113}  \\
+                        \textcolor{Cyan}{0.13609793}     & \textcolor{Cyan}{0.41432132}     & \textcolor{Mahogany}{0.13118082} & \textcolor{Mahogany}{0.07637211} & \textcolor{Mahogany}{0.17604633} \\
+                        \textcolor{Mahogany}{0.77068989} & \textcolor{Mahogany}{0.52892388} & \textcolor{Mahogany}{0.39944097} & \textcolor{Mahogany}{0.13687658} & \textcolor{Mahogany}{0.00708689} \\
+                        \textcolor{PineGreen}{0.6840657}  & \textcolor{PineGreen}{0.32537609} & \textcolor{PineGreen}{0.3360161}  & \textcolor{PineGreen}{0.50114789} & \textcolor{PineGreen}{0.89117851} \\
+                        \textcolor{PineGreen}{0.65409493} & \textcolor{PineGreen}{0.30271941} & \textcolor{PineGreen}{0.80744214} & \textcolor{PineGreen}{0.60015393} & \textcolor{PineGreen}{0.65224341} \\
                 \end{tabular}
             \end{center}
+
+            Leyenda de colores: \textcolor{Mulberry}{DASH}, \textcolor{BurntOrange}{Keto}, 
+            \textcolor{Cyan}{Mediterránea}, \textcolor{Mahogany}{Paleo} y \textcolor{PineGreen}{Vegana}.
 
             \begin{center}
                 \begin{tabular}{lrrrr}
@@ -626,7 +632,7 @@
             y en cada intervalo se determinó si la media poblacional de 
             los carbohidratos pertenece al intervalo construido. De los 
             intervalos de confianza construidos, se tiene que en todos
-            pertenece la media poblacional.\\
+            pertenece la media poblacional (como era de esperarse).\\
 
             \begin{minipage}{0.5\textwidth}
                 \centering
@@ -663,17 +669,17 @@
     {
         Para cada una de las pruebas se hace uso de una significancia de $\alpha = 0.05$, 
         para las diferentes pruebas se reportan los p valores (p-value) y el valor del 
-        estadístico que se obtuvieron.
+        estadístico que se obtuvieron, en el caso de que sean necesarios.
 
         \subsection{Normalidad y Transformaciones Box-Cox}
         {
             Debido a que las distribuciones de los macronutrientes solo pueden tomar valores 
             en el rango $[0,1]$, se vuelve que al aplicar alguna transformación se genera una 
             pérdida de información y de interpretación de los datos, además	que se pueden 
-            perder relaciones valiosas entre las variables, macronutrientes. Por ello, no se puede 
+            perder relaciones entre los macronutrientes. Por ello, no se puede 
             hacer uso de estas transformaciones, pero si se puede caracterizar las distribuciones 
-            de los macronutrientes haciendo uso la familia de distribuciones beta \cite{beta_distribution}. 
-            Que en la mayoría de los casos, son distribuciones no normales.
+            de los macronutrientes haciendo uso la familia de distribuciones beta \cite{beta_distribution}, 
+            que son distribuciones no normales.
         }
     
         \subsection{Dieta DASH}
@@ -701,9 +707,9 @@
             los siguientes resultados:
 
             \begin{center}
-                \begin{tabular}{lrr}
+                \begin{tabular}{l|rr}
                 \toprule
-                    Macronutriente & Valor P & Estadístico t \\
+                    Macronutriente & Valor P & Estadístico T \\
                 \midrule
                     Carbs   & 0.0000 &  7.3856 \\
                     Protein & 0.0000 & -9.2252 \\
@@ -716,7 +722,8 @@
             balance pero aún así tiene un tendencia a ser menor al balance nutricional; 
             mientras que los otros macronutrientes no se encuentran en este balance.
              Esto hace 
-            de la dieta DASH una que no tiene un balance nutricional.
+            de la dieta DASH una que no tiene un balance nutricional, e invalidando que 
+            sea saludable.
         }
 
         \subsection{Dieta Keto}
@@ -736,9 +743,9 @@
             obtienen los siguientes resultados:
 
             \begin{center}
-                \begin{tabular}{lrr}
+                \begin{tabular}{l|rr}
                 \toprule
-                    Cocina & Valor P & Estadístico t \\
+                    Cocina & Valor P & Estadístico T \\
                 \midrule
                     american       & 0.0000 & -35.6024 \\
                     asian          & 0.0000 &  -8.1913 \\
@@ -771,9 +778,9 @@
             Se obtienen los siguientes resultados:
 
             \begin{center}
-                \begin{tabular}{lrr}
+                \begin{tabular}{l|rr}
                 \toprule
-                    Macronutrientes & Valores P & Estadístico d \\
+                    Macronutriente & Valor P & Estadístico D \\
                 \midrule
                     Carbs   & 0.3476 & 0.0497 \\
                     Protein & 0.0018 & 0.0998 \\
@@ -792,7 +799,7 @@
 
         \subsection{Dieta Paleo}
         {
-            Se quire probar como las regiones geográficas imponen o contribuyen 
+            Se quire probar como las regiones geográficas influyen o contribuyen 
             a los aportes de proteínas en las recetas pertenecientes a una cocina. 
             Se tiene el siguiente conjunto de hipótesis:
             \begin{align*}
@@ -804,11 +811,11 @@
             estas hipótesis se hace uso de la Prueba de Kruskal-Wallis junto con la 
             Prueba de Dunn para probar en qué cocinas, específicamente, difieren. 
             Se obtienen los 
-            siguientes resultados: el valor p es $0.0000349902$ y el estadístico h es 
-            $25.783473$. Aplicando la prueba de Dunn, se tiene que:
+            siguientes resultados: el valor p es $0.0000349902$ y el estadístico H es 
+            $25.783473$. Aplicando la prueba de Dunn, se tienen los siguientes valores p:
 
             \begin{center}
-                \begin{tabular}{lrrrrr}
+                \begin{tabular}{l|rrrrr}
                 \toprule
                  & american & asian & european & latin american & mediterranean \\
                 \midrule
@@ -844,9 +851,9 @@
             los siguientes resultados:
 
             \begin{center}
-                \begin{tabular}{lrr}
+                \begin{tabular}{l|rr}
                 \toprule
-                    Cocina & Valores P & Estadístico t \\
+                    Cocina & Valor P & Estadístico T \\
                 \midrule
                     american       & 0 & -70.993397 \\
                     asian          & 0 & -28.727771 \\
@@ -860,7 +867,7 @@
             De los valores p, se tiene que en todas las dietas la ingesta de 
             proteínas es menor que la de carbohidratos, esto representa que 
             es una dieta baja de proteínas y que se tiene que complementar 
-            con una fuente rica en proteínas.
+            con una fuente externa rica en proteínas.
         }
 
         \subsection{Diferencias entre Dietas}
@@ -882,7 +889,7 @@
             Se obtienen los siguientes resultados.
 
             \begin{center}
-                \begin{tabular}{lrrrrr}
+                \begin{tabular}{l|rrrrr}
                 \toprule
                     \multicolumn{6}{c}{Diferencias Significativas} \\
                 \midrule
@@ -898,9 +905,9 @@
             \end{center}
             
             \begin{center}
-                \begin{tabular}{lrrrrr}
+                \begin{tabular}{l|rrrrr}
                 \toprule
-                    \multicolumn{6}{c}{Promedio de los Estadísticos d} \\
+                    \multicolumn{6}{c}{Promedio de los Estadísticos D} \\
                 \midrule
                     & dash & keto & mediterranean & paleo & vegan \\
                 \midrule
@@ -929,11 +936,11 @@
             se obtienen por macronutriente y fuente de variación son:
 
             \begin{center}
-                \begin{tabular}{lrr}
+                \begin{tabular}{l|rr}
                 \toprule
                     \multicolumn{3}{c}{Carbs} \\
                 \midrule
-                    Fuente & Valores P & Estadístico f \\
+                    Fuente & Valor P & Estadístico F \\
                 \midrule
                     Dieta               & 0.0000 & 796.5672 \\
                     Cocina              & 0.0039 &   3.8450 \\
@@ -941,11 +948,11 @@
                 \bottomrule
                 \end{tabular}
                 \vspace*{0.5cm}
-                \begin{tabular}{lrr}
+                \begin{tabular}{l|rr}
                     \toprule
                     \multicolumn{3}{c}{Protein} \\
                 \midrule
-                    Fuente & Valores P & Estadístico F \\
+                    Fuente & Valor P & Estadístico F \\
                 \midrule
                     Dieta               & 0.0000 & 220.3292 \\
                     Cocina              & 0.0000 &  30.4022 \\
@@ -953,11 +960,11 @@
                 \bottomrule
                 \end{tabular}\\
                 \vspace*{0.1cm}
-                \begin{tabular}{lrr}
+                \begin{tabular}{l|rr}
                     \toprule
                     \multicolumn{3}{c}{Fat} \\
                 \midrule
-                    Fuente & Valores P & Estadístico F \\
+                    Fuente & Valor P & Estadístico F \\
                 \midrule
                     Dieta               & 0.0000   & 523.5090 \\
                     Cocina              & 0.0000   &   8.7621 \\
@@ -968,20 +975,24 @@
 
             De manera individual, las dietas y las cocinas si tienen una influencia 
             sobre los valores en los macronutrientes de manera contundente, esto 
-            coincide con las conclusiones del apartado anterior además de que las 
-            deberían que tender a tener diferencias.\\
+            coincide con las conclusiones del apartado anterior además de que las dietas
+            deberían que tender a tener diferencias.\newline
             
             Cuando se considera su interacción, 
             se tiene que en las proteínas y grasas tienen una interacción fuerte debido 
             a sus valores, además de ser los macronutrientes que más fluctúan cuando 
-            se comparan entre dietas y recetas. En carbohidratos, se tiene que esta 
+            se comparan entre dietas y cocinas. En carbohidratos, se tiene que esta 
             influencia se reduce, esto se relaciona a que los carbohidratos son más 
-            estables entre las dietas y cocinas, haciendo que tomen rango de valorse 
-            parecidos.
+            estables entre las dietas y cocinas, haciendo que tomen rango de valores 
+            parecidos, dicho así, son más dominantes sobre los otros macronutrientes.
         }
 
         \subsection{Regresión Lineal}
         {
+            No se realiza el ajuste de curvas sin estratificar debido a lo mostrado 
+            en \fullref{sec:eda}, donde, principalmente, la información es desvanecida 
+            al considerar todas las dietas.\newline
+        
             Se quiere probar si la dependencia lineal de los macronutrientes en cada 
             dieta es significativa, para ello se hace uso de la prueba de Correlación 
             de Pearson. Se tienen los siguientes conjunto de hipótesis:\\

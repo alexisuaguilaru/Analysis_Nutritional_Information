@@ -14,3 +14,7 @@ __*
 *.fdb_latexmk*
 *.toc*
 *.nav*
+
+*.ipynb
+
+.vscode

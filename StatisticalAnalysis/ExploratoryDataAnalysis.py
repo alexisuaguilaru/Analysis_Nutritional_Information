@@ -15,7 +15,9 @@ def _():
 
     import seaborn as sns
     import matplotlib.pyplot as plt
-    return mo, pd
+
+    import SourceStatisticalAnalysis as src
+    return mo, pd, src
 
 
 @app.cell
@@ -30,11 +32,17 @@ def _():
     Diet = 'Diet_type'
     Diets = ['dash', 'keto', 'mediterranean', 'paleo', 'vegan']
 
+    Dash = 'dash'
+    Keto = 'keto'
+    Mediterranean = 'mediterranean'
+    Paleo = 'paleo'
+    Vegan = 'vegan'
+
     Recipe = 'Recipe_name'
     Total = 'Total_macronutrients'
 
     RANDOM_STATE = 8013
-    return Diet, Macronutrients, RANDOM_STATE, Recipe, Total
+    return Dash, Diet, Macronutrients, RANDOM_STATE, Recipe, Total
 
 
 @app.cell
@@ -172,6 +180,81 @@ def _(Diet, Diets_Dataset, RANDOM_STATE, mo):
             mo.md('**Example of Recipes after Transformation**'),
             _SampleRecipes,
         ],
+    )
+    return
+
+
+@app.cell
+def _(mo):
+    mo.md(r"# 3. Analysis of Statistics by Type of Diet")
+    return
+
+
+@app.cell
+def _(mo):
+    mo.md(
+        r"""
+        ## 3.1. DASH Diet
+    
+        [[1]](#references) The Dietary Approaches to Stop Hypertension (DASH) diet is a dietary pattern specifically designed to help lower blood pressure and promote overall heart health. It emphasizes consuming a variety of nutrient-rich foods, including fruits, vegetables, whole grains, lean proteins, and low-fat dairy products, and limiting the intake of sodium, saturated fats, and added sugars. Scientific research has demonstrated the effectiveness of the DASH diet in reducing blood pressure and improving cardiovascular health.
+        """
+    )
+    return
+
+
+@app.cell
+def _(mo):
+    mo.md(
+        r"""
+        Being a diet that tends to be healthy, it shows that it favors the intake of carbohydrates, because carbohydrates are the most representative macronutrient in this diet. This is explained by considering that vegetables and fruits are the main food groups that are present in this diet, and from which the greatest amount of micronutrients are obtained. Leaving foods with low nutritional contributions, such as those associated with fats and proteins, in second place.
+    
+        The above is reflected when considering how an average recipe of this diet tends to have $55\%$ of its macronutrients as carbohydrates, $20\%$ in proteins and $25\%$ in fats. Emphasizing that this fat intake is originated by foods with fats and oils beneficial to health, such as omegas.
+        """
+    )
+    return
+
+
+@app.cell
+def _(Dash, Diet, Diets_Dataset, Macronutrients, mo):
+    Dash_Dataset = Diets_Dataset.query(f"{Diet} == '{Dash}'")
+
+    _Statistics = Dash_Dataset[Macronutrients].describe().iloc[1:]
+
+    mo.vstack(
+        [    
+            mo.md('**Statistics by Macronutrien in DASH Diet**'),
+            _Statistics,
+        ],
+    )
+    return (Dash_Dataset,)
+
+
+@app.cell
+def _(mo):
+    mo.md(r"In both proteins and fats, a positive bias can be appreciated, causing that the recipes tend to have low contributions of these two macronutrients or, even, recipes with a high contribution are not seen; this because these two macronutrients, when considering foods, are not accompanied by high contributions of micronutrients or rich in nutritional contributions. Therefore, carbohydrates are left as the main source of nutrient-rich foods, so you can see how they are distributed throughout the possible porcetanjes that can be taken along with having a tendency to be the predominant macronutrient in this diet.")
+    return
+
+
+@app.cell
+def _(Dash, Dash_Dataset, src):
+    src.PlotMacronutrients(Dash_Dataset,Dash.upper())
+    return
+
+
+@app.cell
+def _(mo):
+    mo.md(r"# References")
+    return
+
+
+@app.cell
+def _(mo):
+    mo.md(
+        r"""
+        * [1] F. F. Marvasti, "Popular Diets and Health", *Culinary Medicine*
+    
+        *
+        """
     )
     return
 

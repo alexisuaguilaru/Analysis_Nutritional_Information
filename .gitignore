@@ -1,6 +1,5 @@
 *.md
 *__pycache__
-__*
 
 *.aux*
 *.bbl*

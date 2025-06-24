@@ -48,6 +48,7 @@ def _():
         Keto,
         Macronutrients,
         Mediterranean,
+        Paleo,
         RANDOM_STATE,
         Recipe,
         Total,
@@ -311,7 +312,7 @@ def _(mo):
 def _(mo):
     mo.md(
         r"""
-        When considering the foods that are considered, it can be seen that there is a diversity among the different products, so that the macronutrients tend to be balanced or that none is the most representative of them. Carbohydrates are the most present macronutrient in this diet, with an average contribution of $42\%$ of the total macronutrients, and this is mainly due to the food groups that are most consumed.
+        When considering the foods that are consumed, it can be seen that there is a diversity among the different products, so that the macronutrients tend to be balanced or that none is the most representative of them. Carbohydrates are the most present macronutrient in this diet, with an average contribution of $42\%$ of the total macronutrients, and this is mainly due to the food groups that are most consumed.
     
         While $28\%$ and $30\%$ of the average contributions are proteins and fats, respectively, these values represent how this diet tends to be rich and diversified in different products and foods.
         """
@@ -343,6 +344,57 @@ def _(mo):
 @app.cell
 def _(Mediterranean, Mediterranean_Dataset, src):
     src.PlotMacronutrients(Mediterranean_Dataset,Mediterranean.capitalize())
+    return
+
+
+@app.cell
+def _(mo):
+    mo.md(
+        r"""
+        ## 3.4. Paleo Diet
+    
+        [[1]](#references) The Paleo diet, also known as the Paleolithic diet or caveman diet, is a dietary approach that aims to mimic the eating habits of our ancient ancestors from the Paleolithic era. It emphasizes consuming whole, unprocessed foods that would have been available to early humans, such as lean meats, fish, fruits, vegetables, nuts, and seeds, and excluding grains, legumes, dairy products, processed foods, and added sugars. Although the Paleo diet has gained popularity, it is important to note that scientific evidence supporting its specific health benefits is limited.
+        """
+    )
+    return
+
+
+@app.cell
+def _(mo):
+    mo.md(
+        r"""
+        When considering the origin of the foods that are consumed, the distribution of macronutrient contributions depends on the availability of these foods or natural products; where the easiest to obtain are all those that are not of animal origin, that is, of vegetable origin. Therefore, an average recipe of this tends to have a higher intake or contribution of these two macronutrients, specifically, $37% and $38% of the macronutrients consumed are carbohydrates and fats, respectively.
+    
+        These values allow us to show how the macronutrients and the food groups that are consumed are related, with those that are high in carbohydrates and fats being the most present in this diet. On the other hand, proteins are in less presence because protein-rich foods require more energy and effort to get them; leaving them to be the $25% of the macronutrients consumed.
+        """
+    )
+    return
+
+
+@app.cell
+def _(Diet, Diets_Dataset, Macronutrients, Paleo, mo):
+    Paleo_Dataset = Diets_Dataset.query(f"{Diet} == '{Paleo}'")
+
+    _Statistics = Paleo_Dataset[Macronutrients].describe().iloc[1:]
+
+    mo.vstack(
+        [    
+            mo.md('**Statistics by Macronutrient in Mediterranean Diet**'),
+            _Statistics,
+        ],
+    )
+    return (Paleo_Dataset,)
+
+
+@app.cell
+def _(mo):
+    mo.md(r"In the three distributions a positive skew can be appreciated, this is linked to the fact that foods, in their natural state, do not tend to have high contributions of a single macronutrient. Therefore, when preparing a recipe, it tends to have a more uniform distribution of nutritional contributions, making the different macronutrients equally present; except for proteins, which have a more noticeable positive skew and their values are more concentrated in low values.")
+    return
+
+
+@app.cell
+def _(Paleo, Paleo_Dataset, src):
+    src.PlotMacronutrients(Paleo_Dataset,Paleo.capitalize())
     return
 
 

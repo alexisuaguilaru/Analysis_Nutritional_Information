@@ -42,7 +42,16 @@ def _():
     Total = 'Total_macronutrients'
 
     RANDOM_STATE = 8013
-    return Dash, Diet, Keto, Macronutrients, RANDOM_STATE, Recipe, Total
+    return (
+        Dash,
+        Diet,
+        Keto,
+        Macronutrients,
+        Mediterranean,
+        RANDOM_STATE,
+        Recipe,
+        Total,
+    )
 
 
 @app.cell
@@ -231,7 +240,7 @@ def _(Dash, Diet, Diets_Dataset, Macronutrients, mo):
 
 @app.cell
 def _(mo):
-    mo.md(r"In both proteins and fats, a positive bias can be appreciated, causing that the recipes tend to have low contributions of these two macronutrients or, even, recipes with a high contribution are not seen; this because these two macronutrients, when considering foods, are not accompanied by high contributions of micronutrients or rich in nutritional contributions. Therefore, carbohydrates are left as the main source of nutrient-rich foods, so you can see how they are distributed throughout the possible porcetanjes that can be taken along with having a tendency to be the predominant macronutrient in this diet.")
+    mo.md(r"In both proteins and fats, a positive skewness can be appreciated, causing that the recipes tend to have low contributions of these two macronutrients or, even, recipes with a high contribution are not seen; this because these two macronutrients, when considering foods, are not accompanied by high contributions of micronutrients or rich in nutritional contributions. Therefore, carbohydrates are left as the main source of nutrient-rich foods, so it can be seen how they are distributed throughout the possible porcetanjes that can be taken along with having a tendency to be the predominant macronutrient in this diet.")
     return
 
 
@@ -276,13 +285,64 @@ def _(Diet, Diets_Dataset, Keto, Macronutrients, mo):
 
 @app.cell
 def _(mo):
-    mo.md(r"Carbohydrates have a notorious positive bias, this is related to the fact that the diet favors that the recipes have low contributions of carbohydrates, making that the contributions of this macronutrient are concentrated in low values. Although a negative bias can also be seen in proteins, this is less, because proteins are not harmed, this is due to the fact that this macronutrient is not restricted or limited on the amount or intake of foods associated with this macronutrient; this is reflected in the fact that the distribution is more dispersed over the different values in contrast to the distribution of the values of carbohydrates which is more accumulated in low values.")
+    mo.md(r"Carbohydrates have a notorious positive skew, this is related to the fact that the diet favors that the recipes have low contributions of carbohydrates, making that the contributions of this macronutrient are concentrated in low values. Although a negative skew can also be seen in proteins, this is less, because proteins are not harmed, this is due to the fact that this macronutrient is not restricted or limited on the amount or intake of foods associated with this macronutrient; this is reflected in the fact that the distribution is more dispersed over the different values in contrast to the distribution of the values of carbohydrates which is more accumulated in low values.")
     return
 
 
 @app.cell
 def _(Keto, Keto_Dataset, src):
     src.PlotMacronutrients(Keto_Dataset,Keto.capitalize())
+    return
+
+
+@app.cell
+def _(mo):
+    mo.md(
+        r"""
+        ## 3.3. Mediterranean Diet
+    
+        [[1]](#references) The Mediterranean diet is a dietary pattern inspired by the traditional eating habits of countries bordering the Mediterranean Sea. It is characterized by high consumption of fruits, vegetables, whole grains, legumes, nuts, and olive oil; moderate intake of fish and poultry; and low consumption of red meat, processed foods, and sweets. The health benefits of the Mediterranean diet have been investigated in numerous studies.
+        """
+    )
+    return
+
+
+@app.cell
+def _(mo):
+    mo.md(
+        r"""
+        When considering the foods that are considered, it can be seen that there is a diversity among the different products, so that the macronutrients tend to be balanced or that none is the most representative of them. Carbohydrates are the most present macronutrient in this diet, with an average contribution of $42\%$ of the total macronutrients, and this is mainly due to the food groups that are most consumed.
+    
+        While $28\%$ and $30\%$ of the average contributions are proteins and fats, respectively, these values represent how this diet tends to be rich and diversified in different products and foods.
+        """
+    )
+    return
+
+
+@app.cell
+def _(Diet, Diets_Dataset, Macronutrients, Mediterranean, mo):
+    Mediterranean_Dataset = Diets_Dataset.query(f"{Diet} == '{Mediterranean}'")
+
+    _Statistics = Mediterranean_Dataset[Macronutrients].describe().iloc[1:]
+
+    mo.vstack(
+        [    
+            mo.md('**Statistics by Macronutrient in Mediterranean Diet**'),
+            _Statistics,
+        ],
+    )
+    return (Mediterranean_Dataset,)
+
+
+@app.cell
+def _(mo):
+    mo.md(r"Although they do not have a notorious skew, the distribution of proteins and fats are skewed because, although representative foods of these groups are consumed, they are not so present in this diet; therefore, they tend to have lower values. In contrast with carbohydrates, which have a higher consumption of foods rich in this macronutrient, they are even more dispersed and presented in different proportions or levels of contributions. This can be appreciated when considering that it has a negative skew, so that the recipes tend to have high carbohydrate contributions.")
+    return
+
+
+@app.cell
+def _(Mediterranean, Mediterranean_Dataset, src):
+    src.PlotMacronutrients(Mediterranean_Dataset,Mediterranean.capitalize())
     return
 
 

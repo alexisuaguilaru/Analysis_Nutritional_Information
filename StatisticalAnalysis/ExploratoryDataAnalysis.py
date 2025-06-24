@@ -42,7 +42,7 @@ def _():
     Total = 'Total_macronutrients'
 
     RANDOM_STATE = 8013
-    return Dash, Diet, Macronutrients, RANDOM_STATE, Recipe, Total
+    return Dash, Diet, Keto, Macronutrients, RANDOM_STATE, Recipe, Total
 
 
 @app.cell
@@ -222,7 +222,7 @@ def _(Dash, Diet, Diets_Dataset, Macronutrients, mo):
 
     mo.vstack(
         [    
-            mo.md('**Statistics by Macronutrien in DASH Diet**'),
+            mo.md('**Statistics by Macronutrient in DASH Diet**'),
             _Statistics,
         ],
     )
@@ -238,6 +238,51 @@ def _(mo):
 @app.cell
 def _(Dash, Dash_Dataset, src):
     src.PlotMacronutrients(Dash_Dataset,Dash.upper())
+    return
+
+
+@app.cell
+def _(mo):
+    mo.md(
+        r"""
+        ## 3.2. Keto Diet
+    
+        [[1]](#references) A low-carbohydrate (low-carb) diet is an eating pattern that restricts the intake of carbohydrates, typically replacing them with higher amounts of protein and fat. The ketogenic diet is a form of a lowcarb diet that is high in fat relative to protein and carbohydrate intake. The macronutrient breakdown for a ketogenic diet is 70% fat, 20% protein, and 10% carbohydrate. The goal with ketogenic diet is to induce ketosis, a metabolic state that occurs when a body burns fat for energy instead of glucose, which induces weight loss.
+        """
+    )
+    return
+
+
+@app.cell
+def _(mo):
+    mo.md(r"Being a high-fat diet, two main facts could be expected: that fats are the dominant macronutrient or the one with the highest contribution, while carbohydrates are a macronutrient that has a lower presence in the contributions. These two facts can be seen in the summary of the statistics, where an average recipe has $50\%$ of its macronutrients in fats, $30\%$ in proteins and $20\%$ in carbohydrates, where these last two values are consistent with the fact of being a ketogenic diet, that is, low in carbohydrates and rich in fats.")
+    return
+
+
+@app.cell
+def _(Diet, Diets_Dataset, Keto, Macronutrients, mo):
+    Keto_Dataset = Diets_Dataset.query(f"{Diet} == '{Keto}'")
+
+    _Statistics = Keto_Dataset[Macronutrients].describe().iloc[1:]
+
+    mo.vstack(
+        [    
+            mo.md('**Statistics by Macronutrient in Keto Diet**'),
+            _Statistics,
+        ],
+    )
+    return (Keto_Dataset,)
+
+
+@app.cell
+def _(mo):
+    mo.md(r"Carbohydrates have a notorious positive bias, this is related to the fact that the diet favors that the recipes have low contributions of carbohydrates, making that the contributions of this macronutrient are concentrated in low values. Although a negative bias can also be seen in proteins, this is less, because proteins are not harmed, this is due to the fact that this macronutrient is not restricted or limited on the amount or intake of foods associated with this macronutrient; this is reflected in the fact that the distribution is more dispersed over the different values in contrast to the distribution of the values of carbohydrates which is more accumulated in low values.")
+    return
+
+
+@app.cell
+def _(Keto, Keto_Dataset, src):
+    src.PlotMacronutrients(Keto_Dataset,Keto.capitalize())
     return
 
 

@@ -36,7 +36,7 @@ def PlotMacronutrients(
 
         SetLabels(axes[mosaic_position],XLabel=macronutrient)
 
-    title = 'Distribution of Macronutrients' + (f'\nin Diet {Diet}' if Diet else '')
+    title = 'Distribution of Macronutrients' + (f'\nin {Diet} Diet' if Diet else '')
     fig.suptitle(title,fontsize=20)
     return fig
 

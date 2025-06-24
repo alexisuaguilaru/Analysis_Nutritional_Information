@@ -52,6 +52,7 @@ def _():
         RANDOM_STATE,
         Recipe,
         Total,
+        Vegan,
     )
 
 
@@ -395,6 +396,51 @@ def _(mo):
 @app.cell
 def _(Paleo, Paleo_Dataset, src):
     src.PlotMacronutrients(Paleo_Dataset,Paleo.capitalize())
+    return
+
+
+@app.cell
+def _(mo):
+    mo.md(
+        r"""
+        ## 3.4. Vegan Diet
+    
+        [[1]](#references) The vegan diet is a plant-based dietary pattern that excludes the consumption of all animal products, including meat, poultry, seafood, dairy products, eggs, and honey. It focuses on consuming a variety of plant-based foods, such as fruits, vegetables, grains, legumes, nuts, and seeds. Scientific research has explored the health benefits of vegan diets and shown the benefits are similar to the health benefits of vegetarians diets,
+        """
+    )
+    return
+
+
+@app.cell
+def _(mo):
+    mo.md(r"Being a diet that favors only the consumption of foods and products of vegetable origin, protein intake will tend to low values, while carbohydrates are in the opposite situation, due to the foods themselves that are consumed. This can be appreciated when considering the average values of the macronutrients that are consumed in this diet, specifically: $59\%$ are carbohydrates, $15\%$ are proteins and $26\%$ are fats. These last values allow us to conclude that this diet requires a better balance and control over the macronutrients that are consumed, since it only favors a single macronutrient (carbohydrates) while the consumption of the other two is impaired.")
+    return
+
+
+@app.cell
+def _(Diet, Diets_Dataset, Macronutrients, Vegan, mo):
+    Vegan_Dataset = Diets_Dataset.query(f"{Diet} == '{Vegan}'")
+
+    _Statistics = Vegan_Dataset[Macronutrients].describe().iloc[1:]
+
+    mo.vstack(
+        [    
+            mo.md('**Statistics by Macronutrient in Vegan Diet**'),
+            _Statistics,
+        ],
+    )
+    return (Vegan_Dataset,)
+
+
+@app.cell
+def _(mo):
+    mo.md(r"The notorious positive skew presented by the distribution of proteins shows the almost null intake of foods rich in proteins in this diet, that is, the recipes will have low protein intake. While carbohydrates will be favored to be the predominant macronutrient of the recipes, because it has a negative skew, and this is related to the exclusive consumption of foods of vegetable origin.")
+    return
+
+
+@app.cell
+def _(Vegan, Vegan_Dataset, src):
+    src.PlotMacronutrients(Vegan_Dataset,Vegan.capitalize())
     return
 
 

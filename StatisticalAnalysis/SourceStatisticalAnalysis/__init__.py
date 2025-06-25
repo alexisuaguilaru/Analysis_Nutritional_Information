@@ -1,1 +1,1 @@
-from .Plots import PlotMacronutrients
+from .Plots import PlotMacronutrients , PlotRegressions , PlotCorrelationsPCA

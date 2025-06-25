@@ -446,6 +446,24 @@ def _(Vegan, Vegan_Dataset, src):
 
 @app.cell
 def _(mo):
+    mo.md(r"# 4. Analysis of Correlations")
+    return
+
+
+@app.cell
+def _(Dash, Dash_Dataset, src):
+    src.PlotRegressions(Dash_Dataset,Dash.upper())
+    return
+
+
+@app.cell
+def _(Dash, Dash_Dataset, src):
+    src.PlotCorrelationsPCA(Dash_Dataset,Dash.upper())
+    return
+
+
+@app.cell
+def _(mo):
     mo.md(r"# References")
     return
 

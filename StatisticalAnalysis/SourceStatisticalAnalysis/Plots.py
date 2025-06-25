@@ -72,6 +72,7 @@ def PlotRegressions(
 def PlotCorrelationsPCA(
         Dataset:pd.DataFrame,
         Diet:str=None,
+        Macronutrient:str=None,
     ) -> Figure:
     """
     Function for plotting correlation 
@@ -105,6 +106,7 @@ def PlotCorrelationsPCA(
         alpha=0.25,
         linewidth=0,
         color=ColorBase,
+        size=Dataset[Macronutrient],
     )
     SetLabels(axes[1],XLabel='PC1',YLabel='PC2')
 

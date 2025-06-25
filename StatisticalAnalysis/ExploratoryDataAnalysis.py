@@ -43,6 +43,7 @@ def _():
 
     RANDOM_STATE = 8013
     return (
+        Carbs,
         Dash,
         Diet,
         Keto,
@@ -451,14 +452,32 @@ def _(mo):
 
 
 @app.cell
+def _(mo):
+    mo.md(r"## 4.1. DASH Diet")
+    return
+
+
+@app.cell
+def _(mo):
+    mo.md(r"Carbohydrates have a strong negative correlation with the other macronutrients, this may be due to the fact that in this diet the recipes tend to have high carbohydrate intake or to consume foods rich in this macronutrient. Therefore, the increase in the amount of carbohydrates in a recipe generates a decompensation in the other two macronutrients, so that if more fruits or vegetables are consumed, the consumption of proteins and foods rich in fats is lowered.")
+    return
+
+
+@app.cell
 def _(Dash, Dash_Dataset, src):
     src.PlotRegressions(Dash_Dataset,Dash.upper())
     return
 
 
 @app.cell
-def _(Dash, Dash_Dataset, src):
-    src.PlotCorrelationsPCA(Dash_Dataset,Dash.upper())
+def _(mo):
+    mo.md(r"By using the first two PCA-generated components of the dataset, a two-dimensional projection of the distribution of the recipes is generated, which allows us to observe how they accumulate more towards the regions where they tend to have a greater presence of carbohydrates. Thus, PC1 explains how the carbohydrate contributions of the different recipes vary, while PC2 explains the variance or distribution of the remaining two macronutrients.")
+    return
+
+
+@app.cell
+def _(Carbs, Dash, Dash_Dataset, src):
+    src.PlotCorrelationsPCA(Dash_Dataset,Dash.upper(),Carbs)
     return
 
 

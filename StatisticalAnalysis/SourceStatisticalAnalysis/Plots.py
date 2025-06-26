@@ -98,7 +98,8 @@ def PlotCorrelationsPCA(
     )
     SetLabels(axes[0])
     
-    components_values = PCA(random_state=RANDOM_STATE).fit_transform(Dataset[Macronutrients])
+    pca_model = PCA(random_state=RANDOM_STATE)
+    components_values = pca_model.fit_transform(Dataset[Macronutrients])
     sns.scatterplot(
         x=components_values[:,0],
         y=components_values[:,1],

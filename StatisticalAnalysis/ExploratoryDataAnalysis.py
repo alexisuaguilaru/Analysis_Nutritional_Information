@@ -46,6 +46,7 @@ def _():
         Carbs,
         Dash,
         Diet,
+        Fat,
         Keto,
         Macronutrients,
         Mediterranean,
@@ -478,6 +479,36 @@ def _(mo):
 @app.cell
 def _(Carbs, Dash, Dash_Dataset, src):
     src.PlotCorrelationsPCA(Dash_Dataset,Dash.upper(),Carbs)
+    return
+
+
+@app.cell
+def _(mo):
+    mo.md(r"## 4.2. Keto Diet")
+    return
+
+
+@app.cell
+def _(mo):
+    mo.md(r"Knowing that this diet favors a high fat intake and a low carbohydrate intake, this generates negative correlations. This is due to the fact that this diet tries to favor the consumption of foods rich in fats, so that if a recipe is rich in this macronutrient, the other two macronutrients tend to go down, where carbohydrates will tend to take lower values than proteins.")
+    return
+
+
+@app.cell
+def _(Keto, Keto_Dataset, src):
+    src.PlotRegressions(Keto_Dataset,Keto.capitalize())
+    return
+
+
+@app.cell
+def _(mo):
+    mo.md(r"By using PCA, it is possible to generate the projection of the recipes on the plane, where it can be seen how the recipes are distributed according to their macronutrient contributions. Specifically, by having similar variances and correlations, the principal components of PCA do not generate a specific or subtle distinction between the interaction between macronutrients, but by using PC1 it is possible to explain the variability that the recipes have on the contributions in fats, making PC2 show how the other two macronutrients interact in the contributions of a recipe.")
+    return
+
+
+@app.cell
+def _(Fat, Keto, Keto_Dataset, src):
+    src.PlotCorrelationsPCA(Keto_Dataset,Keto.capitalize(),Fat)
     return
 
 

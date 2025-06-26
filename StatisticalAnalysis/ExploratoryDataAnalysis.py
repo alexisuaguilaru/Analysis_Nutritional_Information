@@ -574,6 +574,36 @@ def _(Carbs, Paleo, Paleo_Dataset, src):
 
 @app.cell
 def _(mo):
+    mo.md(r"## 4.5. Vegan Diet")
+    return
+
+
+@app.cell
+def _(mo):
+    mo.md(r"Due to the fact that in this diet the intake of products and foods rich in proteins is almost null, it is observed that proteins behave as if they can only take a certain range of values, making that carbohydrates and fats can take any contribution. The latter can be shown by considering how the correlation between carbohydrates and fats is high; therefore, it could be said that these macronutrients are the only ones that vary in nutritional intake. This phenomenon is supported by considering that products of vegetable origin are rich in carbohydrates and, in certain groups, in fats.")
+    return
+
+
+@app.cell
+def _(Vegan, Vegan_Dataset, src):
+    src.PlotRegressions(Vegan_Dataset,Vegan.capitalize())
+    return
+
+
+@app.cell
+def _(mo):
+    mo.md(r"Since most of the variance and correlation is captured by carbohydrates and fats, using PCA in the dataset, PC1 and PC2 allow explaining the variance in these two macronutrients; where PC1 tends to explain the distribution and variance of fats while PC2 tends to that of carbohydrates. This phenomenon is due mainly to the fact that the variance in the proteins is low and their correlations are not so strong, making them behave as a constant.")
+    return
+
+
+@app.cell
+def _(Fat, Vegan, Vegan_Dataset, src):
+    src.PlotCorrelationsPCA(Vegan_Dataset,Vegan.capitalize(),Fat)
+    return
+
+
+@app.cell
+def _(mo):
     mo.md(r"# References")
     return
 

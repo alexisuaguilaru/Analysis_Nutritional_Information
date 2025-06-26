@@ -544,19 +544,43 @@ def _(Carbs, Mediterranean, Mediterranean_Dataset, src):
 
 @app.cell
 def _(mo):
+    mo.md(r"## 4.4. Paleo Diet")
+    return
+
+
+@app.cell
+def _(mo):
+    mo.md(r"The foods used in this diet are obtained directly from nature, therefore the main nutritional contributions are carbohydrates; and as these natural products are representative of some of the macronutrients, it can be shown that the nutritional contributions are sensitive to the increase in the intake of certain foods or products, therefore decreasing the consumption of foods of vegetable origin increases the consumption of proteins and fats.")
+    return
+
+
+@app.cell
+def _(Paleo, Paleo_Dataset, src):
+    src.PlotRegressions(Paleo_Dataset,Paleo.capitalize())
+    return
+
+
+@app.cell
+def _(mo):
+    mo.md(r"By using the transformation of the dataset using PCA, the two-dimensional projection of the recipe contributions is generated. It is shown how PC1 contains the information related to how the recipe contributions are distributed and vary according to how the carbohydrates change; while PC2 explains the remaining variation in the distributions of protein and fat contributions.")
+    return
+
+
+@app.cell
+def _(Carbs, Paleo, Paleo_Dataset, src):
+    src.PlotCorrelationsPCA(Paleo_Dataset,Paleo.capitalize(),Carbs)
+    return
+
+
+@app.cell
+def _(mo):
     mo.md(r"# References")
     return
 
 
 @app.cell
 def _(mo):
-    mo.md(
-        r"""
-        * [1] F. F. Marvasti, "Popular Diets and Health", *Culinary Medicine*
-    
-        *
-        """
-    )
+    mo.md(r"* [1] F. F. Marvasti, 'Popular Diets and Health', *Culinary Medicine*")
     return
 
 

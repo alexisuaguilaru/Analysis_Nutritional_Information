@@ -514,6 +514,36 @@ def _(Fat, Keto, Keto_Dataset, src):
 
 @app.cell
 def _(mo):
+    mo.md(r"## 4.3. Mediterranean Diet")
+    return
+
+
+@app.cell
+def _(mo):
+    mo.md(r"When considering the types of foods that are consumed in this diet, it can be assumed that they are rich in mraconutrients and, specifically, rich in carbohydrates, so this macronutrient determines how the contributions of the other two will be. This is reflected when considering the correlations, which are high and negative values, so the trend of increasing carbohydrates will cause proteins and fats to decrease in the same sense; therefore, carbohydrates determine how the nutritional contributions of a recipe will be.")
+    return
+
+
+@app.cell
+def _(Mediterranean, Mediterranean_Dataset, src):
+    src.PlotRegressions(Mediterranean_Dataset,Mediterranean.capitalize())
+    return
+
+
+@app.cell
+def _(mo):
+    mo.md(r"When transforming the dataset under PCA, the projection in the plane of the distribution of the recipes based on their nutritional contributions is created. The PC1 allows to explain how the carbohydrate contributions are distributed, or how the variation of this macronutrient alters the distribution of the nutrinional contributions; while PC2, allows to show the distribution of the contributions of proteins and fats.")
+    return
+
+
+@app.cell
+def _(Carbs, Mediterranean, Mediterranean_Dataset, src):
+    src.PlotCorrelationsPCA(Mediterranean_Dataset,Mediterranean.capitalize(),Carbs)
+    return
+
+
+@app.cell
+def _(mo):
     mo.md(r"# References")
     return
 

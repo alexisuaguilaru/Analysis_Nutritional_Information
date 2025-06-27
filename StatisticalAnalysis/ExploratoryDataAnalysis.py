@@ -17,7 +17,7 @@ def _():
     import matplotlib.pyplot as plt
 
     import SourceStatisticalAnalysis as src
-    return mo, pd, src
+    return mo, np, pd, sns, src
 
 
 @app.cell
@@ -86,7 +86,7 @@ def _(mo):
     
         * `Fat` [float]: Grams of fat provided by a recipe
     
-        The dataset consists of `7806` recipes from five different diets: [DASH](https://en.wikipedia.org/wiki/DASH_diet), [Keto](https://en.wikipedia.org/wiki/Ketogenic_diet), [Mediterranean](https://en.wikipedia.org/wiki/Mediterranean_diet), [Paleo](https://en.wikipedia.org/wiki/Paleolithic_diet) and [Vegan](https://en.wikipedia.org/wiki/Veganism). Considering the distribution of the recipes by diet, it is found that they are not uniformly distributed and, therefore, the dataset is unbalanced with respect to `Diet_type`.
+        The dataset consists of $7806$ recipes from five different diets: [DASH](https://en.wikipedia.org/wiki/DASH_diet), [Keto](https://en.wikipedia.org/wiki/Ketogenic_diet), [Mediterranean](https://en.wikipedia.org/wiki/Mediterranean_diet), [Paleo](https://en.wikipedia.org/wiki/Paleolithic_diet) and [Vegan](https://en.wikipedia.org/wiki/Veganism). Considering the distribution of the recipes by diet, it is found that they are not uniformly distributed and, therefore, the dataset is unbalanced with respect to `Diet_type`.
     
         The values of the contributions of the three macronutrients can take a wide range of values, so it becomes difficult to generate a comparison of the nutritional contributions of the recipes in the different diets. To address this problem, a transformation will be applied to the values.
         """
@@ -599,6 +599,55 @@ def _(mo):
 @app.cell
 def _(Fat, Vegan, Vegan_Dataset, src):
     src.PlotCorrelationsPCA(Vegan_Dataset,Vegan.capitalize(),Fat)
+    return
+
+
+@app.cell
+def _(mo):
+    mo.md(r"# 5. Data Cleaning")
+    return
+
+
+@app.cell
+def _(mo):
+    mo.md(
+        r"""
+        Haciendo uso de que se están usando aportes relativos, es decir, composiciones, y que suman $1$, se puede aprovechar para usar [distribuciones Beta](https://en.wikipedia.org/wiki/Beta_distribution) para determinar los valores atípicos. Pero una distribución más adecuada es su generalización, la [distribución de Dirichlet](https://en.wikipedia.org/wiki/Dirichlet_distribution), ésta distribución permite modelar de mejor manera los datos sobre los macronutrientes de las recetas, por lo tanto se puede aprovechar de mejor manera para limpiar el dataset de recetas atípicas.
+    
+        Debido a que, como se ha estado mostrando, cada dieta se comporta de forma diferente o sigue patrones diferentes, se tiene que la limpieza de los valores o recetas atípicas se realiza en base a las dietas, en cada una de ellas. Esto garantiza eliminar recetas que no se comporten conforme al comportamiento normal de la dieta a la que pertencen. 
+    
+        Se eliminan recetas cuyos aportes sean puramente de un único macronutriente (igual a $1$) o que tengan ausencia de alguno de ellos (igual a $0$). El umbral para los valores atípicos es de $5\%$.
+        """
+    )
+    return
+
+
+@app.cell
+def _(Dash_Dataset, Macronutrients, np, sns):
+    from scipy.special import gamma
+    from scipy.optimize import minimize
+
+    def log_likelihood(alpha, data):
+        alpha0 = np.sum(alpha)
+        term1 = np.sum(np.log(data)*(alpha-1), axis=1)
+        term2 = np.log(np.prod(gamma(alpha))/gamma(alpha0))
+        return -np.sum(term1-term2)
+
+    _initial_alpha = np.ones((3,))*1/3
+    _query = ' & '.join(f'0 < {macronutrient} < 1' for macronutrient in Macronutrients)
+    _data = Dash_Dataset[Macronutrients].query(_query)
+    _result = minimize(
+        log_likelihood,
+        _initial_alpha,
+        args=(_data,),
+        method='L-BFGS-B',
+        bounds=[(0.001, None)]*3
+    )
+    _alpha_hat_mle = _result.x
+
+    from scipy.stats import dirichlet
+
+    sns.boxplot(dirichlet.pdf(_data.T,_alpha_hat_mle,),orient='h')
     return
 
 

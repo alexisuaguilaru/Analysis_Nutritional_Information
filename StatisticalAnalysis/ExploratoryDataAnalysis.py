@@ -17,7 +17,7 @@ def _():
     import matplotlib.pyplot as plt
 
     import SourceStatisticalAnalysis as src
-    return mo, np, pd, sns, src
+    return mo, pd, src
 
 
 @app.cell
@@ -46,6 +46,7 @@ def _():
         Carbs,
         Dash,
         Diet,
+        Diets,
         Fat,
         Keto,
         Macronutrients,
@@ -612,42 +613,39 @@ def _(mo):
 def _(mo):
     mo.md(
         r"""
-        Haciendo uso de que se están usando aportes relativos, es decir, composiciones, y que suman $1$, se puede aprovechar para usar [distribuciones Beta](https://en.wikipedia.org/wiki/Beta_distribution) para determinar los valores atípicos. Pero una distribución más adecuada es su generalización, la [distribución de Dirichlet](https://en.wikipedia.org/wiki/Dirichlet_distribution), ésta distribución permite modelar de mejor manera los datos sobre los macronutrientes de las recetas, por lo tanto se puede aprovechar de mejor manera para limpiar el dataset de recetas atípicas.
+        As relative contributions are being used, that is, compositions, and they add up to $1$, it is possible to use [Beta distributions](https://en.wikipedia.org/wiki/Beta_distribution) to determine the outliers. But a more appropriate distribution is its generalization, the [Dirichlet distribution](https://en.wikipedia.org/wiki/Dirichlet_distribution), this distribution allows to better model the data on the macronutrients of the recipes, therefore it can be used in a better way to clean the dataset of outliers.
     
-        Debido a que, como se ha estado mostrando, cada dieta se comporta de forma diferente o sigue patrones diferentes, se tiene que la limpieza de los valores o recetas atípicas se realiza en base a las dietas, en cada una de ellas. Esto garantiza eliminar recetas que no se comporten conforme al comportamiento normal de la dieta a la que pertencen. 
+        Since, as has been shown, each diet behaves differently or follows different patterns, the cleaning of outliers is done on a per diet basis. This ensures that recipes that do not behave according to the normal behavior of the diet to which they belong are eliminated.
     
-        Se eliminan recetas cuyos aportes sean puramente de un único macronutriente (igual a $1$) o que tengan ausencia de alguno de ellos (igual a $0$). El umbral para los valores atípicos es de $5\%$.
+        First, recipes whose contributions are purely of a single macronutrient (equal to $1$) or which have an absence of any of them (equal to $0$) are eliminated. With this, for each type of diet, their respective Dirichlet distribution is fitted and the $10\%$ of the recipes whose PDF values are the lowest are determined, and these will be considered the outliers, because having lower values implies that they are less likely.
         """
     )
     return
 
 
 @app.cell
-def _(Dash_Dataset, Macronutrients, np, sns):
-    from scipy.special import gamma
-    from scipy.optimize import minimize
+def _(Diets, pd, src):
+    # Data cleaning in each diet
 
-    def log_likelihood(alpha, data):
-        alpha0 = np.sum(alpha)
-        term1 = np.sum(np.log(data)*(alpha-1), axis=1)
-        term2 = np.log(np.prod(gamma(alpha))/gamma(alpha0))
-        return -np.sum(term1-term2)
+    DatasetsClean = []
 
-    _initial_alpha = np.ones((3,))*1/3
-    _query = ' & '.join(f'0 < {macronutrient} < 1' for macronutrient in Macronutrients)
-    _data = Dash_Dataset[Macronutrients].query(_query)
-    _result = minimize(
-        log_likelihood,
-        _initial_alpha,
-        args=(_data,),
-        method='L-BFGS-B',
-        bounds=[(0.001, None)]*3
-    )
-    _alpha_hat_mle = _result.x
+    for _diet in Diets:
+        _dataset = eval(f'{_diet.capitalize()}_Dataset')
+        _dataset_clean = src.DataCleaningFunction(_dataset)
+        DatasetsClean.append(_dataset_clean)
 
-    from scipy.stats import dirichlet
+        _name_diet = _diet.capitalize() if _diet != 'dash' else _diet.upper()
+        print(f'Outliers in {_name_diet} Diet :: {_dataset.shape[0]-_dataset_clean.shape[0]}')
 
-    sns.boxplot(dirichlet.pdf(_data.T,_alpha_hat_mle,),orient='h')
+    Diets_Dataset_Clean = pd.concat(DatasetsClean,ignore_index=True)
+    return (Diets_Dataset_Clean,)
+
+
+@app.cell
+def _(Diets_Dataset_Clean):
+    # Dumping/Saving cleaned dataset
+
+    Diets_Dataset_Clean.to_csv('./Datasets/Diets_Dataset_Clean.csv',index=False)
     return
 
 

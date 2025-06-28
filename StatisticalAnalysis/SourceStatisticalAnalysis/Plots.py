@@ -131,8 +131,8 @@ def PlotBetaDistributions(
 
         axes[mosaic_position].scatter(theoretical_quantiles,observed_quantiles,s=5,c=color)
         axes[mosaic_position].plot(theoretical_quantiles,theoretical_quantiles,color='black',alpha=0.5,linestyle='--',lw=3)
-        axes[mosaic_position].set_xlim((0-5e-2,theoretical_quantiles[-1]+5e-2))
-        axes[mosaic_position].set_ylim((0-5e-2,theoretical_quantiles[-1]+5e-2))
+        axes[mosaic_position].set_xlim((theoretical_quantiles[0]-5e-2,theoretical_quantiles[-1]+5e-2))
+        axes[mosaic_position].set_ylim((theoretical_quantiles[0]-5e-2,theoretical_quantiles[-1]+5e-2))
         
         title_axes = f'{macronutrient.capitalize()}\n' + rf'$\alpha =$ {fit_beta_arguments[0]:.2f} $\beta = ${fit_beta_arguments[1]:.2f}'
         SetLabels(axes[mosaic_position],title_axes,'Theorical Quantiles','Observed Quantiles')
@@ -140,6 +140,7 @@ def PlotBetaDistributions(
     title = 'Q-Q Plots of Macronutrients' + (f'\nin {Diet} Diet' if Diet else '')
     fig.suptitle(title,fontsize=20)
     
+    fig.savefig(f'./Resources/{Diet}Diet_Beta.png')
     return fig
 
 def CreateMosaicPlot(

@@ -39,6 +39,8 @@ def PlotMacronutrients(
 
     title = 'Distribution of Macronutrients' + (f'\nin {Diet} Diet' if Diet else '')
     fig.suptitle(title,fontsize=20)
+
+    fig.savefig(f'./Resources/{Diet}Diet.png')
     return fig
 
 def PlotRegressions(

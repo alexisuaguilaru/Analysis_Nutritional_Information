@@ -650,9 +650,6 @@ def _(Diets, pd, src):
         _dataset_clean = src.DataCleaningFunction(_dataset)
         DatasetsClean.append(_dataset_clean)
 
-        _name_diet = _diet.capitalize() if _diet != 'dash' else _diet.upper()
-        print(f'Outliers in {_name_diet} Diet :: {_dataset.shape[0]-_dataset_clean.shape[0]}')
-
     Diets_Dataset_Clean = pd.concat(DatasetsClean,ignore_index=True)
     return (Diets_Dataset_Clean,)
 

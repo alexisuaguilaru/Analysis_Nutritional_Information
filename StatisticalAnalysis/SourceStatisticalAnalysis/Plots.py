@@ -118,17 +118,47 @@ def PlotCorrelationsPCA(
 
     return fig
 
+def PlotBetaDistributions(
+        Dataset:pd.DataFrame,
+        Diet:str=None,
+    ) -> Figure:
+    fig , axes , config_plot = CreateMosaicPlot((9,8))
+    for macronutrient , mosaic_position , color in config_plot:
+        axes[mosaic_position].grid(True,axis='both',color='gray',lw=0.5,ls=':')
+
+        fit_beta_arguments = stats.beta.fit(Dataset[macronutrient],floc=0,fscale=1)
+        (theoretical_quantiles , observed_quantiles) , _ = stats.probplot(Dataset[macronutrient],dist=stats.beta,sparams=fit_beta_arguments)
+
+        axes[mosaic_position].scatter(theoretical_quantiles,observed_quantiles,s=5,c=color)
+        axes[mosaic_position].plot(theoretical_quantiles,theoretical_quantiles,color='black',alpha=0.5,linestyle='--',lw=3)
+        axes[mosaic_position].set_xlim((0-5e-2,theoretical_quantiles[-1]+5e-2))
+        axes[mosaic_position].set_ylim((0-5e-2,theoretical_quantiles[-1]+5e-2))
+        
+        title_axes = f'{macronutrient.capitalize()}\n' + rf'$\alpha =$ {fit_beta_arguments[0]:.2f} $\beta = ${fit_beta_arguments[1]:.2f}'
+        SetLabels(axes[mosaic_position],title_axes,'Theorical Quantiles','Observed Quantiles')
+    
+    title = 'Q-Q Plots of Macronutrients' + (f'\nin {Diet} Diet' if Diet else '')
+    fig.suptitle(title,fontsize=20)
+    
+    return fig
+
 def CreateMosaicPlot(
+        FigSize:tuple[float,float]=(8,6),
     ) -> tuple[Figure, dict[str,Axes], Iterator[tuple[str,str,str]]]:
     """
     Function for creating the fig
     for plots
+
+    Parameters
+    ----------
+    FigSize : tuple[float,float]
+        Value for Parameter figsize of plt.subplot_mosaic
     """
     display = "PPCC;.FF."
 
     fig , axes = plt.subplot_mosaic(
         display,
-        figsize=(8,6),
+        figsize=FigSize,
         layout='tight',
         subplot_kw={'frame_on':False,'xlim':(0-5e-2,1+5e-2),'ylim':(0-5e-2,1+5e-2)}
     )

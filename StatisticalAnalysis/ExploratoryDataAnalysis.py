@@ -67,6 +67,22 @@ def _(mo):
 
 @app.cell
 def _(mo):
+    mo.md(
+        r"""
+        The following Exploratory Data Analysis (EDA) aims to analyze the dataset by means of univariate and bivariate statistical techniques in order to understand and explore possible relationships between the macronutrient values of the different recipes. 
+    
+        First a minimal exploration of the dataset is exposed in the section [1. Load Dataset and First Exploration](#1-load-dataset-and-first-exploration) in order to have an initial idea about the data to be worked with and to determine first actions on data transformation or data cleaning. From the latter, the macronutrient values of the dataset are transformed to use percentages of the inputs, or compositions, in order to have the same scale and gain a better understanding of the data itself, this is presented and performed in section [2. Transformation of Macronutrient Values](#2-transformation-of-macronutrient-values).
+    
+        In sections [3. Analysis of Statistics by Type of Diet](#3-analysis-of-statistics-by-type-of-diet) and [4. Analysis of Correlations](#4-analysis-of-correlations) where the different comments and relationships concerning the phenomena observed in each of the diets are presented. From where it is highlighted that the different diets being studied are different from each other, that is, they behave differently, have different nutritional contributions and tendencies.
+    
+        With the different insights and knowledge gained from analyzing the dataset through different techniques, datset cleaning is performed, which is presented in section [5. Data Cleaning](#5-data-cleaning), which takes advantage of the fact that the macronutrient data follow the Dirichlet distribution to determine when a recipe is outlier.
+        """
+    )
+    return
+
+
+@app.cell
+def _(mo):
     mo.md(r"# 1. Load Dataset and First Exploration")
     return
 

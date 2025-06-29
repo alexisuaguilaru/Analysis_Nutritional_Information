@@ -21,7 +21,7 @@ Making use of different techniques and tools of descriptive and inferential stat
 The dataset is taken from [[1]](#references). The dataset contains information on the nutritional values of carbohydrates, proteins and fats of recipes from different international cuisines and diets.
 
 ## Exploratory Data Analysis
-In [ExploratoryDataAnalysis.py](./StatisticalAnalysis/ExploratoryDataAnalysis.py) the different ideas and comments related to the statistical analysis of the recipes based on the context of the diet to which they belong are presented. This generates a better interpretation of the observed statistics and how they are related based on the products and foods representative of each diet, which leads to a more consolidated knowledge about the trends and patterns that follow the diets presented in [[2]](#references), and which are statistically reinforced.
+In [Exploratory Data Analysis](./StatisticalAnalysis/ExploratoryDataAnalysis.py) the different ideas and comments related to the statistical analysis of the recipes based on the context of the diet to which they belong are presented. This generates a better interpretation of the observed statistics and how they are related based on the products and foods representative of each diet, which leads to a more consolidated knowledge about the trends and patterns that follow the diets presented in [[2]](#references), and which are statistically reinforced.
 
 This last result contributes significantly to the [General Aim](#general-aim) of the project, that is, evidence is being generated to support the hypothesis that each diet distinguishes itself from others on the basis of nutritional contributions. This can be best observed by looking at the distribution of macronutrients in each diet.
 
@@ -30,6 +30,25 @@ This last result contributes significantly to the [General Aim](#general-aim) of
 ![Mediterranean Diet](./Resources/MediterraneanDiet.png)
 ![Paleo Diet](./Resources/PaleoDiet.png)
 ![Vegan Diet](./Resources/VeganDiet.png)
+
+## Results
+In [Hypothesis Testing](./StatisticalAnalysis/HypothesisTesting.py) the hypothesis test for the difference between diets based on nutritional contributions or macronutrient distributions is presented. The [Kolmogorov-Smirnov test](https://en.wikipedia.org/wiki/Kolmogorov%E2%80%93Smirnov_test) is used to detect differences in macronutrient distributions between two diets, from the results obtained it is concluded that there is a significant difference between all diets, and to measure this difference it is proposed to use the mean of the values of the test statistics for each macronutrient; the following means are obtained for each pair of diets:
+
+| DIET          | DASH   | Keto   | Mediterranean | Paleo  | Vegan  |
+| :------------ | -----: | -----: | ------------: | -----: | -----: |
+| DASH          | 0      | 0.5956 | 0.2610        | 0.3099 | 0.1877 |
+| Keto          | 0.5956 | 0      | 0.4820        | 0.3523 | 0.7289 |
+| Mediterranean | 0.2610 | 0.4820 | 0             | 0.2321 | 0.3029 |
+| Paleo         | 0.3099 | 0.3523 | 0.2321        | 0      | 0.4540 |
+| Vegan         | 0.1877 | 0.7289 | 0.3029        | 0.4540 | 0      |
+
+As can be seen in the table, there are diets that are more similar than others, this is related to the products and foods consumed, and to the trends that according to what is exposed in [Exploratory Data Analysis](./StatisticalAnalysis/ExploratoryDataAnalysis.py), so it becomes that, from a certain point of view, they behave in a similar way. Specifically, it could be figured that the diets are grouped in the following way and explanation:
+
+* *DASH and Vegan*: Both diets tend to be rich in the consumption of foods of vegetable origin, so this implies diets rich in carbohydrates and fats; this means that they are also deficient in proteins. And these two patterns can be seen in their distributions.
+
+* *Paleo and Mediterranean*: Although they consume different foods, their nutritional contributions are similar, they tend to be more balanced or diversified among the different macronutrients. The latter means that their differences are not notable.
+
+* *Keto*: Unlike other diets, this diet has a high consumption of fats so that proteins and carbohydrates, mainly, have a deficient consumption. This fact characterizes this diet, which is a very different trend from other diets. 
 
 ## Installation and Usage
 First it has to clone the repository and move to the project directory:
@@ -44,6 +63,7 @@ pip install -r requirements.txt
 With this, one can run and view the Marimo notebooks with the following command:
 ```bash
 marimo run StatisticalAnalysis/ExploratoryDataAnalysis.py
+marimo run StatisticalAnalysis/HypothesisTesting.py
 ```
 
 ## Technologies

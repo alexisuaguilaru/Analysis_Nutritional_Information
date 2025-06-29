@@ -69,7 +69,15 @@ def _(mo):
 
 @app.cell
 def _(mo):
-    mo.md(r"The aim of this notebook is to develop the hypothesis test concerning the [General Aim](../README.md#general-aim) of the project. The interpretation of the test values and the implications related to these results are presented.")
+    mo.md(
+        r"""
+        The aim of this notebook is to develop the hypothesis test concerning the [General Aim](../README.md#general-aim) of the project. The interpretation of the test values and the implications related to these results are presented.
+    
+        In the section [1. Beta Distributions of Macronutrients by Diet](#1-beta-distributions-of-macronutrients-by-diet) the Q-Q plots of the different distributions are presented to show the fit of the data to a theoretical beta distribution, in order to show how each macronutrient in the different diets follows certain patterns or trends in their contributions or values. In general, it allows to reinforce the statistical discussion on diets presented in [Exploratory Data Analysis](ExploratoryDataAnalysis.py).
+    
+        Finally, in [2. Hypothesis Test for Difference between Diets](#2-hypothesis-test-for-difference-between-diets), the results obtained to test the differences between diets at the macronutrient level are presented, from which it is concluded that the diets differ significantly. In addition, the means of the test statistics are presented in order to define a notion of distance between diets, this allows to illustrate how similar are diets based on the macronutrient contributions that characterize each one.
+        """
+    )
     return
 
 
